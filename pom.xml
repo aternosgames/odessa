@@ -22,10 +22,18 @@
     <description>Customizable, multi-version and easy-to-use game framework built on top of the Bukkit API</description>
 
     <properties>
+        <odessa.glowstone.version>2018.10.0-SNAPSHOT</odessa.glowstone.version> <!-- Minecraft 1.13 -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>glowstone-repo</id>
+            <url>https://repo.glowstone.net/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
 
     <licenses>
         <license>
