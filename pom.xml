@@ -35,9 +35,8 @@
     </licenses>
 
     <organization>
-        <!-- TODO Validate if the name is "Aternos" or "Aternos Games" -->
-        <name>Aternos</name>
-        <url>https://aternos.org</url>
+        <name>Aternos Games</name>
+        <url>https://aternos.games</url>
     </organization>
 
 </project>
