@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>odessa-api</module>
+        <module>api</module>
     </modules>
 
     <name>Odessa</name>
