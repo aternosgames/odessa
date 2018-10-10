@@ -16,9 +16,9 @@
     </modules>
 
     <name>Odessa</name>
-    <description>Customizable, multi-version and easy-to-use game framework built on top of the Bukkit API</description>
-    <url>https://github.com/aternosgames/odessa</url>
     <inceptionYear>2018</inceptionYear>
+    <url>https://github.com/aternosgames/odessa</url>
+    <description>Customizable, multi-version and easy-to-use game framework built on top of the Bukkit API</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
