@@ -9,6 +9,10 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>odessa-api</module>
+    </modules>
+
     <name>Odessa</name>
     <description>Customizable, multi-version and easy-to-use game framework built on Glowstone</description>
     <url>https://github.com/aternosgames/odessa</url>
