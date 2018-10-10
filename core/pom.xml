@@ -18,4 +18,12 @@
     <!-- TODO Can someone add a description? -->
     <!-- <description></description> -->
 
+    <dependencies>
+        <dependency>
+            <groupId>net.glowstone</groupId>
+            <artifactId>glowstone</artifactId>
+            <version>${odessa.glowstone.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

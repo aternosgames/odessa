@@ -19,4 +19,12 @@
         Implementation of the Odessa API and core especially suited for the Glowstone server environment
     </description>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.glowstone</groupId>
+            <artifactId>glowstone</artifactId>
+            <version>${odessa.glowstone.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -17,4 +17,12 @@
     <name>Odessa-Playground</name>
     <description>An easy to use toolkit providing utilities for all kinds of stuff</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.glowstone</groupId>
+            <artifactId>glowstone</artifactId>
+            <version>${odessa.glowstone.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
