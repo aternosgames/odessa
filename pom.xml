@@ -13,7 +13,6 @@
         <module>api</module>
         <module>core</module>
         <module>glowstone</module>
-        <module>playground</module>
     </modules>
 
     <name>Odessa</name>
