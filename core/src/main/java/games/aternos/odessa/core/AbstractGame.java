@@ -38,7 +38,7 @@ public abstract class AbstractGame implements Game, Runnable {
      */
     public AbstractGame(String name, GamePhase initialPhase, TeamFactory teamFactory) {
         Preconditions.checkNotNull(name, "'name' cannot be null");
-        Preconditions.checkNotNull(teamFactory, "'teamType' cannot be null");
+        Preconditions.checkNotNull(teamFactory, "'teamFactory' cannot be null");
 
         this.name = name;
         this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
