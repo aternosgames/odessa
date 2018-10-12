@@ -15,14 +15,14 @@ public class TeamOptions {
 
     /**
      * Instantiates a new PlayerTeam options.
-     * <p>
+     *
      * If no teams are needed, {@code playerCountPerTeam} should be 1 and {@code teamCount} should be the
      * maximum amount of players.
      *
      * @param playerCountPerTeam the player count per team, has to be > 0
      * @param teamCount          the team count, has to be > 1
      * @param friendlyFire       the friendly fire
-     * @param teamColors         the team colors, set to null for random colors
+     * @param teamColors         the team colors, set to null for no team colors
      */
     public TeamOptions(int playerCountPerTeam, int teamCount, boolean friendlyFire, ChatColor[] teamColors) {
         Preconditions.checkArgument(playerCountPerTeam > 0, "'teamSize' cannot be <= 0");
@@ -63,7 +63,7 @@ public class TeamOptions {
     }
 
     /**
-     * Is friendly fire boolean.
+     * Returns if friendly fire is allowed.
      *
      * @return true if friendly fire is allowed
      */
