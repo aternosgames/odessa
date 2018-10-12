@@ -2,7 +2,7 @@ package games.aternos.odessa.core;
 
 import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
-import games.aternos.odessa.core.phase.InitialGamePhase;
+import games.aternos.odessa.core.phase.DefaultGamePhase;
 
 /**
  * The abstract class for main game logic.
@@ -13,15 +13,6 @@ public abstract class AbstractGame implements Game {
     protected GamePhase phase; //Current game phase
 
     /**
-     * Instantiates a new AbstractGame with using {@link InitialGamePhase} as initial game phase.
-     *
-     * @param name the name
-     */
-    public AbstractGame(String name) {
-        this(name, new InitialGamePhase());
-    }
-
-    /**
      * Instantiates a new AbstractGame.
      *
      * @param name         the name of the game
@@ -29,26 +20,27 @@ public abstract class AbstractGame implements Game {
      */
     public AbstractGame(String name, GamePhase initialPhase) {
         this.name = name;
-        this.phase = initialPhase;
+        this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
     }
 
-    @Override
     public void start() {
-        this.phase.startPhase();
+        this.phase.startPhase(this);
     }
 
-    @Override
     public void advancePhase(GamePhase nextPhase) {
         //End current phase
         phase.endPhase();
         //Set current phase to nextPhase
         this.phase = nextPhase;
         //Start next phase
-        phase.startPhase();
+        phase.startPhase(this);
     }
 
-    @Override
     public GamePhase getCurrentPhase() {
         return this.phase;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
