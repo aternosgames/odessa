@@ -15,8 +15,10 @@ public interface GamePhase {
     /**
      * Code that runs at the start of the phase.
      * This will run before first call of {@code update()}.
+     *
+     * @param game the game object using this game phrase
      */
-    void startPhase();
+    void startPhase(Game game);
 
     /**
      * This method gets called every second by {@code game}. It should keep the game alive
