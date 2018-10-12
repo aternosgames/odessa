@@ -14,7 +14,7 @@ public class TeamOptions {
     private ChatColor[] teamColors;
 
     /**
-     * Instantiates a new PlayerTeam options.
+     * Instantiates new team options.
      *
      * If no teams are needed, {@code playerCountPerTeam} should be 1 and {@code teamCount} should be the
      * maximum amount of players.
