@@ -25,6 +25,11 @@
             <version>0.0.1</version>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
+        </dependency>
+        <dependency>
             <groupId>net.glowstone</groupId>
             <artifactId>glowstone</artifactId>
             <version>${odessa.glowstone.version}</version>
