@@ -18,10 +18,10 @@ import java.util.List;
  */
 public abstract class AbstractGame implements Game, Runnable {
 
-    private Plugin plugin;
     private BukkitTask thread;
     private List<Listener> tempListeners;
 
+    protected Plugin plugin; //Plugin that started the game
     protected String name;
     protected GamePhase phase; //Current game phase
 
@@ -71,6 +71,7 @@ public abstract class AbstractGame implements Game, Runnable {
         phase.endPhase();
         //Unregister all temp listeners
         tempListeners.forEach(listener -> HandlerList.unregisterAll(listener));
+        tempListeners.clear();
 
         //Set current phase to nextPhase
         this.phase = nextPhase;
