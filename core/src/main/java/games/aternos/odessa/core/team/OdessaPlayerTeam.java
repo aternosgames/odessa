@@ -66,6 +66,11 @@ public class OdessaPlayerTeam implements PlayerTeam {
         return this.players;
     }
 
+    @Override
+    public int getSize() {
+        return this.players.size();
+    }
+
     /**
      * Gets color.
      *
