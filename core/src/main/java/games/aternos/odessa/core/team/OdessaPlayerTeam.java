@@ -2,6 +2,7 @@ package games.aternos.odessa.core.team;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import games.aternos.odessa.api.team.PlayerTeam;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * The type Player team.
  */
-public class PlayerTeam {
+public class OdessaPlayerTeam implements PlayerTeam {
 
     private int id;
     private List<Player> players;
@@ -24,7 +25,7 @@ public class PlayerTeam {
      * @param color   the color
      * @param maxSize the max size
      */
-    public PlayerTeam(int id, ChatColor color, int maxSize) {
+    public OdessaPlayerTeam(int id, ChatColor color, int maxSize) {
         this.id = id;
         this.color = color;
         this.maxSize = maxSize;
@@ -32,21 +33,12 @@ public class PlayerTeam {
         this.players = Lists.newArrayList();
     }
 
-    /**
-     * Gets team id.
-     *
-     * @return the id
-     */
+    @Override
     public int getId() {
         return id;
     }
 
-    /**
-     * Adds player to this team.
-     *
-     * @param player the player that should be added
-     * @return returns true if player was added, returns false if team is full or already contains player
-     */
+    @Override
     public boolean addPlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
         if(players.size() >= maxSize)
@@ -61,12 +53,7 @@ public class PlayerTeam {
         return true;
     }
 
-    /**
-     * Removes player from this team.
-     *
-     * @param player the player that should be removed
-     * @return returns true if player was removed
-     */
+    @Override
     public boolean removePlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
 
@@ -74,11 +61,7 @@ public class PlayerTeam {
         return players.remove(player);
     }
 
-    /**
-     * Gets players.
-     *
-     * @return the players
-     */
+    @Override
     public List<Player> getPlayers() {
         return this.players;
     }
