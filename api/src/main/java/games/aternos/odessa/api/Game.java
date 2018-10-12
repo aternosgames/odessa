@@ -1,6 +1,7 @@
 package games.aternos.odessa.api;
 
 import games.aternos.odessa.api.phase.GamePhase;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -41,5 +42,15 @@ public interface Game {
      * @return the name of the game
      */
     public String getName();
+
+    /**
+     * Register {@code listener} as long as current game phase is active.
+     *
+     * Game phase related listeners always should be registered as temporary listener using
+     * this method.
+     *
+     * @param listener the listener containing event handlers
+     */
+    public void registerTempListener(Listener listener);
 
 }
