@@ -7,22 +7,50 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+/**
+ * The type Player team.
+ */
 public class PlayerTeam {
 
+    private int id;
     private List<Player> players;
     private int maxSize;
     private ChatColor color;
 
-    public PlayerTeam(ChatColor color, int maxSize) {
+    /**
+     * Instantiates a new Player team.
+     *
+     * @param id      the id
+     * @param color   the color
+     * @param maxSize the max size
+     */
+    public PlayerTeam(int id, ChatColor color, int maxSize) {
+        this.id = id;
         this.color = color;
         this.maxSize = maxSize;
 
         this.players = Lists.newArrayList();
     }
 
+    /**
+     * Gets team id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Adds player to this team.
+     *
+     * @param player the player that should be added
+     * @return returns true if player was added, returns false if team is full or already contains player
+     */
     public boolean addPlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
-
+        if(players.size() >= maxSize)
+            return false;
 
         //Check if player already is part of this team
         if(players.contains(player))
@@ -33,6 +61,12 @@ public class PlayerTeam {
         return true;
     }
 
+    /**
+     * Removes player from this team.
+     *
+     * @param player the player that should be removed
+     * @return returns true if player was removed
+     */
     public boolean removePlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
 
@@ -40,10 +74,20 @@ public class PlayerTeam {
         return players.remove(player);
     }
 
+    /**
+     * Gets players.
+     *
+     * @return the players
+     */
     public List<Player> getPlayers() {
         return this.players;
     }
 
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
     public ChatColor getColor() {
         return this.color;
     }
