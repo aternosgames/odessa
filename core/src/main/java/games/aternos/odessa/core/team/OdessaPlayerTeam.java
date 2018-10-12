@@ -41,6 +41,7 @@ public class OdessaPlayerTeam implements PlayerTeam {
     @Override
     public boolean addPlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
+        //Check if team is full
         if(players.size() >= maxSize)
             return false;
 
