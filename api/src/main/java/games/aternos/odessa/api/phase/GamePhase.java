@@ -1,18 +1,26 @@
 package games.aternos.odessa.api.phase;
 
+import games.aternos.odessa.api.Game;
+
 /**
  * The interface for game phases.
  */
 public interface GamePhase {
 
     /**
-     * End phase.
+     * Code that runs at the end of the phase.
      */
-    public void endPhase();
+    void endPhase();
 
     /**
-     * Start phase.
+     * Code that runs at the start of the phase.
+     * This will run before first call of {@code update()}.
      */
-    public void startPhase();
+    void startPhase();
 
+    /**
+     * This method gets called every second by {@code game}. It should keep the game alive
+     * and is responsible for changing of phases.
+     */
+    void update();
 }
