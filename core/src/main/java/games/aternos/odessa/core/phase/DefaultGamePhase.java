@@ -4,19 +4,11 @@ import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
 
 /**
- * This is the default game phase.
+ * This is the default game phase. Its just a placeholder
+ * not containing any logic. It will be used when a game
+ * gets instantiated without an initial phase.
  */
-public class DefaultGamePhase extends GamePhase {
-
-    /**
-     * Instantiates a new DefaultGamePhase. This phase will be used as default if no
-     * phase was defined whilst instantiation of {@link games.aternos.odessa.core.AbstractGame}.
-     *
-     * @param game the belonging game
-     */
-    public DefaultGamePhase(Game game) {
-        super(game);
-    }
+public class DefaultGamePhase implements GamePhase {
 
     @Override
     public void endPhase() {
@@ -24,7 +16,7 @@ public class DefaultGamePhase extends GamePhase {
     }
 
     @Override
-    public void startPhase() {
+    public void startPhase(Game game) {
         /* do nothing, wait for next game phase */
     }
 
