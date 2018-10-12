@@ -1,5 +1,6 @@
 package games.aternos.odessa.core.phase;
 
+import com.google.common.base.Preconditions;
 import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.api.phase.WaitingCondition;
@@ -33,6 +34,8 @@ public class WaitingGamePhase implements GamePhase {
 
     @Override
     public void startPhase(Game game) {
+        Preconditions.checkNotNull(game, "'game' cannot be null!");
+
         this.game = game;
     }
 
