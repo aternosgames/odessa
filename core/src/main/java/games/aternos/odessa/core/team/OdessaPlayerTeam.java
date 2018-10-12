@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 /**
- * The type Player team.
+ * This is the default odessa player team.
  */
 public class OdessaPlayerTeam implements PlayerTeam {
 
