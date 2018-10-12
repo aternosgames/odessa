@@ -1,19 +1,26 @@
 package games.aternos.odessa.core;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.core.phase.DefaultGamePhase;
 import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import java.util.List;
 
 /**
  * The abstract class for main game logic.
  */
 public abstract class AbstractGame implements Game, Runnable {
 
+    private Plugin plugin;
     private BukkitTask thread;
+    private List<Listener> tempListeners;
 
     protected String name;
     protected GamePhase phase; //Current game phase
@@ -29,6 +36,9 @@ public abstract class AbstractGame implements Game, Runnable {
 
         this.name = name;
         this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
+
+        //List containing all temp listeners
+        tempListeners = Lists.newArrayList();
     }
 
     @Override
@@ -39,6 +49,8 @@ public abstract class AbstractGame implements Game, Runnable {
 
     @Override
     public void start(Plugin plugin) {
+        this.plugin = plugin;
+
         //Call startPhase of initial GamePhase
         this.phase.startPhase(this);
         //Start thread that will call #update() on current game phase
@@ -47,6 +59,7 @@ public abstract class AbstractGame implements Game, Runnable {
 
     @Override
     public void end() {
+        //End thread which updated game phases
         this.thread.cancel();
     }
 
@@ -56,10 +69,21 @@ public abstract class AbstractGame implements Game, Runnable {
 
         //End current phase
         phase.endPhase();
+        //Unregister all temp listeners
+        tempListeners.forEach(listener -> HandlerList.unregisterAll(listener));
+
         //Set current phase to nextPhase
         this.phase = nextPhase;
         //Start next phase
         phase.startPhase(this);
+    }
+
+    @Override
+    public void registerTempListener(Listener listener) {
+        //Add listener to temp listener list
+        tempListeners.add(listener);
+        //Register listener into bukkit
+        Bukkit.getServer().getPluginManager().registerEvents(listener, this.plugin);
     }
 
     @Override
