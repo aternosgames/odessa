@@ -33,6 +33,11 @@ public abstract class AbstractGame implements Game {
     }
 
     @Override
+    public void start() {
+        this.phase.startPhase();
+    }
+
+    @Override
     public void advancePhase(GamePhase nextPhase) {
         //End current phase
         phase.endPhase();
