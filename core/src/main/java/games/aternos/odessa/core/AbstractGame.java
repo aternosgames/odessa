@@ -103,4 +103,9 @@ public abstract class AbstractGame implements Game, Runnable {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public TeamFactory getTeamFactory() {
+        return this.teamFactory;
+    }
 }
