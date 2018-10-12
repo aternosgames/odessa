@@ -1,6 +1,7 @@
 package games.aternos.odessa.api;
 
 import games.aternos.odessa.api.phase.GamePhase;
+import games.aternos.odessa.api.team.TeamFactory;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
@@ -53,4 +54,10 @@ public interface Game {
      */
     public void registerTempListener(Listener listener);
 
+    /**
+     * Gets team factory which is responsible for team relations
+     *
+     * @return the team factory
+     */
+    public TeamFactory getTeamFactory();
 }

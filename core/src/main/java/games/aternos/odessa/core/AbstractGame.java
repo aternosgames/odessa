@@ -4,8 +4,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
+import games.aternos.odessa.api.team.TeamFactory;
 import games.aternos.odessa.core.phase.DefaultGamePhase;
-import games.aternos.odessa.core.team.TeamFactory;
+import games.aternos.odessa.core.team.OdessaTeamFactory;
 import games.aternos.odessa.core.team.TeamOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -33,15 +34,15 @@ public abstract class AbstractGame implements Game, Runnable {
      *
      * @param name         the name of the game
      * @param initialPhase the initial game phase, if null {@link DefaultGamePhase} will be used
-     * @param teamOptions  the team options - {@code playerCountPerTeam} has to be > 0 and {@code teamCount} > 1
+     * @param teamFactory  the team factory to use
      */
-    public AbstractGame(String name, GamePhase initialPhase, TeamOptions teamOptions) {
+    public AbstractGame(String name, GamePhase initialPhase, TeamFactory teamFactory) {
         Preconditions.checkNotNull(name, "'name' cannot be null");
-        Preconditions.checkNotNull(teamOptions, "'teamType' cannot be null");
+        Preconditions.checkNotNull(teamFactory, "'teamType' cannot be null");
 
         this.name = name;
         this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
-        this.teamFactory = new TeamFactory(this, teamOptions);
+        this.teamFactory = teamFactory;
 
         //List containing all temp listeners
         tempListeners = Lists.newArrayList();
