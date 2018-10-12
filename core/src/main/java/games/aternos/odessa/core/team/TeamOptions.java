@@ -27,7 +27,7 @@ public class TeamOptions {
     public TeamOptions(int playerCountPerTeam, int teamCount, boolean friendlyFire, ChatColor[] teamColors) {
         Preconditions.checkArgument(playerCountPerTeam > 0, "'teamSize' cannot be <= 0");
         Preconditions.checkArgument(teamCount > 1, "'teamSize' cannot be <= 1");
-        Preconditions.checkArgument(teamColors != null && teamColors.length >= teamCount, "'teamColors' does not contain enough colors");
+        Preconditions.checkArgument(teamColors == null ? true : teamColors.length >= teamCount, "'teamColors' does not contain enough colors");
 
         this.playerCountPerTeam = playerCountPerTeam;
         this.teamCount = teamCount;
