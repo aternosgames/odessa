@@ -34,6 +34,8 @@ public class SingleActionGamePhase implements GamePhase {
 
     @Override
     public void startPhase(Game game) {
+        Preconditions.checkNotNull(game, "'game' cannot be null!");
+
         toRun.run();
         game.advancePhase(this.nextPhase);
     }
