@@ -43,13 +43,24 @@ public class TeamFactory {
 
         //Create empty teams
         for(int i = 0; i < teamOptions.getTeamCount(); i++) {
-            ChatColor teamColor = teamOptions.getTeamColors() == null ? getRandomColor() : teamOptions.getTeamColors()[i];
-            teams.add(new PlayerTeam(teamColor, teamOptions.getPlayerCountPerTeam()));
+            ChatColor teamColor = teamOptions.getTeamColors() == null ? null : teamOptions.getTeamColors()[i];
+            teams.add(new PlayerTeam(i, teamColor, teamOptions.getPlayerCountPerTeam()));
         }
     }
 
     /**
-     * Searches team by color
+     * Searches team by id
+     *
+     * @param id the id of the searched team
+     * @return the team belonging to the id, null if not existing
+     */
+    public PlayerTeam getTeamById(int id) {
+        Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getId() == id).findAny();
+        return optionalTeam.isPresent() ? optionalTeam.get() : null;
+    }
+
+    /**
+     * Searches team by id
      *
      * @param color the color of the searched team
      * @return the team belonging to the color, null if not existing
@@ -68,16 +79,5 @@ public class TeamFactory {
     public PlayerTeam getTeamByPlayer(Player player) {
         Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getPlayers().contains(player)).findAny();
         return optionalTeam.isPresent() ? optionalTeam.get() : null;
-    }
-
-    /**
-     * Returns random color.
-     * TODO: Implement this into playground and remove it from here
-     *
-     * @return random chat color
-     */
-    private ChatColor getRandomColor() {
-        Random rand = new Random();
-        return ChatColor.values()[ChatColor.values().length - 1];
     }
 }
