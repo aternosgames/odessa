@@ -2,11 +2,12 @@ package games.aternos.odessa.core.team;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import games.aternos.odessa.api.Game;
+import games.aternos.odessa.api.team.PlayerTeam;
 import games.aternos.odessa.api.team.TeamFactory;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class OdessaTeamFactory implements TeamFactory {
 
     private TeamOptions teamOptions;
-    private List<OdessaPlayerTeam> teams;
+    private List<PlayerTeam> teams;
 
     /**
      * Instantiates a new team factory using the given {@code teamOptions}.
@@ -47,20 +48,20 @@ public class OdessaTeamFactory implements TeamFactory {
     }
 
     @Override
-    public OdessaPlayerTeam getTeamById(int id) {
-        Optional<OdessaPlayerTeam> optionalTeam = teams.stream().filter(team -> team.getId() == id).findAny();
+    public PlayerTeam getTeamById(int id) {
+        Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getId() == id).findAny();
         return optionalTeam.isPresent() ? optionalTeam.get() : null;
     }
 
     @Override
-    public OdessaPlayerTeam getTeamByColor(ChatColor color) {
-        Optional<OdessaPlayerTeam> optionalTeam = teams.stream().filter(team -> team.getColor().equals(color)).findAny();
+    public PlayerTeam getTeamByColor(ChatColor color) {
+        Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getColor().equals(color)).findAny();
         return optionalTeam.isPresent() ? optionalTeam.get() : null;
     }
 
     @Override
-    public OdessaPlayerTeam getTeamByPlayer(Player player) {
-        Optional<OdessaPlayerTeam> optionalTeam = teams.stream().filter(team -> team.getPlayers().contains(player)).findAny();
+    public PlayerTeam getTeamByPlayer(Player player) {
+        Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getPlayers().contains(player)).findAny();
         return optionalTeam.isPresent() ? optionalTeam.get() : null;
     }
 
@@ -74,6 +75,23 @@ public class OdessaTeamFactory implements TeamFactory {
         teams.add(team);
     }
 
+    @Override
+    public PlayerTeam getSmallestTeam() {
+        Comparator<PlayerTeam> comparator = Comparator.comparing( PlayerTeam::getSize );
+        return teams.stream().min(comparator).get();
+    }
+
+    @Override
+    public List<PlayerTeam> getTeams() {
+        return this.teams;
+    }
+
+    /**
+     * Build team factory based on given team options.
+     *
+     * @param options the options
+     * @return the team factory
+     */
     public static TeamFactory build(TeamOptions options) {
         return new OdessaTeamFactory(options);
     }
