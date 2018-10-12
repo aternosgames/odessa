@@ -45,7 +45,7 @@ public interface Game {
 
     /**
      * Register {@code listener} as long as current game phase is active.
-     *
+     * <p>
      * Game phase related listeners always should be registered as temporary listener using
      * this method.
      *
