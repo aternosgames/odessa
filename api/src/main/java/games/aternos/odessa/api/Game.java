@@ -1,6 +1,7 @@
 package games.aternos.odessa.api;
 
 import games.aternos.odessa.api.phase.GamePhase;
+import org.bukkit.plugin.Plugin;
 
 /**
  * The interface for main game logic.
@@ -8,13 +9,20 @@ import games.aternos.odessa.api.phase.GamePhase;
 public interface Game {
 
     /**
-     * Starts the game. Calls {@link GamePhase#startPhase()} on initial game phase.
+     * Starts the game. Calls {@link GamePhase#startPhase(Game)} on initial game phase.
+     *
+     * @param plugin the plugin
      */
-    public void start();
+    public void start(Plugin plugin);
+
+    /**
+     * End the game.
+     */
+    public void end();
 
     /**
      * Switches game phase to {@code nextPhase}.
-     * Calls {@link GamePhase#endPhase()} on current and {@link GamePhase#startPhase()} on next phase.
+     * Calls {@link GamePhase#endPhase()} on current and {@link GamePhase#startPhase(Game)} on next phase.
      *
      * @param nextPhase the next phase
      */
