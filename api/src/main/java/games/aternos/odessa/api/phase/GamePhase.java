@@ -8,11 +8,15 @@ import games.aternos.odessa.api.Game;
 public interface GamePhase {
 
     /**
+     * End of game phase lifecycle.
+     *
      * Code that runs at the end of the phase.
      */
     void endPhase();
 
     /**
+     * Start of game phase lifecycle.
+     *
      * Code that runs at the start of the phase.
      * This will run before first call of {@code update()}.
      *
