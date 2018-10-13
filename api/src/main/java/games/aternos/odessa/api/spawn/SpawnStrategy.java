@@ -1,11 +1,9 @@
 package games.aternos.odessa.api.spawn;
 
-import org.bukkit.entity.Player;
+import java.util.Collection;
 
-import java.util.List;
+public interface SpawnStrategy<T> {
 
-public interface SpawnStrategy {
-
-    void spawnPlayers(List<Player> playerList);
+    void spawn(Collection<T> elements);
 
 }
