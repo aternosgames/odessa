@@ -114,4 +114,7 @@ public abstract class AbstractGame implements Game, Runnable {
 
     @Override
     public ChatFactory getChatFactory() { return this.chatFactory; }
+
+    @Override
+    public int getMaxPlayers() { return this.teamFactory.getOptions().getMaxPlayers(); }
 }

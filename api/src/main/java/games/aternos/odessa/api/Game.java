@@ -43,7 +43,7 @@ public interface Game {
      *
      * @return the name of the game
      */
-   String getName();
+    String getName();
 
     /**
      * Register {@code listener} as long as current game phase is active.
@@ -68,4 +68,11 @@ public interface Game {
      * @return the chat factory
      */
     ChatFactory getChatFactory();
+
+    /**
+     * Gets max amount of players that could play this game.
+     *
+     * @return the max players
+     */
+    int getMaxPlayers();
 }
