@@ -1,20 +1,21 @@
 package games.aternos.odessa.core.spawn;
 
 import com.google.common.base.Preconditions;
-import games.aternos.odessa.api.spawn.SpawnStrategy;
+
+import games.aternos.odessa.api.spawn.PlayerSpawnStrategy;
 import games.aternos.odessa.api.team.PlayerTeam;
 import games.aternos.odessa.api.team.TeamFactory;
 import games.aternos.playground.location.Locations;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 /**
  * TeamBase spawn strategy. Will spawn all players of one team at a given location.
  */
-public class TeamBaseSpawnStrategy implements SpawnStrategy {
+public class TeamBaseSpawnStrategy implements PlayerSpawnStrategy {
 
     private TeamFactory teamFactory;
     private Map<Integer, Location> teamSpawns;
@@ -31,8 +32,8 @@ public class TeamBaseSpawnStrategy implements SpawnStrategy {
     }
 
     @Override
-    public void spawnPlayers(List<Player> playerList) {
-        playerList.forEach(player -> {
+    public void spawn(Collection<Player> players) {
+        players.forEach(player -> {
             //Get players team
             PlayerTeam team = teamFactory.getTeamByPlayer(player);
             //Get spawn location for team and randomize it, so players dont spawn on the same spot
