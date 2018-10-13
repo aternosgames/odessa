@@ -6,7 +6,7 @@ package games.aternos.odessa.core.lifecycle;
 public class SecondsGameLifecycle extends AbstractGameLifecycle {
 
     /**
-     * Instantiates a new seconds game lifecycle.
+     * Instantiates a new seconds game lifecycle.  Updates game phases every second.
      */
     public SecondsGameLifecycle() {
         super(20);
