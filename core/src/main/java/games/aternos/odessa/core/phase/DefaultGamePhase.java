@@ -21,7 +21,7 @@ public class DefaultGamePhase extends AbstractGamePhase {
     }
 
     @Override
-    public void update() {
+    public void updatePhase() {
         /* do nothing, wait for next game phase */
     }
 }
