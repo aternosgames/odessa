@@ -6,8 +6,6 @@ import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.api.team.TeamFactory;
 import games.aternos.odessa.core.phase.DefaultGamePhase;
-import games.aternos.odessa.core.team.OdessaTeamFactory;
-import games.aternos.odessa.core.team.TeamOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
