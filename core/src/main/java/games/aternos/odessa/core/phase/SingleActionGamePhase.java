@@ -39,7 +39,7 @@ public class SingleActionGamePhase extends AbstractGamePhase {
     }
 
     @Override
-    public void update() {
+    public void updatePhase() {
         /* Do nothing */
     }
 }

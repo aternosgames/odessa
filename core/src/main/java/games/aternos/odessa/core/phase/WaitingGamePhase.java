@@ -38,7 +38,7 @@ public class WaitingGamePhase extends AbstractGamePhase {
     }
 
     @Override
-    public void update() {
+    public void updatePhase() {
         if(condition.check())
             game.advancePhase(this.nextPhase);
     }
