@@ -8,7 +8,7 @@ import games.aternos.odessa.api.phase.GamePhase;
  * not containing any logic. It will be used when a game
  * gets instantiated without an initial phase.
  */
-public class DefaultGamePhase implements GamePhase {
+public class DefaultGamePhase extends AbstractGamePhase {
 
     @Override
     public void endPhase() {
@@ -16,7 +16,7 @@ public class DefaultGamePhase implements GamePhase {
     }
 
     @Override
-    public void startPhase(Game game) {
+    public void startPhase() {
         /* do nothing, wait for next game phase */
     }
 
