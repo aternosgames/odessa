@@ -68,7 +68,7 @@ public class OdessaPlayerTeam implements PlayerTeam {
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return this.players.size();
     }
 
@@ -77,6 +77,7 @@ public class OdessaPlayerTeam implements PlayerTeam {
      *
      * @return the color
      */
+    @Override
     public ChatColor getColor() {
         return this.color;
     }

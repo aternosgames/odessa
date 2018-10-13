@@ -52,5 +52,5 @@ public interface PlayerTeam {
      *
      * @return the amount of players inside this team
      */
-    int getSize();
+    int size();
 }
