@@ -4,9 +4,9 @@ import com.google.common.base.Preconditions;
 import org.bukkit.ChatColor;
 
 /**
- * This class saves options about team settings.
+ * This class is odessas default implementation of TeamOptions.
  */
-public class TeamOptions {
+public class OdessaTeamOptions implements games.aternos.odessa.api.team.TeamOptions {
 
     private int playerCountPerTeam;
     private int teamCount;
@@ -24,7 +24,7 @@ public class TeamOptions {
      * @param friendlyFire       the friendly fire
      * @param teamColors         the team colors, set to null for no team colors
      */
-    public TeamOptions(int playerCountPerTeam, int teamCount, boolean friendlyFire, ChatColor[] teamColors) {
+    public OdessaTeamOptions(int playerCountPerTeam, int teamCount, boolean friendlyFire, ChatColor[] teamColors) {
         Preconditions.checkArgument(playerCountPerTeam > 0, "'teamSize' cannot be <= 0");
         Preconditions.checkArgument(teamCount > 1, "'teamSize' cannot be <= 1");
         Preconditions.checkArgument(teamColors == null ? true : teamColors.length >= teamCount, "'teamColors' does not contain enough colors");
@@ -44,38 +44,22 @@ public class TeamOptions {
         return this.teamColors;
     }
 
-    /**
-     * Gets the amount of players per team.
-     *
-     * @return the amount of players per team
-     */
+    @Override
     public int getPlayerCountPerTeam() {
         return this.playerCountPerTeam;
     }
 
-    /**
-     * Gets the amount of teams.
-     *
-     * @return the team count
-     */
+    @Override
     public int getTeamCount() {
         return this.teamCount;
     }
 
-    /**
-     * Returns if friendly fire is allowed.
-     *
-     * @return true if friendly fire is allowed
-     */
+    @Override
     public boolean isFriendlyFire() {
         return friendlyFire;
     }
 
-    /**
-     * Sets friendly fire.
-     *
-     * @param friendlyFire set to true if friendly fire should be allowed
-     */
+    @Override
     public void setFriendlyFire(boolean friendlyFire) {
         this.friendlyFire = friendlyFire;
     }
