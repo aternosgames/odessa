@@ -10,7 +10,6 @@ import games.aternos.odessa.api.phase.GamePhase;
 public abstract class AbstractGamePhase implements GamePhase {
 
     private Game game;
-    private int time;
 
     @Override
     public void startPhase(Game game) {
@@ -34,16 +33,8 @@ public abstract class AbstractGamePhase implements GamePhase {
 
     @Override
     public void update() {
-        time++;
-        updatePhase();;
+        updatePhase();
     }
-
-    /**
-     * Gets age of phase in seconds (counts how often {@code update()} has been called).
-     *
-     * @return the age
-     */
-    public int getAge() { return this.time; }
 
     /**
      * Update phase.
