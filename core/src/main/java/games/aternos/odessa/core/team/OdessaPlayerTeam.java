@@ -41,6 +41,7 @@ public class OdessaPlayerTeam implements PlayerTeam {
     @Override
     public boolean addPlayer(Player player) {
         Preconditions.checkNotNull(player, "'player' cannot be null");
+        //Check if team is full
         if(players.size() >= maxSize)
             return false;
 
@@ -66,11 +67,17 @@ public class OdessaPlayerTeam implements PlayerTeam {
         return this.players;
     }
 
+    @Override
+    public int size() {
+        return this.players.size();
+    }
+
     /**
      * Gets color.
      *
      * @return the color
      */
+    @Override
     public ChatColor getColor() {
         return this.color;
     }

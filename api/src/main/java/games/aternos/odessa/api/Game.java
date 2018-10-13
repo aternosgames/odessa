@@ -1,5 +1,6 @@
 package games.aternos.odessa.api;
 
+import games.aternos.odessa.api.chat.ChatFactory;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.api.team.TeamFactory;
 import org.bukkit.event.Listener;
@@ -15,12 +16,12 @@ public interface Game {
      *
      * @param plugin the plugin
      */
-    public void start(Plugin plugin);
+    void start(Plugin plugin);
 
     /**
      * End the game.
      */
-    public void end();
+    void end();
 
     /**
      * Switches game phase to {@code nextPhase}.
@@ -28,21 +29,21 @@ public interface Game {
      *
      * @param nextPhase the next phase
      */
-    public void advancePhase(GamePhase nextPhase);
+    void advancePhase(GamePhase nextPhase);
 
     /**
      * Gets current game phase.
      *
      * @return current {@link GamePhase}
      */
-    public GamePhase getCurrentPhase();
+    GamePhase getCurrentPhase();
 
     /**
      * Gets name.
      *
      * @return the name of the game
      */
-    public String getName();
+   String getName();
 
     /**
      * Register {@code listener} as long as current game phase is active.
@@ -52,12 +53,19 @@ public interface Game {
      *
      * @param listener the listener containing event handlers
      */
-    public void registerTempListener(Listener listener);
+    void registerTempListener(Listener listener);
 
     /**
      * Gets team factory which is responsible for team relations
      *
      * @return the team factory
      */
-    public TeamFactory getTeamFactory();
+    TeamFactory getTeamFactory();
+
+    /**
+     * Gets chat factory which is responsible for formatting chat.
+     *
+     * @return the chat factory
+     */
+    ChatFactory getChatFactory();
 }

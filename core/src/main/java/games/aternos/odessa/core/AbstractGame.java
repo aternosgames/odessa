@@ -3,11 +3,10 @@ package games.aternos.odessa.core;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import games.aternos.odessa.api.Game;
+import games.aternos.odessa.api.chat.ChatFactory;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.api.team.TeamFactory;
 import games.aternos.odessa.core.phase.DefaultGamePhase;
-import games.aternos.odessa.core.team.OdessaTeamFactory;
-import games.aternos.odessa.core.team.TeamOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -23,7 +22,9 @@ public abstract class AbstractGame implements Game, Runnable {
 
     private BukkitTask thread;
     private List<Listener> tempListeners;
+
     private TeamFactory teamFactory;
+    private ChatFactory chatFactory;
 
     protected Plugin plugin; //Plugin that started the game
     protected String name;
@@ -36,13 +37,15 @@ public abstract class AbstractGame implements Game, Runnable {
      * @param initialPhase the initial game phase, if null {@link DefaultGamePhase} will be used
      * @param teamFactory  the team factory to use
      */
-    public AbstractGame(String name, GamePhase initialPhase, TeamFactory teamFactory) {
+    public AbstractGame(String name, GamePhase initialPhase, TeamFactory teamFactory, ChatFactory chatFactory) {
         Preconditions.checkNotNull(name, "'name' cannot be null");
-        Preconditions.checkNotNull(teamFactory, "'teamType' cannot be null");
+        Preconditions.checkNotNull(teamFactory, "'teamFactory' cannot be null");
+        Preconditions.checkNotNull(chatFactory, "'chatFactory' cannot be null");
 
         this.name = name;
         this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
         this.teamFactory = teamFactory;
+        this.chatFactory = chatFactory;
 
         //List containing all temp listeners
         tempListeners = Lists.newArrayList();
@@ -103,4 +106,12 @@ public abstract class AbstractGame implements Game, Runnable {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public TeamFactory getTeamFactory() {
+        return this.teamFactory;
+    }
+
+    @Override
+    public ChatFactory getChatFactory() { return this.chatFactory; }
 }

@@ -3,6 +3,11 @@ package games.aternos.odessa.api.team;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
+/**
+ * The interface Team factory.
+ */
 public interface TeamFactory {
 
     /**
@@ -29,13 +34,33 @@ public interface TeamFactory {
      */
     PlayerTeam getTeamByPlayer(Player player);
 
+    /**
+     * Gets all available teams.
+     *
+     * @return the teams
+     */
+    List<PlayerTeam> getTeams();
+
 
     /**
      * Function for adding a team to the team pool.
      *
-     * @param color
-     * @param maxPlayers
+     * @param color      the color
+     * @param maxPlayers the max players
      */
     void createTeam(ChatColor color, int maxPlayers);
 
+    /**
+     * Gets team options wrapped by {@link TeamOptions} class.
+     *
+     * @return the options
+     */
+    TeamOptions getOptions();
+
+    /**
+     * Find the smallest team.
+     *
+     * @return the player team with the fewest players
+     */
+    PlayerTeam getSmallestTeam();
 }
