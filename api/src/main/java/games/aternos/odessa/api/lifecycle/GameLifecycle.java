@@ -20,11 +20,4 @@ public interface GameLifecycle extends Runnable {
      */
     void stop();
 
-    /**
-     * Gets the bukkit task running the game lifecycle. This is null if {@code start(Game)} was not called yet.
-     *
-     * @return the bukkit task
-     */
-    BukkitTask getBukkitTask();
-
 }

@@ -82,4 +82,9 @@ public interface Game {
      * @return the plugin
      */
     Plugin getPlugin();
+
+    /**
+     * Updates the game. Gets called by defined GameLifecycle.
+     */
+    void update();
 }
