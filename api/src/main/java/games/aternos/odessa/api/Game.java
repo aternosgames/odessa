@@ -75,4 +75,11 @@ public interface Game {
      * @return the max players
      */
     int getMaxPlayers();
+
+    /**
+     * Gets plugin that started the game.
+     *
+     * @return the plugin
+     */
+    Plugin getPlugin();
 }
