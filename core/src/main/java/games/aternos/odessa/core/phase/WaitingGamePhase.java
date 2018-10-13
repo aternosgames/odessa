@@ -9,7 +9,7 @@ import games.aternos.odessa.api.phase.WaitingCondition;
  * This game phase will wait until {@link WaitingCondition#check()} returns true and
  * proceed with the given {@code nextPhase}.
  */
-public class WaitingGamePhase implements GamePhase {
+public class WaitingGamePhase extends AbstractGamePhase {
 
     private Game game;
     private GamePhase nextPhase;
@@ -33,9 +33,7 @@ public class WaitingGamePhase implements GamePhase {
     }
 
     @Override
-    public void startPhase(Game game) {
-        Preconditions.checkNotNull(game, "'game' cannot be null!");
-
+    public void startPhase() {
         this.game = game;
     }
 

@@ -8,7 +8,7 @@ import games.aternos.odessa.api.phase.GamePhase;
  * This game phase will run whatever is supplied by {@code toRun} and then
  * instantly continue with {@code nextPhase}.
  */
-public class SingleActionGamePhase implements GamePhase {
+public class SingleActionGamePhase extends AbstractGamePhase {
 
     private Runnable toRun;
     private GamePhase nextPhase;
@@ -33,11 +33,9 @@ public class SingleActionGamePhase implements GamePhase {
     }
 
     @Override
-    public void startPhase(Game game) {
-        Preconditions.checkNotNull(game, "'game' cannot be null!");
-
+    public void startPhase() {
         toRun.run();
-        game.advancePhase(this.nextPhase);
+        getGame().advancePhase(this.nextPhase);
     }
 
     @Override
