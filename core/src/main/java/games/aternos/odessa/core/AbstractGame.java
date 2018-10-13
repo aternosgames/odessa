@@ -88,6 +88,11 @@ public abstract class AbstractGame implements Game {
     }
 
     @Override
+    public void update() {
+        this.phase.update();
+    }
+
+    @Override
     public void registerTempListener(Listener listener) {
         //Add listener to temp listener list
         tempListeners.add(listener);
