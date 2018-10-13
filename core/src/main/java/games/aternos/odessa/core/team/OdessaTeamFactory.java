@@ -17,7 +17,7 @@ import java.util.Optional;
  */
 public class OdessaTeamFactory implements TeamFactory {
 
-    private TeamOptions teamOptions;
+    private OdessaTeamOptions teamOptions;
     private List<PlayerTeam> teams;
 
     /**
@@ -25,7 +25,7 @@ public class OdessaTeamFactory implements TeamFactory {
      *
      * @param teamOptions the team options
      */
-    public OdessaTeamFactory(TeamOptions teamOptions) {
+    public OdessaTeamFactory(OdessaTeamOptions teamOptions) {
         Preconditions.checkNotNull(teamOptions, "'teamOptions' cannot be null");
 
         this.teamOptions = teamOptions;
@@ -77,7 +77,7 @@ public class OdessaTeamFactory implements TeamFactory {
 
     @Override
     public PlayerTeam getSmallestTeam() {
-        Comparator<PlayerTeam> comparator = Comparator.comparing( PlayerTeam::getSize );
+        Comparator<PlayerTeam> comparator = Comparator.comparing( PlayerTeam::size );
         return teams.stream().min(comparator).get();
     }
 
@@ -86,13 +86,18 @@ public class OdessaTeamFactory implements TeamFactory {
         return this.teams;
     }
 
+    @Override
+    public OdessaTeamOptions getOptions() {
+        return this.teamOptions;
+    }
+
     /**
      * Build team factory based on given team options.
      *
      * @param options the options
      * @return the team factory
      */
-    public static TeamFactory build(TeamOptions options) {
+    public static TeamFactory build(OdessaTeamOptions options) {
         return new OdessaTeamFactory(options);
     }
 }

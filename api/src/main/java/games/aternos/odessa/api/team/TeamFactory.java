@@ -51,6 +51,13 @@ public interface TeamFactory {
     void createTeam(ChatColor color, int maxPlayers);
 
     /**
+     * Gets team options wrapped by {@link TeamOptions} class.
+     *
+     * @return the options
+     */
+    TeamOptions getOptions();
+
+    /**
      * Find the smallest team.
      *
      * @return the player team with the fewest players
