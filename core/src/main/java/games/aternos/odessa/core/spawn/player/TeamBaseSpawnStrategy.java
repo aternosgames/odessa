@@ -1,4 +1,4 @@
-package games.aternos.odessa.core.spawn;
+package games.aternos.odessa.core.spawn.player;
 
 import com.google.common.base.Preconditions;
 

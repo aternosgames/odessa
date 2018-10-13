@@ -1,4 +1,4 @@
-package games.aternos.odessa.core.spawn;
+package games.aternos.odessa.core.spawn.player;
 
 import games.aternos.odessa.api.spawn.PlayerSpawnStrategy;
 import games.aternos.playground.location.Locations;
