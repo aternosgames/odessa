@@ -1,4 +1,4 @@
-package games.aternos.odessa.core.lifecycle;
+package games.aternos.odessa.core;
 
 import games.aternos.odessa.api.Game;
 

@@ -1,7 +1,7 @@
-package games.aternos.odessa.core.lifecycle;
+package games.aternos.odessa.core;
 
 import games.aternos.odessa.api.Game;
-import games.aternos.odessa.api.lifecycle.GameLifecycle;
+import games.aternos.odessa.api.GameLifecycle;
 
 /**
  * The type Abstract game lifecycle.

@@ -1,8 +1,8 @@
-package games.aternos.odessa.core.lifecycle;
+package games.aternos.odessa.core;
 
 import games.aternos.odessa.api.Game;
-import games.aternos.odessa.api.lifecycle.GameLifecycle;
-import games.aternos.odessa.api.lifecycle.GameLifecycleFactory;
+import games.aternos.odessa.api.GameLifecycle;
+import games.aternos.odessa.api.GameLifecycleFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 

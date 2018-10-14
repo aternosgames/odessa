@@ -1,6 +1,4 @@
-package games.aternos.odessa.api.lifecycle;
-
-import games.aternos.odessa.api.Game;
+package games.aternos.odessa.api;
 
 public interface GameLifecycleFactory<T extends Game> {
 
