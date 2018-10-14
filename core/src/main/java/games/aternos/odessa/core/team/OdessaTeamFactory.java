@@ -4,9 +4,11 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import games.aternos.odessa.api.team.PlayerTeam;
 import games.aternos.odessa.api.team.TeamFactory;
+import games.aternos.odessa.api.team.TeamOptions;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -17,15 +19,14 @@ import java.util.Optional;
  */
 public class OdessaTeamFactory implements TeamFactory {
 
-    private OdessaTeamOptions teamOptions;
+    private TeamOptions teamOptions;
     private List<PlayerTeam> teams;
-
     /**
      * Instantiates a new team factory using the given {@code teamOptions}.
      *
      * @param teamOptions the team options
      */
-    public OdessaTeamFactory(OdessaTeamOptions teamOptions) {
+    public OdessaTeamFactory(TeamOptions teamOptions) {
         Preconditions.checkNotNull(teamOptions, "'teamOptions' cannot be null");
 
         this.teamOptions = teamOptions;
@@ -50,19 +51,19 @@ public class OdessaTeamFactory implements TeamFactory {
     @Override
     public PlayerTeam getTeamById(int id) {
         Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getId() == id).findAny();
-        return optionalTeam.isPresent() ? optionalTeam.get() : null;
+        return optionalTeam.orElse(null);
     }
 
     @Override
     public PlayerTeam getTeamByColor(ChatColor color) {
         Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getColor().equals(color)).findAny();
-        return optionalTeam.isPresent() ? optionalTeam.get() : null;
+        return optionalTeam.orElse(null);
     }
 
     @Override
     public PlayerTeam getTeamByPlayer(Player player) {
         Optional<PlayerTeam> optionalTeam = teams.stream().filter(team -> team.getPlayers().contains(player)).findAny();
-        return optionalTeam.isPresent() ? optionalTeam.get() : null;
+        return optionalTeam.orElse(null);
     }
 
     @Override
@@ -87,18 +88,48 @@ public class OdessaTeamFactory implements TeamFactory {
     }
 
     @Override
-    public OdessaTeamOptions getOptions() {
+    public TeamOptions getOptions() {
         return this.teamOptions;
     }
 
-    /**
-     * Build team factory based on given team options.
-     *
-     * @param options the options
-     * @return the team factory
-     */
-    public static TeamFactory build(OdessaTeamOptions options) {
-        return new OdessaTeamFactory(options);
+    public static class TeamFactoryBuilder {
+
+        private int playerCountPerTeam;
+        private int teamCount;
+        private boolean friendlyFire;
+        private List<ChatColor> teamColors = Lists.newArrayList();
+
+        public TeamFactoryBuilder setPlayerCountPerTeam(int playerCountPerTeam) {
+            this.playerCountPerTeam = playerCountPerTeam;
+            return this;
+        }
+
+        public TeamFactoryBuilder setTeamCount(int teamCount) {
+            this.teamCount = teamCount;
+            return this;
+        }
+
+        public TeamFactoryBuilder setFriendlyFire(boolean friendlyFire) {
+            this.friendlyFire = friendlyFire;
+            return this;
+        }
+
+        public TeamFactoryBuilder addTeamColor(ChatColor color) {
+            this.teamColors.add(color);
+            return this;
+        }
+
+        public TeamFactoryBuilder setTeamColors(ChatColor[] teamColors) {
+            this.teamColors.addAll(Arrays.asList(teamColors));
+            return this;
+        }
+
+        public OdessaTeamFactory build() {
+            ChatColor[] colors = new ChatColor[this.teamColors.size()];
+            colors = this.teamColors.toArray(colors);
+
+            return new OdessaTeamFactory(new OdessaTeamOptions(this.playerCountPerTeam, this.teamCount, this.friendlyFire, colors));
+        }
     }
 }
 

@@ -4,7 +4,8 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import games.aternos.odessa.api.Game;
 import games.aternos.odessa.api.chat.ChatFactory;
-import games.aternos.odessa.api.lifecycle.GameLifecycle;
+import games.aternos.odessa.api.GameLifecycle;
+import games.aternos.odessa.api.GameLifecycleFactory;
 import games.aternos.odessa.api.phase.GamePhase;
 import games.aternos.odessa.api.team.TeamFactory;
 import games.aternos.odessa.core.phase.DefaultGamePhase;
@@ -12,14 +13,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
 
 /**
  * The abstract class for main game logic.
  */
-public abstract class AbstractGame implements Game {
+public class BasicGame implements Game {
 
     //private BukkitTask thread;
     private GameLifecycle gameLifecycle;
@@ -33,15 +33,23 @@ public abstract class AbstractGame implements Game {
     protected String name;
 
     /**
-     * Instantiates a new AbstractGame.
+     * Instantiates a new odessa game using GameBuilder.
+     *
+     * @param builder the builder
+     */
+    public BasicGame(GameBuilder builder) {
+        this(builder.name, builder.initialPhase, builder.teamFactory, builder.chatFactory, builder.gameLifecycleFactory);
+    }
+
+    /**
+     * Instantiates a new BasicGame.
      *
      * @param name         the name of the game
      * @param initialPhase the initial game phase, if null {@link DefaultGamePhase} will be used
      * @param teamFactory  the team factory to use
      */
-    public AbstractGame(String name, GamePhase initialPhase, TeamFactory teamFactory, ChatFactory chatFactory, GameLifecycle gameLifecycle) {
+    public BasicGame(String name, GamePhase initialPhase, TeamFactory teamFactory, ChatFactory chatFactory, GameLifecycleFactory gameLifecycleFactory) {
         Preconditions.checkNotNull(name, "'name' cannot be null");
-        Preconditions.checkNotNull(gameLifecycle, "'gameLifecycle' cannot be null");
         Preconditions.checkNotNull(teamFactory, "'teamFactory' cannot be null");
         Preconditions.checkNotNull(chatFactory, "'chatFactory' cannot be null");
 
@@ -49,7 +57,7 @@ public abstract class AbstractGame implements Game {
         this.phase = (initialPhase == null ? new DefaultGamePhase() : initialPhase);
         this.teamFactory = teamFactory;
         this.chatFactory = chatFactory;
-        this.gameLifecycle = gameLifecycle;
+        this.gameLifecycle = gameLifecycleFactory.create(this);
 
         //List containing all temp listeners
         tempListeners = Lists.newArrayList();
@@ -63,7 +71,7 @@ public abstract class AbstractGame implements Game {
         this.phase.startPhase(this);
         //Start thread that will call #update() on current game phase
       //  this.thread = Bukkit.getScheduler().runTaskTimer(plugin, this, 0, 20);
-        this.gameLifecycle.start(this);
+        this.gameLifecycle.start();
     }
 
     @Override
@@ -123,4 +131,44 @@ public abstract class AbstractGame implements Game {
 
     @Override
     public Plugin getPlugin() { return this.plugin; }
+
+    /**
+     * The builder for this class.
+     */
+    public static class GameBuilder {
+
+        private GamePhase initialPhase = new DefaultGamePhase();
+
+        private String name;
+        private TeamFactory teamFactory;
+        private ChatFactory chatFactory;
+        private GameLifecycleFactory gameLifecycleFactory;
+
+        public GameBuilder setGameLifecycleFactory(GameLifecycleFactory gameLifecycleFactory) {
+            this.gameLifecycleFactory = gameLifecycleFactory;
+            return this;
+        }
+
+        public GameBuilder setInitialPhase(GamePhase initialPhase) {
+            this.initialPhase = initialPhase;
+            return this;
+        }
+
+        public GameBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public GameBuilder setTeamFactory(TeamFactory teamFactory) {
+            this.teamFactory = teamFactory;
+            return this;
+        }
+
+        public GameBuilder setChatFactory(ChatFactory chatFactory) {
+            this.chatFactory = chatFactory;
+            return this;
+        }
+
+        public BasicGame build() { return new BasicGame(this); }
+    }
 }
