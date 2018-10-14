@@ -1,5 +1,7 @@
 package games.aternos.odessa.api.team;
 
+import org.bukkit.ChatColor;
+
 /**
  * The interface Team options.
  */
@@ -28,6 +30,13 @@ public interface TeamOptions {
     default int getMaxPlayers() {
         return getTeamCount() * getPlayerCountPerTeam();
     }
+
+    /**
+     * Get team colors.
+     *
+     * @return the chat color [ ]
+     */
+    default ChatColor[] getTeamColors() { return null; }
 
     /**
      * Returns if friendly fire is allowed inside teams.
