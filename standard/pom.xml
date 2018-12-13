@@ -10,19 +10,35 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>odessa-api</artifactId>
+    <artifactId>odessa-standard</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>Odessa-API</name>
+    <name>Odessa-Core</name>
     <!-- TODO Can someone add a description? -->
     <!-- <description></description> -->
 
     <dependencies>
+        <dependency>
+            <groupId>games.aternos.odessa</groupId>
+            <artifactId>odessa-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>games.aternos.playground</groupId>
+            <artifactId>playground</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
+        </dependency>
         <dependency>
             <groupId>net.glowstone</groupId>
             <artifactId>glowstone</artifactId>
             <version>${odessa.glowstone.version}</version>
         </dependency>
     </dependencies>
+
 </project>

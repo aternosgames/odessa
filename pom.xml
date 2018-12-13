@@ -11,8 +11,7 @@
 
     <modules>
         <module>api</module>
-        <module>core</module>
-        <module>glowstone</module>
+        <module>standard</module>
     </modules>
 
     <name>Odessa</name>
