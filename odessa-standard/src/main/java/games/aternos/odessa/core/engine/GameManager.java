@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class GameManager {
 
-  static GameManager instance = new GameManager();
+  private static final GameManager instance = new GameManager();
 
   private List<Game> gameList;
 
   private Game activeGame;
 
-  public GameManager() {
+  private GameManager() {
     gameList = new ArrayList<>();
   }
 

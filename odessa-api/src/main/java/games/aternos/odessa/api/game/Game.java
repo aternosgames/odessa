@@ -40,7 +40,7 @@ public interface Game {
 
   GamePhase getActivePhase();
 
-  void setActivePhase();
+  void setActivePhase(GamePhase gamePhase);
 
   GameData getGameData();
 

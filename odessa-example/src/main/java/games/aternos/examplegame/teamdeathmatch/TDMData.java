@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TDMData implements GameData {
 
-  String gameName;
-  Integer maxPlayers;
-  List<Player> gamePlayers;
-  List<GameTeam> gameTeams;
+  private String gameName;
+  private Integer maxPlayers;
+  private List<Player> gamePlayers;
+  private List<GameTeam> gameTeams;
 
   public TDMData() {
     this.gameName = "Team Deathmatch";
@@ -23,42 +23,42 @@ public class TDMData implements GameData {
 
 
   @Override
-  public void getGameName() {
-
+  public String getGameName() {
+    return this.gameName;
   }
 
   @Override
   public void setGameName(String gameName) {
-
+    this.gameName = gameName;
   }
 
   @Override
-  public void getMaxPlayers() {
-
+  public Integer getMaxPlayers() {
+    return this.maxPlayers;
   }
 
   @Override
   public void setMaxPlayer(Integer maxPlayer) {
-
+    this.maxPlayers = maxPlayer;
   }
 
   @Override
   public List<Player> getGamePlayers() {
-    return null;
+    return this.gamePlayers;
   }
 
   @Override
   public void setGamePlayers(List<Player> players) {
-
+    this.gamePlayers = players;
   }
 
   @Override
   public List<GameTeam> getGameTeams() {
-    return null;
+    return this.gameTeams;
   }
 
   @Override
   public void setGameTeams(List<GameTeam> gameTeams) {
-
+    this.gameTeams = gameTeams;
   }
 }

@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface GameData {
 
-  void getGameName();
+  String getGameName();
 
   void setGameName(String gameName);
 
-  void getMaxPlayers();
+  Integer getMaxPlayers();
 
   void setMaxPlayer(Integer maxPlayer);
 

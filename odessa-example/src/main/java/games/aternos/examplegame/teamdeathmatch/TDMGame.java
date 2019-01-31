@@ -12,12 +12,12 @@ import java.util.List;
 
 public class TDMGame implements Game {
 
-  Plugin plugin;
-  GameArena activeArena;
-  List<GamePhase> gamePhases;
-  GamePhase activePhase;
-  GameData gameData;
-  List<Listener> gameListeners;
+  private Plugin plugin;
+  private GameArena activeArena;
+  private List<GamePhase> gamePhases;
+  private GamePhase activePhase;
+  private GameData gameData;
+  private List<Listener> gameListeners;
 
 
   @Override
@@ -30,61 +30,64 @@ public class TDMGame implements Game {
 
   @Override
   public void stop() {
-
+    this.plugin = null;
+    this.gamePhases = null;
+    gameListeners = null;
+    gameData = null;
   }
 
   @Override
   public Plugin getPlugin() {
-    return null;
+    return this.plugin;
   }
 
   @Override
   public GameArena getActiveArena() {
-    return null;
+    return this.activeArena;
   }
 
   @Override
   public void setActiveArena(GameArena gameArena) {
-
+    this.activeArena = gameArena;
   }
 
   @Override
   public List<GamePhase> getGamePhases() {
-    return null;
+    return this.getGamePhases();
   }
 
   @Override
   public void setGamePhases(List<GamePhase> gamePhases) {
-
+    this.gamePhases = gamePhases;
   }
 
   @Override
   public GamePhase getActivePhase() {
-    return null;
+    return this.activePhase;
   }
 
   @Override
-  public void setActivePhase() {
-
+  public void setActivePhase(GamePhase gamePhase) {
+    this.activePhase = gamePhase;
   }
 
   @Override
   public GameData getGameData() {
-    return null;
+    return this.gameData;
   }
 
   @Override
   public void setGameData(GameData gameData) {
-
+    this.gameData = gameData;
   }
 
   @Override
   public List<Listener> getGameListeners() {
-    return null;
+    return this.getGameListeners();
   }
 
   @Override
   public void setGameListeners(List<Listener> gameListeners) {
-
+    this.gameListeners = gameListeners;
   }
 }
