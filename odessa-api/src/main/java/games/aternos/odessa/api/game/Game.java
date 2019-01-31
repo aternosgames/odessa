@@ -54,7 +54,7 @@ public interface Game {
    * Adds and registers a Listener to the game.
    */
   default void addGameListener(Listener gameListener) {
-    getGameListeners().add(gameListener);
+    this.getGameListeners().add(gameListener);
     Bukkit.getPluginManager().registerEvents(gameListener, getPlugin());
   }
 
@@ -62,7 +62,7 @@ public interface Game {
    * Removes and disables a listener from the game.
    */
   default void removeGameListener(Listener gameListener) {
-    getGameListeners().remove(gameListener);
+    this.getGameListeners().remove(gameListener);
     HandlerList.unregisterAll(gameListener);
   }
 

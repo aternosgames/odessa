@@ -27,19 +27,19 @@ public interface GameData {
   void setGameTeams(List<GameTeam> gameTeams);
 
   default void addGameTeam(GameTeam gameTeam) {
-    getGameTeams().add(gameTeam);
+    this.getGameTeams().add(gameTeam);
   }
 
   default void removeGameTeam(GameTeam gameTeam) {
-    getGameTeams().remove(gameTeam);
+    this.getGameTeams().remove(gameTeam);
   }
 
   default void addGamePlayer(Player player) {
-    getGamePlayers().add(player);
+    this.getGamePlayers().add(player);
   }
 
   default void removeGamePlayer(Player player) {
-    getGamePlayers().remove(player);
+    this.getGamePlayers().remove(player);
   }
 
 

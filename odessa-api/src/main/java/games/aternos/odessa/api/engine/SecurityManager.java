@@ -1,7 +1,10 @@
 package games.aternos.odessa.api.engine;
 
-public class SecurityManager {
+import org.bukkit.entity.Player;
 
-  void
+public interface SecurityManager {
+
+  void hasPermission(Player p, String command);
+
 
 }

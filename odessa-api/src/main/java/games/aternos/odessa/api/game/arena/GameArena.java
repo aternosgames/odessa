@@ -16,10 +16,10 @@ public interface GameArena {
   void setArenaSpawnPoints(List<SpawnPoint> spawnPoints);
 
   default void addArenaSpawnPoint(SpawnPoint spawnPoint) {
-    getArenaSpawnPoints().add(spawnPoint);
+    this.getArenaSpawnPoints().add(spawnPoint);
   }
 
   default void removeArenaSpawnPoint(SpawnPoint spawnPoint) {
-    getArenaSpawnPoints().remove(spawnPoint);
+    this.getArenaSpawnPoints().remove(spawnPoint);
   }
 }

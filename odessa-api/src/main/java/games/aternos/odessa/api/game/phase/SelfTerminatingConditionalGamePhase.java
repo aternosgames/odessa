@@ -4,8 +4,8 @@ public interface SelfTerminatingConditionalGamePhase extends GamePhase {
 
   @Override
   default void update() {
-    if (check()) {
-      end();
+    if (this.check()) {
+      this.end();
     }
   }
 
