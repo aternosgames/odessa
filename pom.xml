@@ -12,6 +12,7 @@
     <modules>
         <module>odessa-api</module>
         <module>odessa-standard</module>
+        <module>odessa-example</module>
     </modules>
 
     <name>Odessa</name>

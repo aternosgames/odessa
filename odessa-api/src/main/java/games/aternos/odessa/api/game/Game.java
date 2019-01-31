@@ -1,5 +1,6 @@
 package games.aternos.odessa.api.game;
 
+import games.aternos.odessa.api.game.arena.GameArena;
 import games.aternos.odessa.api.game.phase.GamePhase;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -28,6 +29,10 @@ public interface Game {
      * Returns the plugin the game is from.
      */
     Plugin getPlugin();
+
+    GameArena getActiveArena();
+
+    void setActiveArena(GameArena gameArena);
 
     List<GamePhase> getGamePhases();
 

@@ -22,4 +22,5 @@ public interface LimitedGamePhase extends GamePhase {
      */
     void setMaxActiveTime(Integer maxActiveTime);
 
+
 }

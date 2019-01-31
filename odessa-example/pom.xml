@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>odessa-standard</artifactId>
+    <artifactId>odessa-example</artifactId>
     <dependencies>
         <dependency>
             <groupId>net.glowstone</groupId>

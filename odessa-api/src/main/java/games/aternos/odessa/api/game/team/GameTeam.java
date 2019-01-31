@@ -11,6 +11,10 @@ public interface GameTeam {
 
     void setTeamName(String s);
 
+    Integer maxTeamPlayers();
+
+    void setMaxTeamPlayers(Integer i);
+
     ChatColor getTeamColor();
 
     void setTeamColor(ChatColor chatColor);

@@ -35,5 +35,7 @@ public interface GamePhase {
      */
     void setAlive(Boolean alive);
 
+    void update();
+
 
 }
