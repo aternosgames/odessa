@@ -6,6 +6,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
 
+/**
+ * Called a bit after startup to get the ball rolling
+ * TODO: Make a more elegant selection system..probably config related to server type etc.
+ */
 public class StartupTask extends BukkitRunnable {
 
   private final Plugin plugin;
@@ -21,9 +25,9 @@ public class StartupTask extends BukkitRunnable {
 
     switch (gameListSize) {
 
-      case 0:// No games loaded...nothing for odessa to do
+      case 0:// No games registered...nothing for odessa to do
         return;
-      case 1:// Only one game loaded.
+      case 1:// Only one game registered.
         GameManager.getInstance().setActiveGame(GameManager.getInstance().getGameList().get(0));
       default:
         Random r = new Random();
