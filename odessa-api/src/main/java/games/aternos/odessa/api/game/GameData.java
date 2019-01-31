@@ -10,37 +10,37 @@ import java.util.List;
  */
 public interface GameData {
 
-    void getGameName();
+  String getGameName();
 
-    void setGameName(String gameName);
+  void setGameName(String gameName);
 
-    void getMaxPlayers();
+  Integer getMaxPlayers();
 
-    void setMaxPlayer(Integer maxPlayer);
+  void setMaxPlayer(Integer maxPlayer);
 
-    List<Player> getGamePlayers();
+  List<Player> getGamePlayers();
 
-    void setGamePlayers(List<Player> players);
+  void setGamePlayers(List<Player> players);
 
-    List<GameTeam> getGameTeams();
+  List<GameTeam> getGameTeams();
 
-    void setGameTeams(List<GameTeam> gameTeams);
+  void setGameTeams(List<GameTeam> gameTeams);
 
-    default void addGameTeam(GameTeam gameTeam) {
-        getGameTeams().add(gameTeam);
-    }
+  default void addGameTeam(GameTeam gameTeam) {
+    this.getGameTeams().add(gameTeam);
+  }
 
-    default void removeGameTeam(GameTeam gameTeam) {
-        getGameTeams().remove(gameTeam);
-    }
+  default void removeGameTeam(GameTeam gameTeam) {
+    this.getGameTeams().remove(gameTeam);
+  }
 
-    default void addGamePlayer(Player player) {
-        getGamePlayers().add(player);
-    }
+  default void addGamePlayer(Player player) {
+    this.getGamePlayers().add(player);
+  }
 
-    default void removeGamePlayer(Player player) {
-        getGamePlayers().remove(player);
-    }
+  default void removeGamePlayer(Player player) {
+    this.getGamePlayers().remove(player);
+  }
 
 
 }

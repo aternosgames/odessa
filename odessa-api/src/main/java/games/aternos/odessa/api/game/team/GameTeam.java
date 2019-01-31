@@ -7,28 +7,28 @@ import java.util.List;
 
 public interface GameTeam {
 
-    String getTeamName();
+  String getTeamName();
 
-    void setTeamName(String s);
+  void setTeamName(String s);
 
-    Integer maxTeamPlayers();
+  Integer maxTeamPlayers();
 
-    void setMaxTeamPlayers(Integer i);
+  void setMaxTeamPlayers(Integer i);
 
-    ChatColor getTeamColor();
+  ChatColor getTeamColor();
 
-    void setTeamColor(ChatColor chatColor);
+  void setTeamColor(ChatColor chatColor);
 
-    List<Player> getTeamPlayers();
+  List<Player> getTeamPlayers();
 
-    void setTeamPlayers(List<Player> players);
+  void setTeamPlayers(List<Player> players);
 
-    default void addTeamPlayers(Player player) {
-        getTeamPlayers().add(player);
-    }
+  default void addTeamPlayers(Player player) {
+    getTeamPlayers().add(player);
+  }
 
-    default void removeTeamPlayer(Player player) {
-        getTeamPlayers().remove(player);
-    }
+  default void removeTeamPlayer(Player player) {
+    getTeamPlayers().remove(player);
+  }
 
 }
