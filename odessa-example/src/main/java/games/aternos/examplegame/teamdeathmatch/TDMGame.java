@@ -1,5 +1,7 @@
 package games.aternos.examplegame.teamdeathmatch;
 
+import games.aternos.examplegame.teamdeathmatch.phase.LobbyPhase;
+import games.aternos.odessa.api.engine.SecurityManager;
 import games.aternos.odessa.api.game.Game;
 import games.aternos.odessa.api.game.GameData;
 import games.aternos.odessa.api.game.arena.GameArena;
@@ -18,14 +20,21 @@ public class TDMGame implements Game {
   private GamePhase activePhase;
   private GameData gameData;
   private List<Listener> gameListeners;
+  private SecurityManager securityManager;
 
+  TDMGame() {
+    gameData = new TDMData();
+  }
 
   @Override
   public void start(Plugin plugin) {
     this.plugin = plugin;
     this.gamePhases = new ArrayList<>();
     gameListeners = new ArrayList<>();
-    gameData = new TDMData();
+    securityManager = new TDMSecurityManager();
+    this.addGamePhase(new LobbyPhase());
+    this.setActivePhase(this.getGamePhases().get(0));
+    this.getActivePhase().start();
   }
 
   @Override
@@ -42,6 +51,16 @@ public class TDMGame implements Game {
   }
 
   @Override
+  public SecurityManager getSecurityManager() {
+    return securityManager;
+  }
+
+  @Override
+  public void setSecurityManager(SecurityManager securityManager) {
+    this.securityManager = securityManager;
+  }
+
+  @Override
   public GameArena getActiveArena() {
     return this.activeArena;
   }
@@ -53,7 +72,7 @@ public class TDMGame implements Game {
 
   @Override
   public List<GamePhase> getGamePhases() {
-    return this.getGamePhases();
+    return this.gamePhases;
   }
 
   @Override
@@ -83,7 +102,7 @@ public class TDMGame implements Game {
 
   @Override
   public List<Listener> getGameListeners() {
-    return this.getGameListeners();
+    return this.gameListeners;
   }
 
   @Override

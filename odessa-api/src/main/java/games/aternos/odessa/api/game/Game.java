@@ -1,5 +1,6 @@
 package games.aternos.odessa.api.game;
 
+import games.aternos.odessa.api.engine.SecurityManager;
 import games.aternos.odessa.api.game.arena.GameArena;
 import games.aternos.odessa.api.game.phase.GamePhase;
 import org.bukkit.Bukkit;
@@ -29,6 +30,10 @@ public interface Game {
    * Returns the plugin the game is from.
    */
   Plugin getPlugin();
+
+  SecurityManager getSecurityManager();
+
+  void setSecurityManager(SecurityManager securityManager);
 
   GameArena getActiveArena();
 

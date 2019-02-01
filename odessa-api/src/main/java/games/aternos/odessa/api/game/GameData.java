@@ -14,6 +14,18 @@ public interface GameData {
 
   void setGameName(String gameName);
 
+  /**
+   * Returns the abbreviated game name. Should have no spaces such as: TDM, KOTH, CTF, etc. Used for commands such as
+   * /game set -name-, hence why it is important to not have spaces for top functionality and internal use.
+   */
+  String getAbbreviatedGameName();
+
+  /**
+   * Sets the abbreviated game name. Should have no spaces such as: TDM, KOTH, CTF, etc. Used for commands such as
+   * /game set -name-, hence why it is important to not have spaces for top functionality and internal use.
+   */
+  void setAbbreviatedGameName(String abbreviatedGameName);
+
   Integer getMaxPlayers();
 
   void setMaxPlayer(Integer maxPlayer);
