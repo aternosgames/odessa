@@ -8,15 +8,15 @@ import org.bukkit.entity.Player;
 
 public class GameSetCommand implements SubCommandable {
   @Override
-  public boolean onCommand(Player p, String[] args) {
+  public void onCommand(Player p, String[] args) {
 
     if (!GameManager.getInstance().getActiveGame().getSecurityManager().hasPermission(p, "set")) {
-      return true;
+      return;
     }
 
     if (!(args.length == 2)) {
       sendHelp(p);
-      return true;
+      return;
     }
 
     Game setTo = null;
@@ -30,13 +30,12 @@ public class GameSetCommand implements SubCommandable {
 
     if (setTo == null) {
       sendHelp(p);
-      return true;
+      return;
     }
 
     GameManager.getInstance().setActiveGame(setTo);
     GameManager.getInstance().getActiveGame().start(OdessaEngine.getOdessaEngine());
 
-    return true;
   }
 
 
@@ -47,11 +46,11 @@ public class GameSetCommand implements SubCommandable {
 
   private String getAllGames() {
 
-    String allGames = "";
+    StringBuilder allGames = new StringBuilder();
 
     for (Game g : GameManager.getInstance().getGameList()) {
-      allGames = allGames + g.getGameData().getAbbreviatedGameName() + ", ";
+      allGames.append(g.getGameData().getAbbreviatedGameName()).append(", ");
     }
-    return allGames;
+    return allGames.toString();
   }
 }

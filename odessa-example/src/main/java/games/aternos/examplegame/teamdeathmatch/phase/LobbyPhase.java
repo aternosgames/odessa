@@ -53,6 +53,6 @@ public class LobbyPhase implements SelfTerminatingConditionalGamePhase {
 
   @Override
   public void setAlive(Boolean alive) {
-    this.isAlive = isAlive;
+    this.isAlive = alive;
   }
 }

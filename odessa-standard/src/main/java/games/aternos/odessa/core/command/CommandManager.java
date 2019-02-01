@@ -13,7 +13,7 @@ public class CommandManager implements CommandExecutor {
 
   private static final CommandManager instance = new CommandManager();
 
-  private HashMap<String, SubCommandable> commands;
+  private final HashMap<String, SubCommandable> commands;
 
   private CommandManager() {
     commands = new HashMap<>();

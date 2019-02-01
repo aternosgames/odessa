@@ -4,6 +4,6 @@ import org.bukkit.entity.Player;
 
 public interface SubCommandable {
 
-  boolean onCommand(Player p, String[] args);
+  void onCommand(Player p, String[] args);
 
 }
