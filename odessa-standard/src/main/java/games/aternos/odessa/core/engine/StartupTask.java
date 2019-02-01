@@ -22,7 +22,7 @@ public class StartupTask extends BukkitRunnable {
   @Override
   public void run() {
 
-    Integer gameListSize = GameManager.getInstance().getGameList().size();
+    int gameListSize = GameManager.getInstance().getGameList().size();
     Game game;
     switch (gameListSize) {
       case 0:// No games registered...nothing for odessa to do

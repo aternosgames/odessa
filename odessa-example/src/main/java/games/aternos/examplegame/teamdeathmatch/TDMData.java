@@ -10,12 +10,14 @@ import java.util.List;
 public class TDMData implements GameData {
 
   private String gameName;
+  private String abbreviatedGameName;
   private Integer maxPlayers;
   private List<Player> gamePlayers;
   private List<GameTeam> gameTeams;
 
-  public TDMData() {
+  TDMData() {
     this.gameName = "Team Deathmatch";
+    this.abbreviatedGameName = "TDM";
     this.maxPlayers = 12;
     this.gamePlayers = new ArrayList<>();
     this.gameTeams = new ArrayList<>();
@@ -30,6 +32,16 @@ public class TDMData implements GameData {
   @Override
   public void setGameName(String gameName) {
     this.gameName = gameName;
+  }
+
+  @Override
+  public String getAbbreviatedGameName() {
+    return this.abbreviatedGameName;
+  }
+
+  @Override
+  public void setAbbreviatedGameName(String abbreviatedGameName) {
+    this.abbreviatedGameName = abbreviatedGameName;
   }
 
   @Override
