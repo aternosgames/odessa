@@ -15,6 +15,6 @@ public class LobbyPhaseRunnable extends GamePhaseRunnable {
 
   @Override
   public void run() {
-
+    getGamePhase().update();
   }
 }

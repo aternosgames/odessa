@@ -35,6 +35,10 @@ public interface GamePhase {
    */
   void setAlive(Boolean alive);
 
+  GamePhaseRunnable getGamePhaseRunable();
+
+  void setGamePhaseRunable(GamePhaseRunnable gamePhaseRunable);
+
   void update();
 
 

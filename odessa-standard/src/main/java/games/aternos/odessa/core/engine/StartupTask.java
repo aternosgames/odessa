@@ -9,7 +9,6 @@ import java.util.Random;
 
 /**
  * Called a bit after startup to get the ball rolling
- * TODO: Make a more elegant selection system..probably config related to server type etc.
  */
 public class StartupTask extends BukkitRunnable {
 
