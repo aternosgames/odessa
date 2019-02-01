@@ -1,5 +1,6 @@
 package games.aternos.examplegame.teamdeathmatch;
 
+import games.aternos.examplegame.teamdeathmatch.phase.LobbyPhase;
 import games.aternos.odessa.api.engine.SecurityManager;
 import games.aternos.odessa.api.game.Game;
 import games.aternos.odessa.api.game.GameData;
@@ -30,8 +31,10 @@ public class TDMGame implements Game {
     this.plugin = plugin;
     this.gamePhases = new ArrayList<>();
     gameListeners = new ArrayList<>();
-
     securityManager = new TDMSecurityManager();
+    this.addGamePhase(new LobbyPhase());
+    this.setActivePhase(this.getGamePhases().get(0));
+    this.getActivePhase().start();
   }
 
   @Override

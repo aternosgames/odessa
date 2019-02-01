@@ -20,25 +20,16 @@ public interface Lobbyable {
   void startLobby(Game g, Plugin p);
 
   /**
-   * Starts the game...dematerializes the lobby
+   * Destroys the lobby
    */
-  void startGame();
+  void destroyLobby();
+
+  Boolean canStartGame();
 
   /**
    * Returns the plugin.
    */
   Plugin getPlugin();
-
-  /**
-   * Safely? Changes the game the lobby is for.
-   * TODO: Once implemented check for safety.
-   */
-  void changeGame(Game g);
-
-  /**
-   * Stops the lobby. Unsafe. This is different then startGame.
-   */
-  void stop();
 
   /**
    * Returns the selected game the lobby is for.
