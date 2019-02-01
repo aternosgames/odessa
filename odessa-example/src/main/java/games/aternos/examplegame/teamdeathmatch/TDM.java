@@ -4,7 +4,7 @@ import games.aternos.odessa.core.engine.GameManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-class TDM extends JavaPlugin {
+public class TDM extends JavaPlugin {
 
   @Override
   public void onEnable() {
