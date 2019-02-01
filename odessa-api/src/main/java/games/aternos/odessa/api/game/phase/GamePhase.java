@@ -1,5 +1,7 @@
 package games.aternos.odessa.api.game.phase;
 
+import org.bukkit.scheduler.BukkitTask;
+
 /**
  * A GamePhase is a time period where set parameters, code, and listeners are active in a Game.
  */
@@ -34,6 +36,10 @@ public interface GamePhase {
    * Sets whether the GamePhase is alive.
    */
   void setAlive(Boolean alive);
+
+  BukkitTask getGamePhaseRunable();
+
+  void setGamePhaseRunable(BukkitTask gamePhaseRunable);
 
   void update();
 

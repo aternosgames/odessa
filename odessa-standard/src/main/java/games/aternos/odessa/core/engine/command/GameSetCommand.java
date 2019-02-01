@@ -14,7 +14,7 @@ public class GameSetCommand implements SubCommandable {
       return;
     }
 
-    if (!(args.length == 2)) {
+    if (args.length != 2) {
       sendHelp(p);
       return;
     }

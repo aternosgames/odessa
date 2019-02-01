@@ -9,7 +9,6 @@ import java.util.Random;
 
 /**
  * Called a bit after startup to get the ball rolling
- * TODO: Make a more elegant selection system..probably config related to server type etc.
  */
 public class StartupTask extends BukkitRunnable {
 
@@ -31,10 +30,12 @@ public class StartupTask extends BukkitRunnable {
       case 1:// Only one game registered.
         game = GameManager.getInstance().getGameList().get(0);
         GameManager.getInstance().setActiveGame(game);
+        break;
       default:
         Random r = new Random();
         game = GameManager.getInstance().getGameList().get(r.nextInt(gameListSize));
         GameManager.getInstance().setActiveGame(game);
+        break;
     }
 
     GameManager.getInstance().getActiveGame().start(plugin);
