@@ -15,7 +15,7 @@ public class CommandManager implements CommandExecutor {
 
   private final HashMap<String, SubCommandable> commands;
 
-  private CommandManager() {
+  public CommandManager() {
     commands = new HashMap<>();
     commands.put("set", new GameSetCommand());
   }

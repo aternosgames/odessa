@@ -1,17 +1,17 @@
 package games.aternos.examplegame.teamdeathmatch.phase;
 
-import games.aternos.odessa.api.game.phase.GamePhaseRunnable;
 import games.aternos.odessa.api.game.phase.SelfTerminatingConditionalGamePhase;
 import games.aternos.odessa.core.OdessaEngine;
 import games.aternos.odessa.core.engine.GameManager;
 import games.aternos.odessa.core.engine.lobby.GameLobby;
+import org.bukkit.scheduler.BukkitTask;
 
 public class LobbyPhase implements SelfTerminatingConditionalGamePhase {
 
   private GameLobby gameLobby;
   private String phaseName;
   private boolean isAlive;
-  private GamePhaseRunnable gamePhaseRunable;
+  private BukkitTask gamePhaseRunable;
 
   /**
    * Called at the created of lobby phase. Starts up the Game Lobby from engine.
@@ -22,7 +22,7 @@ public class LobbyPhase implements SelfTerminatingConditionalGamePhase {
     gameLobby = new GameLobby();
     gameLobby.startLobby(GameManager.getInstance().getActiveGame(), OdessaEngine.getOdessaEngine());
     isAlive = true;
-    this.gamePhaseRunable = (GamePhaseRunnable) new LobbyPhaseRunnable(this).runTaskTimer(OdessaEngine.getOdessaEngine(), 0L, 20L);
+    this.gamePhaseRunable = new LobbyPhaseRunnable(this).runTaskTimer(OdessaEngine.getOdessaEngine(), 0L, 20L);
   }
 
   /**
@@ -89,7 +89,7 @@ public class LobbyPhase implements SelfTerminatingConditionalGamePhase {
    * Returns the Game Phase Runnable of the Phase...the heartbeat.
    */
   @Override
-  public GamePhaseRunnable getGamePhaseRunable() {
+  public BukkitTask getGamePhaseRunable() {
     return this.gamePhaseRunable;
   }
 
@@ -97,7 +97,7 @@ public class LobbyPhase implements SelfTerminatingConditionalGamePhase {
    * Sets the Game Phase Runable.
    */
   @Override
-  public void setGamePhaseRunable(GamePhaseRunnable gamePhaseRunable) {
+  public void setGamePhaseRunable(BukkitTask gamePhaseRunable) {
     this.gamePhaseRunable = gamePhaseRunable;
   }
 }

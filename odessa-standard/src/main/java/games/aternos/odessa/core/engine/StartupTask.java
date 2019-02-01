@@ -34,6 +34,7 @@ public class StartupTask extends BukkitRunnable {
         Random r = new Random();
         game = GameManager.getInstance().getGameList().get(r.nextInt(gameListSize));
         GameManager.getInstance().setActiveGame(game);
+        break;
     }
 
     GameManager.getInstance().getActiveGame().start(plugin);
