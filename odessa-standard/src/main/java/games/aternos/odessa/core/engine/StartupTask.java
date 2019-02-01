@@ -30,6 +30,7 @@ public class StartupTask extends BukkitRunnable {
       case 1:// Only one game registered.
         game = GameManager.getInstance().getGameList().get(0);
         GameManager.getInstance().setActiveGame(game);
+        break;
       default:
         Random r = new Random();
         game = GameManager.getInstance().getGameList().get(r.nextInt(gameListSize));
