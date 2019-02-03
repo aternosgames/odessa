@@ -37,6 +37,7 @@
   <modules>
     <module>engine</module>
     <module>game</module>
+    <module>examples</module>
   </modules>
 
   <repositories>
