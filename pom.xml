@@ -7,13 +7,12 @@
     <groupId>games.aternos.odessa</groupId>
     <artifactId>odessa-parent</artifactId>
     <version>0.0.1</version>
+    <modules>
+        <module>engine</module>
+        <module>game</module>
+    </modules>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>odessa-api</module>
-        <module>odessa-standard</module>
-        <module>odessa-example</module>
-    </modules>
     <build>
         <plugins>
             <plugin>

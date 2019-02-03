@@ -1,7 +1,0 @@
-main: games.aternos.examplegame.teamdeathmatch.TDM
-name: TDM-Odessa
-version: 0.0.1
-description: From bytes come Odessa, to bytes it returns
-authors: [_Bot_, ShadowAria]
-depend: [Odessa]
-website: aternos.games
