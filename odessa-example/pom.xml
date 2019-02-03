@@ -33,6 +33,11 @@
             <version>2018.10.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>games.aternos.odessa</groupId>
+            <artifactId>odessa-standard</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
 
