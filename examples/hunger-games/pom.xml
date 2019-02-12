@@ -6,8 +6,16 @@
 
   <name>Odessa Examples Hunger Games</name>
   <inceptionYear>2019</inceptionYear>
+    <dependencies>
+        <dependency>
+            <groupId>games.aternos.odessa.game</groupId>
+            <artifactId>odessa-game</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
-  <parent>
+    <parent>
     <groupId>games.aternos.odessa.example</groupId>
     <artifactId>odessa-examples</artifactId>
     <version>0.0.1</version>
