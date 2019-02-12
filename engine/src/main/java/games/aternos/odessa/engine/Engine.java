@@ -1,8 +1,7 @@
 package games.aternos.odessa.engine;
 
-public class Engine{
+import org.bukkit.plugin.java.JavaPlugin;
 
-
-
+public class Engine extends JavaPlugin {
 
 }
