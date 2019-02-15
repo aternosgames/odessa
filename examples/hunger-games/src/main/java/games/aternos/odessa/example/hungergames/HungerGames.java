@@ -12,22 +12,31 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class HungerGames extends JavaPlugin implements Game {
 
+  private HungerGamesGameLifecycleManager hungerGamesGameLifecycleManager;
+  private HungerGamesData hungerGamesData;
+
   @Override
   public void onEnable(){
     try {
-      GameApi.getGameApi().registerGame(this, new LobbyPhase());
+      GameApi.getGameApi().registerGame(this);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
   @Override
+  public void initialize(){
+    this.hungerGamesGameLifecycleManager = new HungerGamesGameLifecycleManager(new LobbyPhase());
+    this.hungerGamesData = new HungerGamesData();
+  }
+
+  @Override
   public GameLifecycleManager getGameLifecycleManager() {
-    return null;
+    return this.hungerGamesGameLifecycleManager;
   }
 
   @Override
   public GameData getGameData() {
-    return null;
+    return this.hungerGamesData;
   }
 }

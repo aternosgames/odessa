@@ -2,15 +2,26 @@ package games.aternos.odessa.gameapi.game;
 
 import java.util.List;
 
-public interface GameLifecycleManager {
+abstract public class GameLifecycleManager {
+  GamePhase activePhase;
 
-  void registerPhase(GamePhase gamePhase);
+  public GameLifecycleManager(GamePhase initalPhase){
+    setActivePhase(initalPhase);
+  }
 
-  GamePhase activePhase();
+  public GamePhase getActivePhase(){
+    return this.activePhase;
+  }
 
-  void setActivePhase(GamePhase gamePhase);
+  public void setActivePhase(GamePhase gamePhase){
+    this.activePhase = gamePhase;
+    this.activePhase.startPhase();
+  }
 
-  void nextPhase();
+  public void nextPhase(){
+   this.activePhase.endPhase();
+   activePhase = this.activePhase.nextPhase();
+  }
 
 
 
