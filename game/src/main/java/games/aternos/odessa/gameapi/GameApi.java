@@ -13,8 +13,12 @@ public class GameApi extends JavaPlugin {
 
   private Game game;
 
+  public static GameApi getGameApi() {
+    return gameApi;
+  }
+
   @Override
-  public void onEnable(){
+  public void onEnable() {
     gameApi = this;
   }
 
@@ -26,7 +30,7 @@ public class GameApi extends JavaPlugin {
    */
   public void registerGame(@NonNull Game game) throws Exception {
 
-    if(this.getGame() != null){
+    if (this.getGame() != null) {
       throw new Exception("Game Already Registered"); //todo: custom clean exceptions
     }
     this.setGame(game);
@@ -34,13 +38,12 @@ public class GameApi extends JavaPlugin {
 
   }
 
-  protected void unRegisterGame(){ // terribly unsafe, should be removed in the future, but for tests currently.
+  protected void unRegisterGame() { // terribly unsafe, should be removed in the future, but for tests currently.
 
     this.getGame().uninitialize();
     this.setGame(null);
 
   }
-
 
   public Game getGame() {
     return game;
@@ -48,10 +51,6 @@ public class GameApi extends JavaPlugin {
 
   private void setGame(Game game) {
     this.game = game;
-  }
-
-  public static GameApi getGameApi() {
-    return gameApi;
   }
 
 }

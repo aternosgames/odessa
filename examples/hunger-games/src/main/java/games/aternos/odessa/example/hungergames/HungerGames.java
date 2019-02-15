@@ -5,11 +5,7 @@ import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
 import games.aternos.odessa.gameapi.game.GameData;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
-import games.aternos.odessa.gameapi.game.GamePhase;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * For now extending JavaPlugin to be able to load itself...may change? todo
@@ -20,7 +16,7 @@ public class HungerGames extends JavaPlugin implements Game {
   private HungerGamesData hungerGamesData;
 
   @Override
-  public void onEnable(){
+  public void onEnable() {
     try {
       GameApi.getGameApi().registerGame(this);
     } catch (Exception e) {
@@ -29,7 +25,7 @@ public class HungerGames extends JavaPlugin implements Game {
   }
 
   @Override
-  public void initialize(){
+  public void initialize() {
     this.hungerGamesData = new HungerGamesData();
     this.hungerGamesGameLifecycleManager = new HungerGamesGameLifecycleManager();
     this.getGameLifecycleManager().setActivePhase(new LobbyPhase(this.getGameLifecycleManager()));

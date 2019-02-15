@@ -1,7 +1,5 @@
 package games.aternos.odessa.gameapi.game;
 
-import java.util.List;
-
 /**
  * Manages the Game Lifecycle, sets the current phase and has the ability to continue to the next.
  */
@@ -11,7 +9,7 @@ abstract public class GameLifecycleManager {
   /**
    * Returns the active game phase in the manager.
    */
-  public GamePhase getActivePhase(){
+  public GamePhase getActivePhase() {
     return this.activePhase;
   }
 
@@ -19,7 +17,7 @@ abstract public class GameLifecycleManager {
    * Sets the active game phase in the manager.
    * This also starts the game phase!!
    */
-  public void setActivePhase(GamePhase gamePhase){
+  public void setActivePhase(GamePhase gamePhase) {
     this.activePhase = gamePhase;
     this.activePhase.startPhase();
   }
@@ -28,11 +26,10 @@ abstract public class GameLifecycleManager {
    * Cycles to the next phase as defined in the phase
    * This also starts the game phase!!
    */
-  public void nextPhase(){
-   this.activePhase.endPhase();
-   activePhase = this.activePhase.getNextPhase();
+  public void nextPhase() {
+    this.activePhase.endPhase();
+    activePhase = this.activePhase.getNextPhase();
   }
-
 
 
 }

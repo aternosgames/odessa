@@ -12,11 +12,10 @@ public class GameLobbySystem {
   private final GameApi gameApi;
 
 
-  public GameLobbySystem(Game game, GameApi gameApi){
+  public GameLobbySystem(Game game, GameApi gameApi) {
     this.game = game;
     this.gameApi = gameApi;
   }
-
 
 
 }

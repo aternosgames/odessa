@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <name>Odessa Examples</name>
-  <inceptionYear>2019</inceptionYear>
+    <name>Odessa Examples</name>
+    <inceptionYear>2019</inceptionYear>
 
-  <parent>
-    <groupId>games.aternos.odessa</groupId>
-    <artifactId>odessa-parent</artifactId>
-    <version>0.0.1</version>
-  </parent>
+    <parent>
+        <groupId>games.aternos.odessa</groupId>
+        <artifactId>odessa-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
 
-  <groupId>games.aternos.odessa.example</groupId>
-  <artifactId>odessa-examples</artifactId>
-  <packaging>pom</packaging>
+    <groupId>games.aternos.odessa.example</groupId>
+    <artifactId>odessa-examples</artifactId>
+    <packaging>pom</packaging>
 
-  <modules>
-    <module>hunger-games</module>
-  </modules>
+    <modules>
+        <module>hunger-games</module>
+    </modules>
 </project>

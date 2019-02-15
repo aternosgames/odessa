@@ -19,7 +19,7 @@ abstract public class GamePhase {
 
   abstract public void initialize();
 
-  public GamePhase getNextPhase(){
+  public GamePhase getNextPhase() {
     return this.nextPhase;
   }
 
@@ -27,20 +27,20 @@ abstract public class GamePhase {
     this.nextPhase = nextPhase;
   }
 
+  public Runnable getGamePhaseRunnable() {
+    return gamePhaseRunnable;
+  }
+
   public void setGamePhaseRunnable(Runnable gamePhaseRunnable) {
     this.gamePhaseRunnable = gamePhaseRunnable;
   }
 
+  public boolean isActive() {
+    return this.isActive;
+  }
+
   public void setActive(boolean active) {
     isActive = active;
-  }
-
-  public Runnable getGamePhaseRunnable(){
-    return gamePhaseRunnable;
-  }
-
-  public boolean isActive(){
-    return this.isActive;
   }
 
   abstract public void startPhase();

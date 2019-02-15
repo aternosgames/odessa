@@ -12,21 +12,21 @@ abstract public class GameData {
 
   private List<Player> players;
 
-  public GameData(){
+  public GameData() {
     players = new ArrayList<>();
   }
 
   abstract public String gameName();
 
-  public List<Player> getPlayers(){
+  public List<Player> getPlayers() {
     return this.players;
   }
 
-  public void removePlayer(Player player){
+  public void removePlayer(Player player) {
     this.players.remove(player);
   }
 
-  public void addPlayer(Player player){
+  public void addPlayer(Player player) {
     this.players.add(player);
   }
 
