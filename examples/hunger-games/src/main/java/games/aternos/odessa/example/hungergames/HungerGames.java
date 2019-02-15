@@ -31,6 +31,12 @@ public class HungerGames extends JavaPlugin implements Game {
   }
 
   @Override
+  public void uninitialize() {
+    this.hungerGamesData = null;
+    this.hungerGamesGameLifecycleManager = null;
+  }
+
+  @Override
   public GameLifecycleManager getGameLifecycleManager() {
     return this.hungerGamesGameLifecycleManager;
   }

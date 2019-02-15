@@ -34,6 +34,14 @@ public class GameApi extends JavaPlugin {
 
   }
 
+  protected void unRegisterGame(){ // terribly unsafe, should be removed in the future, but for tests currently.
+
+    this.getGame().uninitialize();
+    this.setGame(null);
+
+  }
+
+
   public Game getGame() {
     return game;
   }
