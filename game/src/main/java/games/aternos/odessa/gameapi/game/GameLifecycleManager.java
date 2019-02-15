@@ -30,7 +30,7 @@ abstract public class GameLifecycleManager {
    */
   public void nextPhase() {
     this.activePhase.endPhase();
-    activePhase = this.activePhase.getNextPhase();
+    this.setActivePhase(this.activePhase.getNextPhase());
   }
 
 

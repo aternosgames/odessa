@@ -3,4 +3,5 @@ name: OdessaExampleHG
 version: 1
 description: It runs on stuff
 authors: [_Bot_, ShadowAria]
+depend: [OdessaGameApi]
 website: aternos.games

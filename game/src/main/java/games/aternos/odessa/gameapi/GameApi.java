@@ -26,6 +26,7 @@ public class GameApi extends JavaPlugin {
 
   /**
    * Registers and starts up a game on Odessa.
+   * todo: more elegant multi game supporting thingy
    *
    * @param game The game.
    * @throws Exception If a game is already registered.
@@ -37,6 +38,7 @@ public class GameApi extends JavaPlugin {
     }
     this.setGame(game);
     this.getGame().initialize();
+    Debug.$("Loading Game: " + this.getGame().getGameData().gameName());
   }
 
   protected void unRegisterGame() { // terribly unsafe, should be removed in the future, but for tests currently.
