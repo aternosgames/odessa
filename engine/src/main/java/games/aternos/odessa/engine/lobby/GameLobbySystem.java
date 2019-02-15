@@ -2,6 +2,7 @@ package games.aternos.odessa.engine.lobby;
 
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
+import games.aternos.odessa.gameapi.game.GameConfiguration;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 
 /**
@@ -12,12 +13,14 @@ public class GameLobbySystem {
   private final GameLifecycleManager gameLifecycleManager;
   private final GameApi gameApi;
   private final Game game;
+  private final GameConfiguration gameConfiguration;
 
 
-  public GameLobbySystem(GameLifecycleManager gameLifecycleManager, GameApi gameApi) {
+  public GameLobbySystem(GameLifecycleManager gameLifecycleManager, GameApi gameApi, GameConfiguration gameConfiguration) {
     this.gameLifecycleManager = gameLifecycleManager;
     this.gameApi = gameApi;
     game = gameApi.getGame();
+    this.gameConfiguration = gameConfiguration;
   }
 
   public void startLobby() {
@@ -26,6 +29,10 @@ public class GameLobbySystem {
 
   public void stopLobby() {
 
+  }
+
+  public GameConfiguration getGameConfiguration() {
+    return gameConfiguration;
   }
 
   public GameLifecycleManager getGameLifecycleManager() {
