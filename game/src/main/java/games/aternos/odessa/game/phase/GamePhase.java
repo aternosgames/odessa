@@ -5,4 +5,6 @@ public interface GamePhase {
   void start();
 
   void end();
+
+  boolean alive();
 }
