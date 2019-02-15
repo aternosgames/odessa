@@ -10,4 +10,6 @@ public interface Game {
 
   GameData getGameData();
 
+  GameConfiguration getGameConfiguration();
+
 }
