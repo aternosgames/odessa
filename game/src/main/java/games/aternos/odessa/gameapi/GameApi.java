@@ -2,6 +2,8 @@ package games.aternos.odessa.gameapi;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.gameapi.game.Game;
+import games.aternos.odessa.gameapi.game.GameData;
+import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GameApi extends JavaPlugin {
