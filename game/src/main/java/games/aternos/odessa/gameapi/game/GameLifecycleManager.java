@@ -9,13 +9,6 @@ abstract public class GameLifecycleManager {
   GamePhase activePhase;
 
   /**
-   * @param initalPhase The initial game phase that is called on creation of the manager.1
-   */
-  public GameLifecycleManager(GamePhase initalPhase){
-    setActivePhase(initalPhase);
-  }
-
-  /**
    * Returns the active game phase in the manager.
    */
   public GamePhase getActivePhase(){
@@ -37,7 +30,7 @@ abstract public class GameLifecycleManager {
    */
   public void nextPhase(){
    this.activePhase.endPhase();
-   activePhase = this.activePhase.nextPhase();
+   activePhase = this.activePhase.getNextPhase();
   }
 
 

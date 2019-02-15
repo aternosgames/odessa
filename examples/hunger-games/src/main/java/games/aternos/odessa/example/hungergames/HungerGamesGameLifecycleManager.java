@@ -5,7 +5,7 @@ import games.aternos.odessa.gameapi.game.GamePhase;
 
 public class HungerGamesGameLifecycleManager extends GameLifecycleManager {
 
-  public HungerGamesGameLifecycleManager(GamePhase initalPhase) {
-    super(initalPhase);
+  public HungerGamesGameLifecycleManager() {
+
   }
 }
