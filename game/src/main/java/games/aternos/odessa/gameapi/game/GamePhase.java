@@ -4,6 +4,8 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import javax.annotation.Nonnull;
+
 abstract public class GamePhase {
 
   private GameLifecycleManager owner;
@@ -27,7 +29,7 @@ abstract public class GamePhase {
     return this.nextPhase;
   }
 
-  public void setNextPhase(GamePhase nextPhase) {
+  public void setNextPhase(@Nonnull GamePhase nextPhase) {
     this.nextPhase = nextPhase;
   }
 
@@ -35,7 +37,7 @@ abstract public class GamePhase {
     return gamePhaseRunnable;
   }
 
-  public void setGamePhaseRunnable(BukkitRunnable gamePhaseRunnable) {
+  public void setGamePhaseRunnable(@Nonnull BukkitRunnable gamePhaseRunnable) {
     this.gamePhaseRunnable = gamePhaseRunnable;
   }
 
@@ -43,7 +45,7 @@ abstract public class GamePhase {
     return this.isActive;
   }
 
-  public void setActive(boolean active) {
+  public void setActive(@Nonnull boolean active) {
     isActive = active;
   }
 
@@ -60,7 +62,7 @@ abstract public class GamePhase {
     return gamePhaseRunnableTask;
   }
 
-  public void setGamePhaseRunnableTask(BukkitTask gamePhaseRunnableTask) {
+  public void setGamePhaseRunnableTask(@Nonnull BukkitTask gamePhaseRunnableTask) {
     this.gamePhaseRunnableTask = gamePhaseRunnableTask;
   }
 }

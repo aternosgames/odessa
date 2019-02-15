@@ -2,6 +2,7 @@ package games.aternos.odessa.gameapi.game;
 
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +23,11 @@ abstract public class GameData {
     return this.players;
   }
 
-  public void removePlayer(Player player) {
+  public void removePlayer(@Nonnull Player player) {
     this.players.remove(player);
   }
 
-  public void addPlayer(Player player) {
+  public void addPlayer(@Nonnull Player player) {
     this.players.add(player);
   }
 
