@@ -5,25 +5,11 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 // todo: this class
-public class HungerGamesData implements GameData {
+public class HungerGamesData extends GameData {
 
   @Override
   public String gameName() {
     return "HungerGames";
   }
 
-  @Override
-  public List<Player> getPlayers() {
-    return null;
-  }
-
-  @Override
-  public void removePlayer(Player player) {
-
-  }
-
-  @Override
-  public void addPlayer(Player player) {
-
-  }
 }

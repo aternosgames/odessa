@@ -16,7 +16,7 @@ abstract public class GameData {
     players = new ArrayList<>();
   }
 
-  abstract String gameName();
+  abstract public String gameName();
 
   public List<Player> getPlayers(){
     return this.players;
