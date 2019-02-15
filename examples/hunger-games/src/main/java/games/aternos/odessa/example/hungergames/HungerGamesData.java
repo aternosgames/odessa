@@ -6,9 +6,10 @@ import org.bukkit.entity.Player;
 import java.util.List;
 // todo: this class
 public class HungerGamesData implements GameData {
+
   @Override
   public String gameName() {
-    return null;
+    return "HungerGames";
   }
 
   @Override

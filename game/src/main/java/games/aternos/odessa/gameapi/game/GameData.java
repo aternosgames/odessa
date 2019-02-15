@@ -2,19 +2,32 @@ package games.aternos.odessa.gameapi.game;
 
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * todo: lots (playerdata objects, scoredata etc)
  */
-public interface GameData {
+abstract public class GameData {
 
-  String gameName();
+  private List<Player> players;
 
-  List<Player> getPlayers();
+  public GameData(){
+    players = new ArrayList<>();
+  }
 
-  void removePlayer(Player player);
+  abstract String gameName();
 
-  void addPlayer(Player player);
+  public List<Player> getPlayers(){
+    return this.players;
+  }
+
+  public void removePlayer(Player player){
+    this.players.remove(player);
+  }
+
+  public void addPlayer(Player player){
+    this.players.add(player);
+  }
 
 }
