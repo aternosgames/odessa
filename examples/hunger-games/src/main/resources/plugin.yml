@@ -1,0 +1,6 @@
+main: games.aternos.odessa.example.hungergames.HungerGames
+name: OdessaExampleHG
+version: 1
+description: It runs on stuff
+authors: [_Bot_, ShadowAria]
+website: aternos.games
