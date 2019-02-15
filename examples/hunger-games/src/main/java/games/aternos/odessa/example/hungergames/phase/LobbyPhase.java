@@ -7,7 +7,6 @@ import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 import games.aternos.odessa.gameapi.game.GamePhase;
 
-// todo: this class
 public class LobbyPhase extends GamePhase {
 
 
