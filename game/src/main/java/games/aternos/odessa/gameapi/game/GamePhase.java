@@ -1,6 +1,8 @@
 package games.aternos.odessa.gameapi.game;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 abstract public class GamePhase {
 
@@ -8,7 +10,9 @@ abstract public class GamePhase {
 
   private GamePhase nextPhase;
 
-  private Runnable gamePhaseRunnable;
+  private BukkitRunnable gamePhaseRunnable;
+
+  private BukkitTask gamePhaseRunnableTask;
 
   private boolean isActive;
 
@@ -27,11 +31,11 @@ abstract public class GamePhase {
     this.nextPhase = nextPhase;
   }
 
-  public Runnable getGamePhaseRunnable() {
+  public BukkitRunnable getGamePhaseRunnable() {
     return gamePhaseRunnable;
   }
 
-  public void setGamePhaseRunnable(Runnable gamePhaseRunnable) {
+  public void setGamePhaseRunnable(BukkitRunnable gamePhaseRunnable) {
     this.gamePhaseRunnable = gamePhaseRunnable;
   }
 
@@ -50,5 +54,13 @@ abstract public class GamePhase {
 
   public GameLifecycleManager getOwner() {
     return owner;
+  }
+
+  public BukkitTask getGamePhaseRunnableTask() {
+    return gamePhaseRunnableTask;
+  }
+
+  public void setGamePhaseRunnableTask(BukkitTask gamePhaseRunnableTask) {
+    this.gamePhaseRunnableTask = gamePhaseRunnableTask;
   }
 }

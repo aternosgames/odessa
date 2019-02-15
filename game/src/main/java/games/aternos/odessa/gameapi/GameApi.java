@@ -4,6 +4,8 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.gameapi.game.Game;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.annotation.Nonnull;
+
 /**
  * Handles the loading and execution of Odessa Games.
  */
@@ -35,21 +37,18 @@ public class GameApi extends JavaPlugin {
     }
     this.setGame(game);
     this.getGame().initialize();
-
   }
 
   protected void unRegisterGame() { // terribly unsafe, should be removed in the future, but for tests currently.
-
     this.getGame().uninitialize();
     this.setGame(null);
-
   }
 
   public Game getGame() {
     return game;
   }
 
-  private void setGame(Game game) {
+  private void setGame(@Nonnull Game game) {
     this.game = game;
   }
 
