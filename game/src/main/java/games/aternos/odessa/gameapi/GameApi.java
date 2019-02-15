@@ -4,6 +4,9 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.gameapi.game.Game;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * Handles the loading and execution of Odessa Games.
+ */
 public class GameApi extends JavaPlugin {
 
   private static GameApi gameApi;
@@ -15,6 +18,12 @@ public class GameApi extends JavaPlugin {
     gameApi = this;
   }
 
+  /**
+   * Registers and starts up a game on Odessa.
+   *
+   * @param game The game.
+   * @throws Exception If a game is already registered.
+   */
   public void registerGame(@NonNull Game game) throws Exception {
 
     if(this.getGame() != null){
