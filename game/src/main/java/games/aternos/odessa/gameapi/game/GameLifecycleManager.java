@@ -4,8 +4,6 @@ import java.util.List;
 
 public interface GameLifecycleManager {
 
-  List<GamePhase> registeredPhases();
-
   void registerPhase(GamePhase gamePhase);
 
   GamePhase activePhase();
