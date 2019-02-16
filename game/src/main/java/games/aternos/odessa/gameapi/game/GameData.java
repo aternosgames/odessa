@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * todo: lots (playerdata objects, scoredata etc)
- */
 abstract public class GameData {
 
   private final List<Player> players;

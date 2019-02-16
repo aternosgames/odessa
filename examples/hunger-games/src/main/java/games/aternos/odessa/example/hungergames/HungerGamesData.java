@@ -2,7 +2,7 @@ package games.aternos.odessa.example.hungergames;
 
 import games.aternos.odessa.gameapi.game.GameData;
 
-// todo: this class
+// todo
 public class HungerGamesData extends GameData {
 
 }

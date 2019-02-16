@@ -9,7 +9,7 @@ import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * For now extending JavaPlugin to be able to load itself...may change? todo
+ * Core class of the example game.
  */
 public class HungerGames extends JavaPlugin implements Game {
 
