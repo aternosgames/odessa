@@ -19,7 +19,7 @@ public class LobbyController {
   }
 
   public void registerLobbyListeners() {
-    LobbyPlayerJoin lobbyPlayerJoin = new LobbyPlayerJoin();
+    LobbyPlayerJoin lobbyPlayerJoin = new LobbyPlayerJoin(this);
     lobbyListeners.add(lobbyPlayerJoin);
     Bukkit.getServer().getPluginManager().registerEvents(lobbyPlayerJoin, this.getGameLobbySystem().getGameApi());
   }
