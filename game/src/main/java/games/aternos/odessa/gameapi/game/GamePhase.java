@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 
 abstract public class GamePhase {
 
-  private GameLifecycleManager owner;
+  private final GameLifecycleManager owner;
 
   private GamePhase nextPhase;
 
@@ -45,7 +45,7 @@ abstract public class GamePhase {
     return this.isActive;
   }
 
-  public void setActive(@Nonnull boolean active) {
+  public void setActive(boolean active) {
     isActive = active;
   }
 

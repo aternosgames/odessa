@@ -17,4 +17,7 @@ public class LobbyPhaseRunnable extends BukkitRunnable {
     Debug.$("test");
   }
 
+  public GamePhase getOwner() {
+    return owner;
+  }
 }

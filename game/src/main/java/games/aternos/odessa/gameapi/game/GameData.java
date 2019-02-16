@@ -14,11 +14,11 @@ import java.util.List;
  */
 abstract public class GameData {
 
-  private List<Player> players;
+  private final List<Player> players;
 
-  private HashMap<Player, Kit> selectedPlayerKits;
+  private final HashMap<Player, Kit> selectedPlayerKits;
 
-  private List<Team> gameTeams;
+  private final List<Team> gameTeams;
 
   public GameData() {
     this.players = new ArrayList<>();

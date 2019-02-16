@@ -15,4 +15,19 @@ public class Kit {
     this.kitItems = kitItems;
   }
 
+  public List<ItemStack> getKitItems() {
+    return kitItems;
+  }
+
+  public void setKitItems(List<ItemStack> kitItems) {
+    this.kitItems = kitItems;
+  }
+
+  public String getKitName() {
+    return kitName;
+  }
+
+  public void setKitName(String kitName) {
+    this.kitName = kitName;
+  }
 }
