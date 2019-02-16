@@ -18,7 +18,7 @@ public class LobbyPlayerJoin implements Listener {
   @EventHandler
   public void playerJoinLobby(PlayerJoinEvent event) {
     lobbyController.getGameLobbySystem().getGame().getGameData().addPlayer(event.getPlayer());
-    // todo...then what?
+    // todo...then what? :: Spawns inventory etc.
   }
 
 }

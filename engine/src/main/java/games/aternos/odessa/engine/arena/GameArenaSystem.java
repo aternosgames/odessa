@@ -4,6 +4,9 @@ import games.aternos.odessa.gameapi.GameApi;
 
 import javax.annotation.Nonnull;
 
+/**
+ * todo
+ */
 public class GameArenaSystem {
 
   public final GameApi gameApi;

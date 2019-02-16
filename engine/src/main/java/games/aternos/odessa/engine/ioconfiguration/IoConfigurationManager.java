@@ -4,6 +4,7 @@ import games.aternos.odessa.gameapi.GameApi;
 
 /**
  * Manages file based configuration, such as spawns and arenas (for now).
+ * todo
  */
 public class IoConfigurationManager {
 
