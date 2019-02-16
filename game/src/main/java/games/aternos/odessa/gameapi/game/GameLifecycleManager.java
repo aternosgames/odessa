@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
  * Manages the Game Lifecycle, sets the current phase and has the ability to continue to the next.
  */
 abstract public class GameLifecycleManager {
-  GamePhase activePhase;
+  private GamePhase activePhase;
 
   /**
    * Returns the active game phase in the manager.

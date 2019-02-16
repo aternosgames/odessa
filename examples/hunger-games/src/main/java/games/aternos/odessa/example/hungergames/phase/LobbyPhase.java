@@ -9,12 +9,11 @@ import games.aternos.odessa.gameapi.game.GamePhase;
 
 public class LobbyPhase extends GamePhase {
 
+  private GameLobbySystem gameLobbySystem;
 
   public LobbyPhase(@NonNull GameLifecycleManager owner) {
     super(owner);
   }
-
-  private GameLobbySystem gameLobbySystem;
 
   @Override
   public void initialize() {
