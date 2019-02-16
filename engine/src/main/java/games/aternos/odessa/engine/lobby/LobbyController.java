@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class LobbyController {
   private final GameLobbySystem gameLobbySystem;
   private List<Listener> lobbyListeners;
 
-  public LobbyController(GameLobbySystem gameLobbySystem) {
+  public LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
   }
@@ -39,7 +40,7 @@ public class LobbyController {
     return lobbyListeners;
   }
 
-  public void setLobbyListeners(List<Listener> lobbyListeners) {
+  public void setLobbyListeners(@Nonnull List<Listener> lobbyListeners) {
     this.lobbyListeners = lobbyListeners;
   }
 }
