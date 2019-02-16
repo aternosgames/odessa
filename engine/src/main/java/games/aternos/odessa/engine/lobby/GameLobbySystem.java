@@ -28,11 +28,11 @@ public class GameLobbySystem {
   }
 
   public void startLobby() {
-
+    this.getLobbyController().registerLobbyListeners();
   }
 
   public void stopLobby() {
-
+    this.getLobbyController().unRegisterLobbyListeners();
   }
 
   public LobbyController getLobbyController() {
