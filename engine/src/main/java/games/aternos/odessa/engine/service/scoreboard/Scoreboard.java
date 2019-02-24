@@ -49,4 +49,24 @@ public class Scoreboard {
       this.owner.setUserScoreboard(this, p);
     }
   }
+
+  public ScoreboardService getOwner() {
+    return owner;
+  }
+
+  public List<Player> getUsersinBoard() {
+    return usersinBoard;
+  }
+
+  public void setUsersinBoard(List<Player> usersinBoard) {
+    this.usersinBoard = usersinBoard;
+  }
+
+  public List<String> getElements() {
+    return elements;
+  }
+
+  public void setElements(List<String> elements) {
+    this.elements = elements;
+  }
 }
