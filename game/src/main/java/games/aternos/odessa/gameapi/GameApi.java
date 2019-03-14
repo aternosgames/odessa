@@ -34,7 +34,7 @@ public class GameApi extends JavaPlugin {
   public void registerGame(@NonNull Game game) throws Exception {
 
     if (this.getGame() != null) {
-      throw new Exception("Game Already Registered"); //todo: custom clean exceptions
+      throw new Exception("Game Already Registered");
     }
     this.setGame(game);
     this.getGame().initialize();
