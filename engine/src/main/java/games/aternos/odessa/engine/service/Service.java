@@ -1,4 +1,4 @@
-package games.aternos.odessa.engine;
+package games.aternos.odessa.engine.service;
 
 import games.aternos.odessa.gameapi.GameApi;
 

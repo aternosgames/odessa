@@ -1,6 +1,6 @@
 package games.aternos.odessa.engine.service.ioconfiguration;
 
-import games.aternos.odessa.engine.Service;
+import games.aternos.odessa.engine.service.Service;
 import games.aternos.odessa.gameapi.GameApi;
 
 /**

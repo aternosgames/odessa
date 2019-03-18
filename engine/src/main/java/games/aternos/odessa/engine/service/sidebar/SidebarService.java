@@ -1,6 +1,6 @@
 package games.aternos.odessa.engine.service.sidebar;
 
-import games.aternos.odessa.engine.Service;
+import games.aternos.odessa.engine.service.Service;
 import games.aternos.odessa.gameapi.GameApi;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
