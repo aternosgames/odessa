@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HungerGamesKit {
 
-  private List<Kit> kits;
+  private final List<Kit> kits;
 
   public HungerGamesKit() {
     kits = new ArrayList<>();
