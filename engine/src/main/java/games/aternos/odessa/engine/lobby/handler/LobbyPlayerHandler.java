@@ -1,13 +1,16 @@
 package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
+import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -50,6 +53,38 @@ public class LobbyPlayerHandler implements Listener {
       }
     }
     e.setCancelled(true);
+  }
+
+  @EventHandler
+  public void onPlayerClick(InventoryClickEvent e) {
+    e.setCancelled(true);
+    if (e.getInventory().getName().equals("Kit Selection")) {
+
+      if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+        Kit selected = null;
+        for (Kit k : this.lobbyController.getGameLobbySystem().getGameConfiguration().getGameKits()) {
+          if (e.getCurrentItem().getItemMeta().getDisplayName().equals(k.getKitName())) {
+            selected = k;
+          }
+        }
+        Player p = (Player) e.getWhoClicked();
+        if (selected != null) {
+          if (!this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().containsKey(p)) {
+            this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().put(p, selected);
+            this.lobbyController.getGameLobbySystem().getLobbyBoard().pushBoard(p);
+          } else {
+            this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().remove(p);
+            this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().put(p, selected);
+            this.lobbyController.getGameLobbySystem().getLobbyBoard().pushBoard(p);
+          }
+
+          p.closeInventory();
+          p.sendMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + "Selected Kit: " + selected.getKitName());
+        }
+
+
+      }
+    }
   }
 
   @EventHandler

@@ -21,6 +21,7 @@ public class KitSelectionGUI {
 
   public void openKitSelectionMenu(Player p) {
     Inventory selection = Bukkit.createInventory(null, 9, "Kit Selection");
+    selection.clear();
     List<Kit> kits = this.gameLobbySystem.getGame().getGameConfiguration().getGameKits();
     Kit currentKit = this.gameLobbySystem.getGame().getGameData().getSelectedPlayerKits().get(p);
 
@@ -30,7 +31,7 @@ public class KitSelectionGUI {
 
     for (Kit k : kits) {
 
-      ItemStack coverItem = k.getCoverItem();
+      ItemStack coverItem = new ItemStack(k.getCoverItem().getType());
       ItemMeta coverItemMeta = coverItem.getItemMeta();
       coverItemMeta.setDisplayName(k.getKitName());
 
@@ -39,7 +40,6 @@ public class KitSelectionGUI {
       }
       coverItem.setItemMeta(coverItemMeta);
       selection.addItem(coverItem);
-
     }
 
     p.openInventory(selection);
