@@ -1,5 +1,6 @@
 package games.aternos.odessa.gameapi.game;
 
+import games.aternos.odessa.gameapi.game.element.Arena;
 import games.aternos.odessa.gameapi.game.element.Kit;
 
 import java.util.List;
@@ -8,8 +9,17 @@ abstract public class GameConfiguration {
 
   private String gameName;
   private List<Kit> gameKits;
+  private List<Arena> gameArenas;
   private int maxPlayers;
   private int minPlayers;
+
+  public List<Arena> getGameArenas() {
+    return gameArenas;
+  }
+
+  public void setGameArenas(List<Arena> gameArenas) {
+    this.gameArenas = gameArenas;
+  }
 
   public String getGameName() {
     return gameName;
