@@ -61,7 +61,7 @@ public class LobbyBoard {
   }
 
   private Integer getNeededPlayers() {
-    return getCurrentPlayerSize() - this.getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers();
+    return this.getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers() - getCurrentPlayerSize();
   }
 
   private void setLobbySidebar(Sidebar lobbySidebar) {
