@@ -9,7 +9,9 @@ import games.aternos.odessa.gameapi.GameApi;
  */
 public class IoConfigurationService extends Service {
 
-  protected IoConfigurationService(GameApi gameApi) {
+  public IoConfigurationService(GameApi gameApi) {
     super(gameApi);
   }
+
+
 }

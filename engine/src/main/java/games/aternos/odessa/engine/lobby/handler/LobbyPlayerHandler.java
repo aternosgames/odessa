@@ -1,4 +1,4 @@
-package games.aternos.odessa.engine.lobby.listener;
+package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import org.bukkit.ChatColor;
