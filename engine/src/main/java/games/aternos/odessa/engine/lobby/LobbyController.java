@@ -2,6 +2,7 @@ package games.aternos.odessa.engine.lobby;
 
 import games.aternos.odessa.engine.lobby.listener.LobbyPlayerHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -30,6 +31,16 @@ public class LobbyController {
       HandlerList.unregisterAll(l);
       lobbyListeners.remove(l);
     }
+  }
+
+  public void playerJoin(Player p) {
+    this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
+    this.getGameLobbySystem().getLobbyBoard().pushBoard();
+  }
+
+  public void playerQuit(Player p) {
+    this.getGameLobbySystem().getGame().getGameData().removePlayer(p);
+    this.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
   public GameLobbySystem getGameLobbySystem() {
