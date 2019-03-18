@@ -4,7 +4,7 @@ version: 1
 description: It runs stuff
 authors: [_Bot_, Aternos]
 website: aternos.games
-  commands:
-    setlobbyspawn:
-      description: Set Lobby Spawn
-      usage: /command
+commands:
+  setlobbyspawn:
+    description: Set Lobby Spawn
+    usage: /command
