@@ -4,8 +4,8 @@ import games.aternos.odessa.engine.service.Service;
 import games.aternos.odessa.gameapi.GameApi;
 
 /**
- * Manages file based configuration, such as spawns and arenas (for now).
- * todo
+ * Allows for the creation and management of sep Configuration Files on the disk
+ * Used for spawns and such, until databaseized.
  */
 public class IoConfigurationService extends Service {
 
