@@ -1,5 +1,6 @@
 package games.aternos.odessa.example.hungergames;
 
+import games.aternos.odessa.example.hungergames.kit.HungerGamesKit;
 import games.aternos.odessa.gameapi.game.GameConfiguration;
 import games.aternos.odessa.gameapi.game.element.Kit;
 
@@ -14,8 +15,9 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     this.setGameKits(getKits());
   }
 
-  private List<Kit> getKits() { //todo
-    return null;
+  private List<Kit> getKits() {
+    HungerGamesKit hungerGamesKit = new HungerGamesKit();
+    return hungerGamesKit.getKits();
   }
 
 }
