@@ -11,6 +11,7 @@ public class LobbyPhase extends GamePhase {
 
   private GameLobbySystem gameLobbySystem;
 
+
   public LobbyPhase(@NonNull GameLifecycleManager owner) {
     super(owner);
   }
@@ -19,7 +20,7 @@ public class LobbyPhase extends GamePhase {
   public void initialize() {
     this.setNextPhase(new InGamePhase(this.getOwner()));
     this.setGamePhaseRunnable(new LobbyPhaseRunnable(this));
-    gameLobbySystem = new GameLobbySystem(this.getOwner(), GameApi.getGameApi(), GameApi.getGameApi().getGame().getGameConfiguration(), lobbyBoard);
+    gameLobbySystem = new GameLobbySystem(this.getOwner(), GameApi.getGameApi(), GameApi.getGameApi().getGame().getGameConfiguration());
   }
 
   @Override
