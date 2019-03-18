@@ -3,7 +3,9 @@ package games.aternos.odessa.engine.lobby.scoreboard;
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
 import games.aternos.odessa.engine.service.sidebar.Sidebar;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
+import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +24,19 @@ public class LobbyBoard {
   }
 
   public void pushBoard() {
-    this.getSidebarService().createSidebarScoreboard(generateSidebar(), this.gameLobbySystem.getGame().getGameData().getPlayers());
+    for (Player p : this.gameLobbySystem.getGame().getGameData().getPlayers()) {
+      this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
+    }
   }
 
-  private Sidebar generateSidebar() {
-
+  private Sidebar generateSidebar(Player p) {
 
     String boardName = ChatColor.BOLD + getGameName() + " Lobby";
-    return new Sidebar(boardName, scoreboardItems());
+    return new Sidebar(boardName, scoreboardItems(p));
 
   }
 
-  private List<String> scoreboardItems() {
+  private List<String> scoreboardItems(Player p) {
     List<String> items = new ArrayList<>();
 
     items.add("           ");
@@ -44,7 +47,9 @@ public class LobbyBoard {
     items.add("             ");
     items.add(ChatColor.YELLOW + "Needed:");
     items.add(ChatColor.GRAY + "" + getNeededPlayers());
-
+    items.add("               ");
+    items.add(ChatColor.YELLOW + "Kit:");
+    items.add(ChatColor.GRAY + "" + getSelectedKitName(p));
     return items;
   }
 
@@ -64,6 +69,14 @@ public class LobbyBoard {
     return this.getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers() - getCurrentPlayerSize();
   }
 
+  private String getSelectedKitName(Player p) {
+    Kit kit = this.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
+    if (kit == null) {
+      kit = this.getGameLobbySystem().getGame().getGameConfiguration().getGameKits().get(0);
+    }
+    return kit.getKitName();
+  }
+
   private void setLobbySidebar(Sidebar lobbySidebar) {
     this.lobbySidebar = lobbySidebar;
   }
@@ -72,7 +85,7 @@ public class LobbyBoard {
     return gameLobbySystem;
   }
 
-  public SidebarService getSidebarService() {
+  private SidebarService getSidebarService() {
     return sidebarService;
   }
 

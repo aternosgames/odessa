@@ -15,7 +15,7 @@ public class SidebarService extends Service {
   /**
    * HashMap with Player Boards inside. Static to remain consistent across all instances and to therefore prevent errors.
    */
-  protected static HashMap<Player, Scoreboard> playerBoards = new HashMap<>();
+  private static HashMap<Player, Scoreboard> playerBoards = new HashMap<>();
   /**
    * Scoreboard Manager Instance. Generally from Bukkit#getScoreboardManager
    */
@@ -39,7 +39,7 @@ public class SidebarService extends Service {
    */
   public void createSidebarScoreboard(Sidebar sidebar, List<Player> players) {
     for (Player p : players) {
-      createSidebarScoareboard(p, sidebar);
+      createSidebarScoreboard(p, sidebar);
     }
   }
 
@@ -48,7 +48,7 @@ public class SidebarService extends Service {
    *
    * @param p Player
    */
-  public void createSidebarScoareboard(Player p, Sidebar sidebar) {
+  public void createSidebarScoreboard(Player p, Sidebar sidebar) {
 
     if (!this.isInPlayerBoards(p)) {
       this.addToPlayerBoards(p, scoreboardManager.getNewScoreboard());

@@ -20,13 +20,13 @@ public class HungerGamesKit {
     return this.kits;
   }
 
-  public void generateKits() { // should be config based in actual production game
+  private void generateKits() { // should be config based in actual production game
     List<ItemStack> kitItems = new ArrayList<>();
     kitItems.add(new ItemStack(Material.STONE_SWORD, 1));
-    Kit defaultKit = new Kit("Default", kitItems);
+    Kit defaultKit = new Kit("Default", kitItems, kitItems.get(0));
     kitItems.clear();
     kitItems.add(new ItemStack(Material.IRON_SWORD));
-    Kit otherKit = new Kit("Other Kit", kitItems);
+    Kit otherKit = new Kit("Other Kit", kitItems, kitItems.get(0));
   }
 
 }

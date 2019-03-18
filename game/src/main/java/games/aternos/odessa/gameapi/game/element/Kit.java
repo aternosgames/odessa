@@ -6,28 +6,27 @@ import java.util.List;
 
 public class Kit {
 
-  private List<ItemStack> kitItems;
+  private final List<ItemStack> kitItems;
 
-  private String kitName;
+  private final ItemStack coverItem;
 
-  public Kit(String kitName, List<ItemStack> kitItems) {
+  private final String kitName;
+
+  public Kit(String kitName, List<ItemStack> kitItems, ItemStack coverItem) {
     this.kitName = kitName;
     this.kitItems = kitItems;
+    this.coverItem = coverItem;
   }
 
   public List<ItemStack> getKitItems() {
     return kitItems;
   }
 
-  public void setKitItems(List<ItemStack> kitItems) {
-    this.kitItems = kitItems;
-  }
-
   public String getKitName() {
     return kitName;
   }
 
-  public void setKitName(String kitName) {
-    this.kitName = kitName;
+  public ItemStack getCoverItem() {
+    return coverItem;
   }
 }
