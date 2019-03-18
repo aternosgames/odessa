@@ -29,6 +29,10 @@ public class LobbyBoard {
     }
   }
 
+  public void pushBoard(Player p) {
+    this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
+  }
+
   private Sidebar generateSidebar(Player p) {
 
     String boardName = ChatColor.BOLD + getGameName() + " Lobby";

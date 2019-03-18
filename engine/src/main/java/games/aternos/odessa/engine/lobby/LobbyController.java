@@ -21,27 +21,27 @@ public class LobbyController {
   private final GameLobbySystem gameLobbySystem;
   private List<Listener> lobbyListeners;
 
-  public LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
+  LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
   }
 
-  public void registerLobbyCommands() {
+  void registerLobbyCommands() {
     SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
   }
 
-  public void unRegisterCommands() {
+  void unRegisterCommands() {
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
   }
 
-  public void registerLobbyListeners() {
+  void registerLobbyListeners() {
     LobbyPlayerHandler lobbyPlayerHandler = new LobbyPlayerHandler(this);
     lobbyListeners.add(lobbyPlayerHandler);
     Bukkit.getServer().getPluginManager().registerEvents(lobbyPlayerHandler, this.getGameLobbySystem().getGameApi());
   }
 
-  public void unRegisterLobbyListeners() {
+  void unRegisterLobbyListeners() {
     for (Listener l : this.getLobbyListeners()) {
       HandlerList.unregisterAll(l);
       lobbyListeners.remove(l);
@@ -60,7 +60,7 @@ public class LobbyController {
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
-  public void cleanPlayer(Player p) {
+  private void cleanPlayer(Player p) {
     this.getGameLobbySystem().getPlayerService().clearPlayer(p);
     this.getGameLobbySystem().getPlayerService().healPlayer(p);
     p.setGameMode(GameMode.ADVENTURE);
