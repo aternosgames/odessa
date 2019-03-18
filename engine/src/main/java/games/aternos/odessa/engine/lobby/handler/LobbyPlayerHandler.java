@@ -48,6 +48,7 @@ public class LobbyPlayerHandler implements Listener {
     e.setCancelled(true);
   }
 
+  @EventHandler
   public void onWeatherChangeLobby(WeatherChangeEvent event) {
     event.setCancelled(true);
   }

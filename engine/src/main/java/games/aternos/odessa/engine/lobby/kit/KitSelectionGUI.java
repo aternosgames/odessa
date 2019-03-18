@@ -7,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
@@ -30,11 +31,13 @@ public class KitSelectionGUI {
     for (Kit k : kits) {
 
       ItemStack coverItem = k.getCoverItem();
-      coverItem.getItemMeta().setDisplayName(k.getKitName());
-      if (currentKit.equals(k)) {
-        coverItem.getItemMeta().addEnchant(Enchantment.DAMAGE_ALL, 1, true);
-      }
+      ItemMeta coverItemMeta = coverItem.getItemMeta();
+      coverItemMeta.setDisplayName(k.getKitName());
 
+      if (currentKit.equals(k)) {
+        coverItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+      }
+      coverItem.setItemMeta(coverItemMeta);
       selection.addItem(coverItem);
 
     }
