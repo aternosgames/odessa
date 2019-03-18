@@ -42,10 +42,12 @@ public class GameLobbySystem {
 
   public void startLobby() {
     this.getLobbyController().registerLobbyListeners();
+    this.getLobbyController().registerLobbyCommands();
   }
 
   public void stopLobby() {
     this.getLobbyController().unRegisterLobbyListeners();
+    this.getLobbyController().unRegisterCommands();
   }
 
   public LobbyBoard getLobbyBoard() {

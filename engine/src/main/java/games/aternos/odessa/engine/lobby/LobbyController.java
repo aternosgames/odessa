@@ -1,5 +1,6 @@
 package games.aternos.odessa.engine.lobby;
 
+import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
 import games.aternos.odessa.engine.lobby.handler.LobbyPlayerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,6 +19,15 @@ public class LobbyController {
   public LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
+  }
+
+  public void registerLobbyCommands() {
+    SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
+    this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
+  }
+
+  public void unRegisterCommands() {
+    this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
   }
 
   public void registerLobbyListeners() {
