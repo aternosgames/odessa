@@ -28,12 +28,14 @@ public class LobbyPlayerHandler implements Listener {
   public void playerJoinLobby(PlayerJoinEvent event) {
     event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
     lobbyController.getGameLobbySystem().getGame().getGameData().addPlayer(event.getPlayer());
+    this.lobbyController.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
   @EventHandler
   public void playerLeaveLobby(PlayerQuitEvent event) {
     event.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + event.getPlayer().getName());
     lobbyController.getGameLobbySystem().getGame().getGameData().removePlayer(event.getPlayer());
+    this.lobbyController.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
 }
