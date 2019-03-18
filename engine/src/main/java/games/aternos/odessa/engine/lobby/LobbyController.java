@@ -3,6 +3,8 @@ package games.aternos.odessa.engine.lobby;
 import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
 import games.aternos.odessa.engine.lobby.handler.LobbyPlayerHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -46,6 +48,11 @@ public class LobbyController {
   public void playerJoin(Player p) {
     this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
+    this.getGameLobbySystem().getPlayerService().clearPlayer(p);
+    this.getGameLobbySystem().getPlayerService().healPlayer(p);
+    p.setGameMode(GameMode.ADVENTURE);
+    p.teleport(this.getGameLobbySystem().getLobbyIoConfiguration().getLobbySpawn());
+    p.sendActionBar(ChatColor.BOLD + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName() + " Lobby");
   }
 
   public void playerQuit(Player p) {

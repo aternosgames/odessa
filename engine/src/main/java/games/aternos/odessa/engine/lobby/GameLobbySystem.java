@@ -3,6 +3,7 @@ package games.aternos.odessa.engine.lobby;
 import games.aternos.odessa.engine.lobby.ioconfiguration.LobbyIoConfiguration;
 import games.aternos.odessa.engine.lobby.scoreboard.LobbyBoard;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
+import games.aternos.odessa.engine.service.player.PlayerService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
@@ -25,6 +26,7 @@ public class GameLobbySystem {
   private final LobbyBoard lobbyBoard;
   private final IoConfigurationService ioConfigurationService;
   private final LobbyIoConfiguration lobbyIoConfiguration;
+  private final PlayerService playerService;
 
   private LobbyController lobbyController;
 
@@ -38,6 +40,7 @@ public class GameLobbySystem {
     this.lobbyController = new LobbyController(this);
     this.ioConfigurationService = new IoConfigurationService(this.gameApi);
     this.lobbyIoConfiguration = new LobbyIoConfiguration(this.ioConfigurationService);
+    this.playerService = new PlayerService(this.gameApi);
   }
 
   public void startLobby() {
@@ -80,5 +83,9 @@ public class GameLobbySystem {
 
   public Game getGame() {
     return game;
+  }
+
+  public PlayerService getPlayerService() {
+    return playerService;
   }
 }
