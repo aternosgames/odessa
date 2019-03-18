@@ -40,7 +40,7 @@ public class LobbyBoard {
     items.add(ChatColor.YELLOW + "Waiting...");
     items.add("            ");
     items.add(ChatColor.YELLOW + "Players:");
-    items.add(ChatColor.GRAY + "" + getCurrentPlayerSize());
+    items.add(ChatColor.GRAY + Integer.toString(getCurrentPlayerSize()) + " ");
     items.add("             ");
     items.add(ChatColor.YELLOW + "Needed:");
     items.add(ChatColor.GRAY + "" + getNeededPlayers());
