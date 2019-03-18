@@ -1,6 +1,7 @@
 package games.aternos.odessa.engine.lobby.listener;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,11 +12,11 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LobbyPlayerJoin implements Listener {
+public class LobbyPlayerHandler implements Listener {
 
   private final LobbyController lobbyController;
 
-  public LobbyPlayerJoin(@Nonnull LobbyController lobbyController) {
+  public LobbyPlayerHandler(@Nonnull LobbyController lobbyController) {
     this.lobbyController = lobbyController;
   }
 
@@ -25,12 +26,14 @@ public class LobbyPlayerJoin implements Listener {
 
   @EventHandler
   public void playerJoinLobby(PlayerJoinEvent event) {
+    event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
     lobbyController.getGameLobbySystem().getGame().getGameData().addPlayer(event.getPlayer());
   }
 
   @EventHandler
-  public void onLeave(PlayerQuitEvent e) {
-
+  public void playerLeaveLobby(PlayerQuitEvent event) {
+    event.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + event.getPlayer().getName());
+    lobbyController.getGameLobbySystem().getGame().getGameData().removePlayer(event.getPlayer());
   }
 
 }
