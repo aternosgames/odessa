@@ -3,6 +3,7 @@ package games.aternos.odessa.engine.lobby;
 import games.aternos.odessa.engine.lobby.ioconfiguration.LobbyIoConfiguration;
 import games.aternos.odessa.engine.lobby.kit.KitSelectionGUI;
 import games.aternos.odessa.engine.lobby.scoreboard.LobbyBoard;
+import games.aternos.odessa.engine.service.arena.GameArenaService;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
 import games.aternos.odessa.engine.service.player.PlayerService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
@@ -29,6 +30,7 @@ public class GameLobbySystem {
   private final LobbyIoConfiguration lobbyIoConfiguration;
   private final PlayerService playerService;
   private final KitSelectionGUI kitSelectionGUI;
+  private final GameArenaService gameArenaService;
 
   private LobbyController lobbyController;
 
@@ -44,9 +46,11 @@ public class GameLobbySystem {
     this.lobbyIoConfiguration = new LobbyIoConfiguration(this.ioConfigurationService);
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this);
+    this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
   }
 
   public void startLobby() {
+    this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
     this.getLobbyController().registerLobbyListeners();
     this.getLobbyController().registerLobbyCommands();
   }

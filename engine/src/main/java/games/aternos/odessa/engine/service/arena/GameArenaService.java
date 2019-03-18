@@ -4,7 +4,6 @@ import games.aternos.odessa.engine.service.Service;
 import games.aternos.odessa.engine.service.arena.ioconfiguration.GameArenaIoConfiguration;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
 import games.aternos.odessa.gameapi.GameApi;
-import games.aternos.odessa.gameapi.game.Game;
 import games.aternos.odessa.gameapi.game.element.Arena;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class GameArenaService extends Service {
     this.gameArenaIoConfiguration = new GameArenaIoConfiguration(this.ioConfigurationService, gameName);
   }
 
-  public List<Arena> getArenas(Game game) {
+  public List<Arena> getArenas() {
     return this.gameArenaIoConfiguration.loadMapsFromIo();
   }
 
