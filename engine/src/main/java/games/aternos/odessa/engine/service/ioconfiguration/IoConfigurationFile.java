@@ -26,4 +26,8 @@ abstract public class IoConfigurationFile {
   public FileConfiguration getConfiguration() {
     return configuration;
   }
+
+  public File getConfigFile() {
+    return configFile;
+  }
 }
