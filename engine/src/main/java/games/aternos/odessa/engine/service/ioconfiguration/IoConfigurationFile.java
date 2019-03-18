@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.IOException;
 
 abstract public class IoConfigurationFile {
 
@@ -15,6 +16,11 @@ abstract public class IoConfigurationFile {
     this.configFile = configFile;
     this.owner = owner;
     this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
+    try {
+      this.configuration.save(this.configFile);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public FileConfiguration getConfiguration() {

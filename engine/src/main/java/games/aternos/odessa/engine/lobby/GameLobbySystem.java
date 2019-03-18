@@ -1,6 +1,8 @@
 package games.aternos.odessa.engine.lobby;
 
+import games.aternos.odessa.engine.lobby.ioconfiguration.LobbyIoConfiguration;
 import games.aternos.odessa.engine.lobby.scoreboard.LobbyBoard;
+import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
@@ -21,7 +23,8 @@ public class GameLobbySystem {
   private final GameConfiguration gameConfiguration;
   private final SidebarService sidebarService;
   private final LobbyBoard lobbyBoard;
-
+  private final IoConfigurationService ioConfigurationService;
+  private final LobbyIoConfiguration lobbyIoConfiguration;
 
   private LobbyController lobbyController;
 
@@ -33,6 +36,8 @@ public class GameLobbySystem {
     this.sidebarService = new SidebarService(this.gameApi, Bukkit.getScoreboardManager());
     this.lobbyBoard = new LobbyBoard(this.sidebarService, this);
     this.lobbyController = new LobbyController(this);
+    this.ioConfigurationService = new IoConfigurationService(this.gameApi);
+    this.lobbyIoConfiguration = new LobbyIoConfiguration(this.ioConfigurationService);
   }
 
   public void startLobby() {
@@ -49,6 +54,10 @@ public class GameLobbySystem {
 
   public LobbyController getLobbyController() {
     return lobbyController;
+  }
+
+  public LobbyIoConfiguration getLobbyIoConfiguration() {
+    return lobbyIoConfiguration;
   }
 
   public void setLobbyController(LobbyController lobbyController) {

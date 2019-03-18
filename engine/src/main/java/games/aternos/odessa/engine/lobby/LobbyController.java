@@ -1,6 +1,6 @@
 package games.aternos.odessa.engine.lobby;
 
-import games.aternos.odessa.engine.lobby.listener.LobbyPlayerHandler;
+import games.aternos.odessa.engine.lobby.handler.LobbyPlayerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;

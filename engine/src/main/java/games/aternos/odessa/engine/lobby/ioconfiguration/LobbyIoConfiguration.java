@@ -1,4 +1,4 @@
-package games.aternos.odessa.engine.service.ioconfiguration.lobby;
+package games.aternos.odessa.engine.lobby.ioconfiguration;
 
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationFile;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
