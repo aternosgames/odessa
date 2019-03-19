@@ -68,12 +68,12 @@ public class GameLobbySystem {
     return lobbyController;
   }
 
-  public LobbyIoConfiguration getLobbyIoConfiguration() {
-    return lobbyIoConfiguration;
-  }
-
   public void setLobbyController(LobbyController lobbyController) {
     this.lobbyController = lobbyController;
+  }
+
+  public LobbyIoConfiguration getLobbyIoConfiguration() {
+    return lobbyIoConfiguration;
   }
 
   public GameConfiguration getGameConfiguration() {

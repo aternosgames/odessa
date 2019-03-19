@@ -7,7 +7,7 @@ public class LobbyPhaseRunnable extends BukkitRunnable {
 
   private final GamePhase owner;
 
-  public LobbyPhaseRunnable(GamePhase owner){
+  public LobbyPhaseRunnable(GamePhase owner) {
     this.owner = owner;
   }
 

@@ -65,6 +65,10 @@ public class LobbyBoard {
     return lobbySidebar;
   }
 
+  private void setLobbySidebar(Sidebar lobbySidebar) {
+    this.lobbySidebar = lobbySidebar;
+  }
+
   private Integer getCurrentPlayerSize() {
     return this.getGameLobbySystem().getGame().getGameData().getPlayers().size();
   }
@@ -79,10 +83,6 @@ public class LobbyBoard {
       kit = this.getGameLobbySystem().getGame().getGameConfiguration().getGameKits().get(0);
     }
     return kit.getKitName();
-  }
-
-  private void setLobbySidebar(Sidebar lobbySidebar) {
-    this.lobbySidebar = lobbySidebar;
   }
 
   private GameLobbySystem getGameLobbySystem() {
