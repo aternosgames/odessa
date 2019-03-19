@@ -1,5 +1,6 @@
 package games.aternos.odessa.engine.lobby;
 
+import games.aternos.odessa.engine.lobby.arena.ArenaVoteGUI;
 import games.aternos.odessa.engine.lobby.ioconfiguration.LobbyIoConfiguration;
 import games.aternos.odessa.engine.lobby.kit.KitSelectionGUI;
 import games.aternos.odessa.engine.lobby.scoreboard.LobbyBoard;
@@ -34,6 +35,7 @@ public class GameLobbySystem {
   private final KitSelectionGUI kitSelectionGUI;
   private final GameArenaService gameArenaService;
   private final HashMap<Arena, Integer> mapVote;
+  private final ArenaVoteGUI arenaVoteGUI;
 
   private LobbyController lobbyController;
 
@@ -51,13 +53,11 @@ public class GameLobbySystem {
     this.kitSelectionGUI = new KitSelectionGUI(this);
     this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
     this.mapVote = new HashMap<>();
+    this.arenaVoteGUI = new ArenaVoteGUI(this);
   }
 
   public void startLobby() {
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
-    /*
-    todo: populate map vote.
-     */
     this.getLobbyController().registerLobbyListeners();
     this.getLobbyController().registerLobbyCommands();
   }
@@ -110,4 +110,6 @@ public class GameLobbySystem {
   public GameArenaService getGameArenaService() {
     return gameArenaService;
   }
+
+  public ArenaVoteGUI getArenaVoteGUI(){return this.arenaVoteGUI;}
 }
