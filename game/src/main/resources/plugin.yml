@@ -8,3 +8,6 @@ commands:
   setlobbyspawn:
     description: Set Lobby Spawn
     usage: /command
+  createarena:
+    description: CreateArena
+    usage: /command <name> <author>

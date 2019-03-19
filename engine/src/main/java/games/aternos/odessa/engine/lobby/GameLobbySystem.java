@@ -99,4 +99,8 @@ public class GameLobbySystem {
   public KitSelectionGUI getKitSelectionGUI() {
     return kitSelectionGUI;
   }
+
+  public GameArenaService getGameArenaService() {
+    return gameArenaService;
+  }
 }

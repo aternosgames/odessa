@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,29 @@ import java.util.List;
 public class GameArenaIoConfiguration extends IoConfigurationFile {
   public GameArenaIoConfiguration(IoConfigurationService owner, String gameName) {
     super(new File(owner.getGameApi().getDataFolder() + "/" + gameName, "arenas.yml"), owner);
+  }
+
+  public void createArena(String name, String author) {
+    this.getConfiguration().set(name + ".author", author);
+    try {
+      this.getConfiguration().save(this.getConfigFile());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void addSpawn(Location spawn, Integer teamID, Integer spawnID, String mapName) {
+
+    this.getConfiguration().set(mapName + ".spawns." + spawnID + ".world", spawn.getWorld().getName());
+    this.getConfiguration().set(mapName + ".spawns." + spawnID + ".x", spawn.getBlockX());
+    this.getConfiguration().set(mapName + ".spawns." + spawnID + ".y", spawn.getBlockY());
+    this.getConfiguration().set(mapName + ".spawns." + spawnID + ".z", spawn.getBlockZ());
+    this.getConfiguration().set(mapName + ".spawns." + spawnID + ".team", teamID);
+    try {
+      this.getConfiguration().save(this.getConfigFile());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public List<Arena> loadMapsFromIo() {
