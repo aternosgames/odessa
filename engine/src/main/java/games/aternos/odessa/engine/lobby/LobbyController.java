@@ -74,10 +74,15 @@ public class LobbyController {
     p.setGameMode(GameMode.ADVENTURE);
     p.teleport(this.getGameLobbySystem().getLobbyIoConfiguration().getLobbySpawn());
     ItemStack kitSelection = new ItemStack(Material.CHEST);
+    ItemStack arenaVote = new ItemStack(Material.GRASS);
+    ItemMeta arenaVoteMeta = arenaVote.getItemMeta();
     ItemMeta kitSelectionMeta = kitSelection.getItemMeta();
     kitSelectionMeta.setDisplayName(ChatColor.GREEN + "Kit Selection");
+    arenaVoteMeta.setDisplayName(ChatColor.GREEN + "Map Vote");
     kitSelection.setItemMeta(kitSelectionMeta);
+    arenaVote.setItemMeta(arenaVoteMeta);
     p.getInventory().setItem(0, kitSelection);
+    p.getInventory().setItem(1, arenaVote);
   }
 
   public GameLobbySystem getGameLobbySystem() {
