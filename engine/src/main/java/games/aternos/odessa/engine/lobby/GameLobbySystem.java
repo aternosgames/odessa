@@ -55,6 +55,9 @@ public class GameLobbySystem {
 
   public void startLobby() {
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
+    /*
+    todo: populate map vote.
+     */
     this.getLobbyController().registerLobbyListeners();
     this.getLobbyController().registerLobbyCommands();
   }
