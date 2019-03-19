@@ -11,9 +11,11 @@ import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
 import games.aternos.odessa.gameapi.game.GameConfiguration;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
+import games.aternos.odessa.gameapi.game.element.Arena;
 import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 
 /**
  * Uniformed Lobby System that can be called into action by a game.
@@ -31,6 +33,7 @@ public class GameLobbySystem {
   private final PlayerService playerService;
   private final KitSelectionGUI kitSelectionGUI;
   private final GameArenaService gameArenaService;
+  private final HashMap<Arena, Integer> mapVote;
 
   private LobbyController lobbyController;
 
@@ -47,6 +50,7 @@ public class GameLobbySystem {
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this);
     this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
+    this.mapVote = new HashMap<>();
   }
 
   public void startLobby() {
