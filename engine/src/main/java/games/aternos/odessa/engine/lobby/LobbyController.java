@@ -1,5 +1,6 @@
 package games.aternos.odessa.engine.lobby;
 
+import games.aternos.odessa.engine.lobby.command.AddSpawnCommand;
 import games.aternos.odessa.engine.lobby.command.CreateArenaCommand;
 import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
 import games.aternos.odessa.engine.lobby.handler.LobbyPlayerHandler;
@@ -32,11 +33,14 @@ public class LobbyController {
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
     CreateArenaCommand createArenaCommand = new CreateArenaCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(createArenaCommand);
+    AddSpawnCommand addSpawnCommand = new AddSpawnCommand(gameLobbySystem);
+    this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(addSpawnCommand);
   }
 
   void unRegisterCommands() {
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
     this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(null);
+    this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(null);
   }
 
   void registerLobbyListeners() {

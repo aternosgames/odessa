@@ -11,3 +11,6 @@ commands:
   createarena:
     description: CreateArena
     usage: /command <name> <author>
+  addarenaspawn:
+    description: AddSpawn
+    usage: /command <mapname> <int> <int>
