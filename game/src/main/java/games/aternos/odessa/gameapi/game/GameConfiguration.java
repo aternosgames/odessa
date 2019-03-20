@@ -52,4 +52,5 @@ abstract public class GameConfiguration {
   public void setMinPlayers(int minPlayers) {
     this.minPlayers = minPlayers;
   }
+
 }

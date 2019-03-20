@@ -1,6 +1,7 @@
 package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
+import games.aternos.odessa.gameapi.game.element.Arena;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -50,6 +51,8 @@ public class LobbyPlayerHandler implements Listener {
       if (!(im.getDisplayName() == null)) {
         if (im.getDisplayName().contains("Kit Selection")) {
           this.lobbyController.getGameLobbySystem().getKitSelectionGUI().openKitSelectionMenu(e.getPlayer());
+        }else if(im.getDisplayName().contains("Map Vote")){
+          this.lobbyController.getGameLobbySystem().getArenaVoteGUI().openArenaVoteMenu(e.getPlayer());
         }
       }
     }
@@ -59,6 +62,7 @@ public class LobbyPlayerHandler implements Listener {
   @EventHandler
   public void onPlayerClick(InventoryClickEvent e) {
     e.setCancelled(true);
+    Player p = (Player) e.getWhoClicked();
     if (e.getInventory().getName().equals("Kit Selection")) {
 
       if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
@@ -68,7 +72,7 @@ public class LobbyPlayerHandler implements Listener {
             selected = k;
           }
         }
-        Player p = (Player) e.getWhoClicked();
+
         if (selected != null) {
           if (!this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().containsKey(p)) {
             this.lobbyController.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().put(p, selected);
@@ -81,6 +85,28 @@ public class LobbyPlayerHandler implements Listener {
 
           p.closeInventory();
           p.sendMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + "Selected Kit: " + selected.getKitName());
+        }
+
+
+      }
+    }else if(e.getInventory().getName().equals("Arena Vote")){
+      /*
+      todo: remove vote if already voted
+       */
+      if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+        Arena votedFor = null;
+        for(Arena a : this.lobbyController.getGameLobbySystem().getGame().getGameConfiguration().getGameArenas()){
+          if(e.getCurrentItem().getItemMeta().getDisplayName().equals(a.getArenaName())){
+            votedFor = a;
+          }
+        }
+        if(votedFor != null){
+          if(!this.lobbyController.getGameLobbySystem().getMapVote().containsKey(votedFor)){
+            this.lobbyController.getGameLobbySystem().getMapVote().put(votedFor, 0);
+          }
+          this.lobbyController.getGameLobbySystem().getMapVote().put(votedFor, this.lobbyController.getGameLobbySystem().getMapVote().get(votedFor) + 1);
+          p.closeInventory();
+          p.sendMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + "Voted for: " + votedFor.getArenaName() + " by: " + votedFor.getArenaAuthor());
         }
 
 

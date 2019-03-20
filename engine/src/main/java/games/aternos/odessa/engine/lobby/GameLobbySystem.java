@@ -112,4 +112,8 @@ public class GameLobbySystem {
   }
 
   public ArenaVoteGUI getArenaVoteGUI(){return this.arenaVoteGUI;}
+
+  public HashMap<Arena, Integer> getMapVote() {
+    return mapVote;
+  }
 }
