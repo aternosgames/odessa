@@ -44,7 +44,7 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Lis
   private void processKitSelection(Player p, ItemStack currentItem) {
     Kit selected = null;
     for (Kit k : this.getOwner().getGameLobbySystem().getGameConfiguration().getGameKits()) {
-      if (currentItem.equals(k.getKitName())) {
+      if (currentItem.getItemMeta().getDisplayName().equals(k.getKitName())) {
         selected = k;
       }
     }
@@ -65,19 +65,19 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Lis
   }
 
   private void processArenaSelection(Player p, ItemStack currentItem) {
+
     Arena votedFor = null;
     for (Arena a : this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameArenas()) {
-      if (currentItem.equals(a.getArenaName())) {
+      if (currentItem.getItemMeta().getDisplayName().equals(a.getArenaName())) {
         votedFor = a;
       }
     }
-    if (votedFor != null) {
 
+    if (votedFor != null) {
       if (this.voted.containsKey(p)) {
         this.getOwner().getGameLobbySystem().getArenaVote().put(votedFor, this.getOwner().getGameLobbySystem().getArenaVote().get(votedFor) - 1);
         this.voted.remove(p);
       }
-
       if (!this.getOwner().getGameLobbySystem().getArenaVote().containsKey(votedFor)) {
         this.getOwner().getGameLobbySystem().getArenaVote().put(votedFor, 0);
       }

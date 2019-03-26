@@ -36,4 +36,9 @@ public class LobbyPhase extends GamePhase {
     this.getGamePhaseRunnableTask().cancel();
     this.gameLobbySystem.stopLobby();
   }
+
+  @Override
+  public void hook() {
+    this.gameLobbySystem.getLobbyController().lobbyTick();
+  }
 }

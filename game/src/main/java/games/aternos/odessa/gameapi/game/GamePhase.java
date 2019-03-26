@@ -53,6 +53,8 @@ abstract public class GamePhase {
 
   abstract public void endPhase();
 
+  abstract public void hook();
+
 
   public GameLifecycleManager getOwner() {
     return owner;

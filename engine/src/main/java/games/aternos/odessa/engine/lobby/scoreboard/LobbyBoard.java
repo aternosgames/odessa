@@ -1,6 +1,7 @@
 package games.aternos.odessa.engine.lobby.scoreboard;
 
-import games.aternos.odessa.engine.lobby.GameLobbySystem;
+import games.aternos.odessa.engine.lobby.LobbyController;
+import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
 import games.aternos.odessa.engine.service.sidebar.Sidebar;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.game.element.Kit;
@@ -10,21 +11,18 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LobbyBoard {
+public class LobbyBoard extends LobbyControllerOwned {
 
   private final SidebarService sidebarService;
-
-  private final GameLobbySystem gameLobbySystem;
-
   private Sidebar lobbySidebar;
 
-  public LobbyBoard(SidebarService sidebarService, GameLobbySystem gameLobbySystem) {
+  public LobbyBoard(SidebarService sidebarService, LobbyController lobbyController) {
+    super(lobbyController);
     this.sidebarService = sidebarService;
-    this.gameLobbySystem = gameLobbySystem;
   }
 
   public void pushBoard() {
-    for (Player p : this.gameLobbySystem.getGame().getGameData().getPlayers()) {
+    for (Player p : this.getOwner().getGameLobbySystem().getGame().getGameData().getPlayers()) {
       this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
     }
   }
@@ -58,7 +56,7 @@ public class LobbyBoard {
   }
 
   private String getGameName() {
-    return this.getGameLobbySystem().getGame().getGameConfiguration().getGameName();
+    return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameName();
   }
 
   private Sidebar getLobbySidebar() {
@@ -70,24 +68,21 @@ public class LobbyBoard {
   }
 
   private Integer getCurrentPlayerSize() {
-    return this.getGameLobbySystem().getGame().getGameData().getPlayers().size();
+    return this.getOwner().getGameLobbySystem().getGame().getGameData().getPlayers().size();
   }
 
   private Integer getNeededPlayers() {
-    return this.getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers() - getCurrentPlayerSize();
+    return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers() - getCurrentPlayerSize();
   }
 
   private String getSelectedKitName(Player p) {
-    Kit kit = this.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
+    Kit kit = this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
     if (kit == null) {
-      kit = this.getGameLobbySystem().getGame().getGameConfiguration().getGameKits().get(0);
+      kit = this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameKits().get(0);
     }
     return kit.getKitName();
   }
 
-  private GameLobbySystem getGameLobbySystem() {
-    return gameLobbySystem;
-  }
 
   private SidebarService getSidebarService() {
     return sidebarService;

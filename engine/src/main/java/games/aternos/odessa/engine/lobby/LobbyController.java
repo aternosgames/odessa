@@ -29,6 +29,10 @@ public class LobbyController {
     this.lobbyListeners = new ArrayList<>();
   }
 
+  public void lobbyTick() {
+
+  }
+
   void registerLobbyCommands() {
     SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);

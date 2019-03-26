@@ -24,4 +24,9 @@ public class InGamePhase extends GamePhase {
   public void endPhase() {
 
   }
+
+  @Override
+  public void hook() {
+
+  }
 }

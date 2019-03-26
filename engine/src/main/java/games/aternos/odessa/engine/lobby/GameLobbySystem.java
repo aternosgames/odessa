@@ -40,17 +40,17 @@ public class GameLobbySystem {
   private LobbyController lobbyController;
 
   public GameLobbySystem(@Nonnull GameLifecycleManager gameLifecycleManager, @Nonnull GameApi gameApi, @Nonnull GameConfiguration gameConfiguration) {
+    this.lobbyController = new LobbyController(this);
     this.gameLifecycleManager = gameLifecycleManager;
     this.gameApi = gameApi;
     game = gameApi.getGame();
     this.gameConfiguration = gameConfiguration;
     this.sidebarService = new SidebarService(this.gameApi, Bukkit.getScoreboardManager());
-    this.lobbyBoard = new LobbyBoard(this.sidebarService, this);
-    this.lobbyController = new LobbyController(this);
+    this.lobbyBoard = new LobbyBoard(this.sidebarService, this.getLobbyController());
     this.ioConfigurationService = new IoConfigurationService(this.gameApi);
     this.lobbyIoConfiguration = new LobbyIoConfiguration(this.ioConfigurationService);
     this.playerService = new PlayerService(this.gameApi);
-    this.kitSelectionGUI = new KitSelectionGUI(this);
+    this.kitSelectionGUI = new KitSelectionGUI(this.getLobbyController());
     this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
     this.arenaVote = new HashMap<>();
     this.arenaVoteGUI = new ArenaVoteGUI(this);
