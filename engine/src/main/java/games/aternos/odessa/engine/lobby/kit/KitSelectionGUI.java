@@ -1,6 +1,7 @@
 package games.aternos.odessa.engine.lobby.kit;
 
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
+import games.aternos.odessa.gameapi.game.element.GUI;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class KitSelectionGUI {
+public class KitSelectionGUI implements GUI {
 
   private final GameLobbySystem gameLobbySystem;
 
@@ -19,7 +20,7 @@ public class KitSelectionGUI {
     this.gameLobbySystem = gameLobbySystem;
   }
 
-  public void openKitSelectionMenu(Player p) {
+  public void openGUI(Player p) {
     Inventory selection = Bukkit.createInventory(null, 9, "Kit Selection");
     selection.clear();
     List<Kit> kits = this.gameLobbySystem.getGame().getGameConfiguration().getGameKits();

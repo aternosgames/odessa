@@ -34,7 +34,7 @@ public class GameLobbySystem {
   private final PlayerService playerService;
   private final KitSelectionGUI kitSelectionGUI;
   private final GameArenaService gameArenaService;
-  private final HashMap<Arena, Integer> mapVote;
+  private final HashMap<Arena, Integer> arenaVote;
   private final ArenaVoteGUI arenaVoteGUI;
 
   private LobbyController lobbyController;
@@ -52,7 +52,7 @@ public class GameLobbySystem {
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this);
     this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
-    this.mapVote = new HashMap<>();
+    this.arenaVote = new HashMap<>();
     this.arenaVoteGUI = new ArenaVoteGUI(this);
   }
 
@@ -113,7 +113,7 @@ public class GameLobbySystem {
 
   public ArenaVoteGUI getArenaVoteGUI(){return this.arenaVoteGUI;}
 
-  public HashMap<Arena, Integer> getMapVote() {
-    return mapVote;
+  public HashMap<Arena, Integer> getArenaVote() {
+    return arenaVote;
   }
 }

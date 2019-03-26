@@ -3,7 +3,8 @@ package games.aternos.odessa.engine.lobby;
 import games.aternos.odessa.engine.lobby.command.AddSpawnCommand;
 import games.aternos.odessa.engine.lobby.command.CreateArenaCommand;
 import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
-import games.aternos.odessa.engine.lobby.handler.LobbyPlayerHandler;
+import games.aternos.odessa.engine.lobby.handler.*;
+import games.aternos.odessa.gameapi.Debug;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -44,9 +45,19 @@ public class LobbyController {
   }
 
   void registerLobbyListeners() {
-    LobbyPlayerHandler lobbyPlayerHandler = new LobbyPlayerHandler(this);
-    lobbyListeners.add(lobbyPlayerHandler);
-    Bukkit.getServer().getPluginManager().registerEvents(lobbyPlayerHandler, this.getGameLobbySystem().getGameApi());
+    this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
+    this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerClickHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerDropHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerHungerHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerInteractHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerJoinHandler(this));
+    this.lobbyListeners.add(new LobbyPlayerLeaveHandler(this));
+    this.lobbyListeners.add(new LobbyWeatherChangeHandler(this));
+    for (Listener listener : this.lobbyListeners) {
+      Bukkit.getServer().getPluginManager().registerEvents(listener, this.getGameLobbySystem().getGameApi());
+      Debug.$("registered: " + listener.getClass().getName());
+    }
   }
 
   void unRegisterLobbyListeners() {
@@ -56,19 +67,19 @@ public class LobbyController {
     }
   }
 
-  public void playerJoin(Player p) {
+  public void playerJoin(@Nonnull Player p) {
     this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
     cleanPlayer(p);
     p.sendActionBar(ChatColor.BOLD + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName() + " Lobby");
   }
 
-  public void playerQuit(Player p) {
+  public void playerQuit(@Nonnull Player p) {
     this.getGameLobbySystem().getGame().getGameData().removePlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
-  private void cleanPlayer(Player p) {
+  private void cleanPlayer(@Nonnull Player p) {
     this.getGameLobbySystem().getPlayerService().clearPlayer(p);
     this.getGameLobbySystem().getPlayerService().healPlayer(p);
     p.setGameMode(GameMode.ADVENTURE);
@@ -78,7 +89,7 @@ public class LobbyController {
     ItemMeta arenaVoteMeta = arenaVote.getItemMeta();
     ItemMeta kitSelectionMeta = kitSelection.getItemMeta();
     kitSelectionMeta.setDisplayName(ChatColor.GREEN + "Kit Selection");
-    arenaVoteMeta.setDisplayName(ChatColor.GREEN + "Map Vote");
+    arenaVoteMeta.setDisplayName(ChatColor.GREEN + "Arena Vote");
     kitSelection.setItemMeta(kitSelectionMeta);
     arenaVote.setItemMeta(arenaVoteMeta);
     p.getInventory().setItem(0, kitSelection);
