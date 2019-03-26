@@ -29,7 +29,7 @@ public class LobbyController {
   LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
-    tick = 0;
+    tick = 30;
   }
 
   public void lobbyTick() {
@@ -41,18 +41,20 @@ public class LobbyController {
       }
     } else if (this.gameLobbySystem.getLobbyState().equals(LobbyState.FINALCALL)) {
       conditionalAbort();
-      if (this.tick != 30) {
-        this.tick = this.tick++;
+      this.getGameLobbySystem().getLobbyBoard().pushBoard();
+      if (this.tick != 0) {
+        this.tick = this.tick - 1;
       } else {
         // final countdown
         this.tick = 10;
-        this.gameLobbySystem.setLobbyState(LobbyState.FINALCALL);
+        this.gameLobbySystem.setLobbyState(LobbyState.COUNTDOWN);
       }
     } else if (this.gameLobbySystem.getLobbyState().equals(LobbyState.COUNTDOWN)) {
       conditionalAbort();
+      this.getGameLobbySystem().getLobbyBoard().pushBoard();
       Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + this.tick);
       if (tick != 1) {
-        tick = tick--;
+        this.tick = this.tick - 1;
       } else {
        /*
        Start Game
@@ -66,7 +68,7 @@ public class LobbyController {
     if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() < this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
       this.gameLobbySystem.setLobbyState(LobbyState.WAITINGFORPLAYERS);
       Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + "Minimum players no longer reached, countdown aborted.");
-      this.tick = 0;
+      this.tick = 30;
     }
   }
 
@@ -147,5 +149,13 @@ public class LobbyController {
 
   public void setLobbyListeners(@Nonnull List<Listener> lobbyListeners) {
     this.lobbyListeners = lobbyListeners;
+  }
+
+  public int getTick() {
+    return tick;
+  }
+
+  public void setTick(int tick) {
+    this.tick = tick;
   }
 }

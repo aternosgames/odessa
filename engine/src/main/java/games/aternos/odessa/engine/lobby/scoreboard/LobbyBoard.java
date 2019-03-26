@@ -2,6 +2,7 @@ package games.aternos.odessa.engine.lobby.scoreboard;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
+import games.aternos.odessa.engine.lobby.LobbyState;
 import games.aternos.odessa.engine.service.sidebar.Sidebar;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.game.element.Kit;
@@ -39,6 +40,18 @@ public class LobbyBoard extends LobbyControllerOwned {
   }
 
   private List<String> scoreboardItems(Player p) {
+    if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
+      return waitingForPlayersItems(p);
+    } else if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.FINALCALL)) {
+      return finalCallItems(p);
+    }
+    if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.COUNTDOWN)) {
+      return countdownItems(p);
+    }
+    return null;
+  }
+
+  private List<String> waitingForPlayersItems(Player p) {
     List<String> items = new ArrayList<>();
 
     items.add("           ");
@@ -55,6 +68,35 @@ public class LobbyBoard extends LobbyControllerOwned {
     return items;
   }
 
+  private List<String> countdownItems(Player p) {
+    List<String> items = new ArrayList<>();
+
+    items.add("           ");
+    items.add(ChatColor.YELLOW + "Countdown");
+    items.add("            ");
+    items.add(ChatColor.YELLOW + "Players:");
+    items.add(ChatColor.GRAY + Integer.toString(getCurrentPlayerSize()) + " ");
+    items.add("               ");
+    items.add(ChatColor.YELLOW + "Launching:");
+    items.add(ChatColor.GRAY + "" + this.getOwner().getTick());
+    return items;
+  }
+
+  private List<String> finalCallItems(Player p) {
+    List<String> items = new ArrayList<>();
+    items.add("           ");
+    items.add(ChatColor.YELLOW + "Final Call");
+    items.add("            ");
+    items.add(ChatColor.YELLOW + "Players:");
+    items.add(ChatColor.GRAY + Integer.toString(getCurrentPlayerSize()) + " ");
+    items.add("               ");
+    items.add(ChatColor.YELLOW + "Kit:");
+    items.add(ChatColor.GRAY + "" + getSelectedKitName(p));
+    items.add("                ");
+    items.add(ChatColor.YELLOW + "Remaining:");
+    items.add(ChatColor.GRAY + "" + this.getOwner().getTick());
+    return items;
+  }
   private String getGameName() {
     return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameName();
   }
