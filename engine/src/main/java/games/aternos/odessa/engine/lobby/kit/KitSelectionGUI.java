@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class KitSelectionGUI extends LobbyControllerOwned implements GUI {
     super(lobbyController);
   }
 
-  public void openGUI(Player p) {
+  public void openGUI(@NotNull Player p) {
     Inventory selection = Bukkit.createInventory(null, 9, "Kit Selection");
     selection.clear();
     List<Kit> kits = this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameKits();

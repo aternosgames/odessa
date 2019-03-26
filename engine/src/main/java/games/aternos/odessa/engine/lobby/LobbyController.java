@@ -23,10 +23,9 @@ public class LobbyController {
 
   private final GameLobbySystem gameLobbySystem;
   private List<Listener> lobbyListeners;
-
   private int tick;
 
-  LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
+  public LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
     tick = 30;
@@ -72,7 +71,7 @@ public class LobbyController {
     }
   }
 
-  void registerLobbyCommands() {
+  public void registerLobbyCommands() {
     SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
     CreateArenaCommand createArenaCommand = new CreateArenaCommand(gameLobbySystem);
@@ -81,13 +80,13 @@ public class LobbyController {
     this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(addSpawnCommand);
   }
 
-  void unRegisterCommands() {
+  public void unRegisterCommands() {
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
     this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(null);
     this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(null);
   }
 
-  void registerLobbyListeners() {
+  public void registerLobbyListeners() {
     this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
     this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
     this.lobbyListeners.add(new LobbyPlayerClickHandler(this));
@@ -103,7 +102,7 @@ public class LobbyController {
     }
   }
 
-  void unRegisterLobbyListeners() {
+  public void unRegisterLobbyListeners() {
     for (Listener l : this.getLobbyListeners()) {
       HandlerList.unregisterAll(l);
       lobbyListeners.remove(l);
@@ -143,7 +142,7 @@ public class LobbyController {
     return gameLobbySystem;
   }
 
-  public List<Listener> getLobbyListeners() {
+  private List<Listener> getLobbyListeners() {
     return lobbyListeners;
   }
 

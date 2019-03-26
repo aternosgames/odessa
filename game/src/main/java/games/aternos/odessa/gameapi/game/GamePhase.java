@@ -18,12 +18,12 @@ abstract public class GamePhase {
 
   private boolean isActive;
 
-  public GamePhase(@NonNull GameLifecycleManager owner) {
+  protected GamePhase(@NonNull GameLifecycleManager owner) {
     this.owner = owner;
     this.initialize();
   }
 
-  abstract public void initialize();
+  protected abstract void initialize();
 
   public GamePhase getNextPhase() {
     return this.nextPhase;

@@ -17,7 +17,7 @@ abstract public class GameData {
 
   private final List<Team> gameTeams;
 
-  public GameData() {
+  protected GameData() {
     this.players = new ArrayList<>();
     this.selectedPlayerKits = new HashMap<>();
     this.gameTeams = new ArrayList<>();

@@ -73,23 +73,24 @@ public class LobbyBoard extends LobbyControllerOwned {
 
     items.add("           ");
     items.add(ChatColor.YELLOW + "Countdown");
+    currentPlayerBoardPiece(items);
+    items.add(ChatColor.YELLOW + "Launching:");
+    items.add(ChatColor.GRAY + "" + this.getOwner().getTick());
+    return items;
+  }
+
+  private void currentPlayerBoardPiece(List<String> items) {
     items.add("            ");
     items.add(ChatColor.YELLOW + "Players:");
     items.add(ChatColor.GRAY + Integer.toString(getCurrentPlayerSize()) + " ");
     items.add("               ");
-    items.add(ChatColor.YELLOW + "Launching:");
-    items.add(ChatColor.GRAY + "" + this.getOwner().getTick());
-    return items;
   }
 
   private List<String> finalCallItems(Player p) {
     List<String> items = new ArrayList<>();
     items.add("           ");
     items.add(ChatColor.YELLOW + "Final Call");
-    items.add("            ");
-    items.add(ChatColor.YELLOW + "Players:");
-    items.add(ChatColor.GRAY + Integer.toString(getCurrentPlayerSize()) + " ");
-    items.add("               ");
+    currentPlayerBoardPiece(items);
     items.add(ChatColor.YELLOW + "Kit:");
     items.add(ChatColor.GRAY + "" + getSelectedKitName(p));
     items.add("                ");
@@ -99,14 +100,6 @@ public class LobbyBoard extends LobbyControllerOwned {
   }
   private String getGameName() {
     return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameName();
-  }
-
-  private Sidebar getLobbySidebar() {
-    return lobbySidebar;
-  }
-
-  private void setLobbySidebar(Sidebar lobbySidebar) {
-    this.lobbySidebar = lobbySidebar;
   }
 
   private Integer getCurrentPlayerSize() {

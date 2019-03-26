@@ -4,7 +4,7 @@ abstract public class LobbyControllerOwned {
 
   private LobbyController owner;
 
-  public LobbyControllerOwned(LobbyController owner) {
+  protected LobbyControllerOwned(LobbyController owner) {
     this.owner = owner;
   }
 

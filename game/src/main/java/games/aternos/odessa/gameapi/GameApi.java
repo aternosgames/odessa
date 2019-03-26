@@ -29,12 +29,12 @@ public class GameApi extends JavaPlugin {
    * todo: more elegant multi game supporting thingy
    *
    * @param game The game.
-   * @throws Exception If a game is already registered.
    */
-  public void registerGame(@NonNull Game game) throws Exception {
+  public void registerGame(@NonNull Game game) {
 
     if (this.getGame() != null) {
-      throw new Exception("Game Already Registered");
+      Debug.$("A game is already registered..ignoring");
+      return;
     }
     this.setGame(game);
     this.getGame().initialize();

@@ -21,7 +21,7 @@ public class AddSpawnCommand implements CommandExecutor {
       return true;
     }
 
-    if (!(strings.length == 3)) {
+    if (strings.length != 3) {
       commandSender.sendMessage("Odessa: /addarenaspawn <mapname> <teamid> <spawnid>");
       return true;
     }

@@ -19,7 +19,7 @@ public class LobbyPlayerInteractHandler extends LobbyControllerOwned implements 
 
     ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
     ItemMeta im = i.getItemMeta();
-    if (!(im.getDisplayName() == null)) {
+    if (im.getDisplayName() != null) {
       if (im.getDisplayName().contains("Kit Selection") && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.CHEST) {
         this.getOwner().getGameLobbySystem().getKitSelectionGUI().openGUI(e.getPlayer());
       } else if (im.getDisplayName().contains("Arena Vote") && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.GRASS) {

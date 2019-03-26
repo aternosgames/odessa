@@ -30,14 +30,10 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Lis
   public void onPlayerClick(InventoryClickEvent e) {
     e.setCancelled(true);
     Player p = (Player) e.getWhoClicked();
-    if (e.getInventory().getName().equals("Kit Selection")) {
-      if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+    if (e.getInventory().getName().equals("Kit Selection") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
         this.processKitSelection((Player) e.getWhoClicked(), e.getCurrentItem());
-      }
-    } else if (e.getInventory().getName().equals("Arena Vote")) {
-      if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+    } else if (e.getInventory().getName().equals("Arena Vote") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
         this.processArenaSelection((Player) e.getWhoClicked(), e.getCurrentItem());
-      }
     }
   }
 

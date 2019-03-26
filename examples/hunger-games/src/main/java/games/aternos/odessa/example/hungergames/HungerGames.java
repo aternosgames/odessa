@@ -19,11 +19,7 @@ public class HungerGames extends JavaPlugin implements Game {
 
   @Override
   public void onEnable() {
-    try {
       GameApi.getGameApi().registerGame(this);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   @Override

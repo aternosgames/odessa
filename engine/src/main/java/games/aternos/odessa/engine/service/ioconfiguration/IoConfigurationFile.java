@@ -12,7 +12,7 @@ abstract public class IoConfigurationFile {
   private final IoConfigurationService owner;
   private final FileConfiguration configuration;
 
-  public IoConfigurationFile(File configFile, IoConfigurationService owner) {
+  protected IoConfigurationFile(File configFile, IoConfigurationService owner) {
     this.configFile = configFile;
     this.owner = owner;
     this.configuration = YamlConfiguration.loadConfiguration(this.configFile);

@@ -16,7 +16,7 @@ public class LobbyPhaseRunnable extends BukkitRunnable {
     this.getOwner().hook();
   }
 
-  public GamePhase getOwner() {
+  private GamePhase getOwner() {
     return owner;
   }
 }

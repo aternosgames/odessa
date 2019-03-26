@@ -27,9 +27,7 @@ public class GameLobbySystem {
   private final GameApi gameApi;
   private final Game game;
   private final GameConfiguration gameConfiguration;
-  private final SidebarService sidebarService;
   private final LobbyBoard lobbyBoard;
-  private final IoConfigurationService ioConfigurationService;
   private final LobbyIoConfiguration lobbyIoConfiguration;
   private final PlayerService playerService;
   private final KitSelectionGUI kitSelectionGUI;
@@ -48,13 +46,13 @@ public class GameLobbySystem {
     this.gameApi = gameApi;
     game = gameApi.getGame();
     this.gameConfiguration = gameConfiguration;
-    this.sidebarService = new SidebarService(this.gameApi, Bukkit.getScoreboardManager());
-    this.lobbyBoard = new LobbyBoard(this.sidebarService, this.getLobbyController());
-    this.ioConfigurationService = new IoConfigurationService(this.gameApi);
-    this.lobbyIoConfiguration = new LobbyIoConfiguration(this.ioConfigurationService);
+    SidebarService sidebarService = new SidebarService(this.gameApi, Bukkit.getScoreboardManager());
+    this.lobbyBoard = new LobbyBoard(sidebarService, this.getLobbyController());
+    IoConfigurationService ioConfigurationService = new IoConfigurationService(this.gameApi);
+    this.lobbyIoConfiguration = new LobbyIoConfiguration(ioConfigurationService);
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this.getLobbyController());
-    this.gameArenaService = new GameArenaService(this.gameApi, this.ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
+    this.gameArenaService = new GameArenaService(this.gameApi, ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
     this.arenaVote = new HashMap<>();
     this.arenaVoteGUI = new ArenaVoteGUI(this);
   }

@@ -30,10 +30,6 @@ public class SidebarService extends Service {
     return playerBoards;
   }
 
-  private static void setPlayerBoards(HashMap<Player, Scoreboard> playerBoards) {
-    SidebarService.playerBoards = playerBoards;
-  }
-
   /**
    * Creates a Global Sidebar Scoreboard
    */
@@ -77,14 +73,6 @@ public class SidebarService extends Service {
 
   private boolean isInPlayerBoards(Player p) {
     return playerBoards.keySet().contains(p);
-  }
-
-  private ScoreboardManager getScoreboardManager() {
-    return scoreboardManager;
-  }
-
-  private void setScoreboardManager(ScoreboardManager scoreboardManager) {
-    this.scoreboardManager = scoreboardManager;
   }
 
   private Scoreboard getPlayerScoreboard(Player p) {
