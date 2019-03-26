@@ -35,6 +35,7 @@ public class LobbyPhase extends GamePhase {
     this.setActive(false);
     this.getGamePhaseRunnableTask().cancel();
     this.gameLobbySystem.stopLobby();
+    gameLobbySystem = null;
   }
 
   @Override

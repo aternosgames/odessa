@@ -1,5 +1,6 @@
 package games.aternos.odessa.gameapi.game;
 
+import games.aternos.odessa.gameapi.game.element.Arena;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import games.aternos.odessa.gameapi.game.element.Team;
 import org.bukkit.entity.Player;
@@ -16,6 +17,8 @@ abstract public class GameData {
   private final HashMap<Player, Kit> selectedPlayerKits;
 
   private final List<Team> gameTeams;
+
+  private Arena gameArena;
 
   protected GameData() {
     this.players = new ArrayList<>();
@@ -43,5 +46,12 @@ abstract public class GameData {
     this.players.add(player);
   }
 
+  public void setGameArena(Arena a){
+    this.gameArena = a;
+  }
+
+  public Arena getGameArena(){
+    return this.gameArena;
+  }
 
 }

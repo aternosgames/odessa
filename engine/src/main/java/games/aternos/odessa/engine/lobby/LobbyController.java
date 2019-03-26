@@ -58,7 +58,8 @@ public class LobbyController {
        /*
        Start Game
         */
-        this.gameLobbySystem.getGameLifecycleManager().nextPhase();
+       this.gameLobbySystem.getGame().getGameData().setGameArena(this.gameLobbySystem.computeArenaVoted());
+       this.gameLobbySystem.getGameLifecycleManager().nextPhase();
       }
     }
   }

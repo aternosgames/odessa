@@ -17,6 +17,7 @@ import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Uniformed Lobby System that can be called into action by a game.
@@ -67,6 +68,27 @@ public class GameLobbySystem {
   public void stopLobby() {
     this.getLobbyController().unRegisterLobbyListeners();
     this.getLobbyController().unRegisterCommands();
+  }
+
+  public Arena computeArenaVoted(){
+    if(this.arenaVote.isEmpty()){
+      return this.getGame().getGameConfiguration().getGameArenas().get(0);
+    }
+
+    Arena mostVoted = null;
+    int mostVotes = 0;
+    for(Arena a : this.arenaVote.keySet()){
+      if(mostVoted == null){
+        mostVoted = a;
+        mostVotes = this.arenaVote.get(a);
+      }else{
+        if(this.arenaVote.get(a) > mostVotes){
+          mostVoted = a;
+          mostVotes = this.arenaVote.get(a);
+        }
+      }
+    }
+    return mostVoted;
   }
 
   public LobbyBoard getLobbyBoard() {
