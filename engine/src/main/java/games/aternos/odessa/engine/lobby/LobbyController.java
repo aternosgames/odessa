@@ -24,13 +24,50 @@ public class LobbyController {
   private final GameLobbySystem gameLobbySystem;
   private List<Listener> lobbyListeners;
 
+  private int tick;
+
   LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
     this.lobbyListeners = new ArrayList<>();
+    tick = 0;
   }
 
   public void lobbyTick() {
+    if (this.gameLobbySystem.getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
 
+      if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() >= this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
+        this.gameLobbySystem.setLobbyState(LobbyState.FINALCALL);
+        Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + "Minimum Players Reached. 30 Second final call");
+      }
+    } else if (this.gameLobbySystem.getLobbyState().equals(LobbyState.FINALCALL)) {
+      conditionalAbort();
+      if (this.tick != 30) {
+        this.tick = this.tick++;
+      } else {
+        // final countdown
+        this.tick = 10;
+        this.gameLobbySystem.setLobbyState(LobbyState.FINALCALL);
+      }
+    } else if (this.gameLobbySystem.getLobbyState().equals(LobbyState.COUNTDOWN)) {
+      conditionalAbort();
+      Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + this.tick);
+      if (tick != 1) {
+        tick = tick--;
+      } else {
+       /*
+       Start Game
+        */
+        this.gameLobbySystem.getGameLifecycleManager().nextPhase();
+      }
+    }
+  }
+
+  private void conditionalAbort() {
+    if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() < this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
+      this.gameLobbySystem.setLobbyState(LobbyState.WAITINGFORPLAYERS);
+      Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + "Minimum players no longer reached, countdown aborted.");
+      this.tick = 0;
+    }
   }
 
   void registerLobbyCommands() {
