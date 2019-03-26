@@ -37,7 +37,10 @@ public class GameLobbySystem {
   private final HashMap<Arena, Integer> arenaVote;
   private final ArenaVoteGUI arenaVoteGUI;
 
+
   private LobbyController lobbyController;
+  private LobbyState lobbyState;
+
 
   public GameLobbySystem(@Nonnull GameLifecycleManager gameLifecycleManager, @Nonnull GameApi gameApi, @Nonnull GameConfiguration gameConfiguration) {
     this.lobbyController = new LobbyController(this);
@@ -60,6 +63,7 @@ public class GameLobbySystem {
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
     this.getLobbyController().registerLobbyListeners();
     this.getLobbyController().registerLobbyCommands();
+    this.lobbyState = LobbyState.WAITINGFORPLAYERS;
   }
 
   public void stopLobby() {
@@ -115,5 +119,13 @@ public class GameLobbySystem {
 
   public HashMap<Arena, Integer> getArenaVote() {
     return arenaVote;
+  }
+
+  public LobbyState getLobbyState() {
+    return lobbyState;
+  }
+
+  public void setLobbyState(LobbyState lobbyState) {
+    this.lobbyState = lobbyState;
   }
 }
