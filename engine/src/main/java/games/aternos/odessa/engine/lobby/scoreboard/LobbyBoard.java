@@ -8,10 +8,15 @@ import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Scoreboard when the Lobby is active
+ */
 public class LobbyBoard extends LobbyControllerOwned {
 
   private final SidebarService sidebarService;
@@ -22,24 +27,46 @@ public class LobbyBoard extends LobbyControllerOwned {
     this.sidebarService = sidebarService;
   }
 
+  /**
+   * Sends the scoreboard out to all Players
+   */
   public void pushBoard() {
     for (Player p : this.getOwner().getGameLobbySystem().getGame().getGameData().getPlayers()) {
       this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
     }
   }
 
+  /**
+   * Sends the scoreboard to one Player
+   *
+   * @param p Player
+   */
   public void pushBoard(Player p) {
     this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
   }
 
-  private Sidebar generateSidebar(Player p) {
+  /**
+   * Generates the Player Sidebar
+   *
+   * @param p The Player
+   * @return The Generated Sidebar
+   */
+  @NotNull
+  private Sidebar generateSidebar(@Nonnull Player p) {
 
     String boardName = ChatColor.BOLD + getGameName() + " Lobby";
     return new Sidebar(boardName, scoreboardItems(p));
 
   }
 
-  private List<String> scoreboardItems(Player p) {
+  /**
+   * Returns the Scoreboard items for a Player
+   *
+   * @param p Player
+   * @return Scoreboard Items
+   */
+  @NotNull
+  private List<String> scoreboardItems(@Nonnull Player p) {
     if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
       return waitingForPlayersItems(p);
     } else if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.FINALCALL)) {

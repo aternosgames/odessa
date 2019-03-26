@@ -19,6 +19,9 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controls the LobbySystem
+ */
 public class LobbyController {
 
   private final GameLobbySystem gameLobbySystem;
@@ -31,6 +34,9 @@ public class LobbyController {
     tick = 30;
   }
 
+  /**
+   * Called every second by the game phase to calculate lobby.
+   */
   public void lobbyTick() {
     if (this.gameLobbySystem.getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
 
@@ -64,6 +70,9 @@ public class LobbyController {
     }
   }
 
+  /**
+   * Figures out if the lobby should abort, if so it does.
+   */
   private void conditionalAbort() {
     if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() < this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
       this.gameLobbySystem.setLobbyState(LobbyState.WAITINGFORPLAYERS);
@@ -72,6 +81,9 @@ public class LobbyController {
     }
   }
 
+  /**
+   * Registers the commands that can be used when the lobby is active.
+   */
   public void registerLobbyCommands() {
     SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
@@ -81,12 +93,18 @@ public class LobbyController {
     this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(addSpawnCommand);
   }
 
+  /**
+   * Removes the command post lobby
+   */
   public void unRegisterCommands() {
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
     this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(null);
     this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(null);
   }
 
+  /**
+   * Registers the Listeners owned by the lobby.
+   */
   public void registerLobbyListeners() {
     this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
     this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
@@ -103,6 +121,11 @@ public class LobbyController {
     }
   }
 
+  /**
+   * Removes the lobby listeners post lobby.
+   *
+   * todo: Debug this creating exceptions when the deregistered events are called...most likely glowstone
+   */
   public void unRegisterLobbyListeners() {
     for (Listener l : this.getLobbyListeners()) {
       HandlerList.unregisterAll(l);
@@ -110,6 +133,11 @@ public class LobbyController {
     }
   }
 
+  /**
+   * Processes a Player Join when Lobby is Active.
+   *
+   * @param p The Player
+   */
   public void playerJoin(@Nonnull Player p) {
     this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
@@ -117,11 +145,21 @@ public class LobbyController {
     p.sendActionBar(ChatColor.BOLD + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName() + " Lobby");
   }
 
+  /**
+   * Processes a Player Leave when Lobby is active
+   *
+   * @param p The Player
+   */
   public void playerQuit(@Nonnull Player p) {
     this.getGameLobbySystem().getGame().getGameData().removePlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
   }
 
+  /**
+   * Cleans the player for a lobby join
+   *
+   * @param p The Player
+   */
   private void cleanPlayer(@Nonnull Player p) {
     this.getGameLobbySystem().getPlayerService().clearPlayer(p);
     this.getGameLobbySystem().getPlayerService().healPlayer(p);

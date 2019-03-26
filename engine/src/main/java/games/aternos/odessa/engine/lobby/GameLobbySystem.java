@@ -58,6 +58,9 @@ public class GameLobbySystem {
     this.arenaVoteGUI = new ArenaVoteGUI(this);
   }
 
+  /**
+   * Starts the Lobby instance
+   */
   public void startLobby() {
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
     this.getLobbyController().registerLobbyListeners();
@@ -65,11 +68,17 @@ public class GameLobbySystem {
     this.lobbyState = LobbyState.WAITINGFORPLAYERS;
   }
 
+  /**
+   * Stops the lobby
+   */
   public void stopLobby() {
     this.getLobbyController().unRegisterLobbyListeners();
     this.getLobbyController().unRegisterCommands();
   }
 
+  /**
+   * @return The Most voted lobby
+   */
   public Arena computeArenaVoted(){
     if(this.arenaVote.isEmpty()){
       return this.getGame().getGameConfiguration().getGameArenas().get(0);

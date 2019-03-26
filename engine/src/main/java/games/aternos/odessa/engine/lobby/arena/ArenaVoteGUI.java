@@ -13,6 +13,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
+/**
+ * Handles the Arena Vote GUI
+ */
 public class ArenaVoteGUI implements GUI {
     private final GameLobbySystem gameLobbySystem;
 
@@ -20,6 +23,11 @@ public class ArenaVoteGUI implements GUI {
         this.gameLobbySystem = gameLobbySystem;
     }
 
+    /**
+     * Opens the Arena Vote GUI
+     *
+     * @param p The Player
+     */
     public void openGUI(@NotNull Player p) {
 
         Inventory vote = Bukkit.createInventory(null, 9, "Arena Vote");

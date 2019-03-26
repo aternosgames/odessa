@@ -14,11 +14,19 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * Handles the Kit Selection GUI
+ */
 public class KitSelectionGUI extends LobbyControllerOwned implements GUI {
   public KitSelectionGUI(LobbyController lobbyController) {
     super(lobbyController);
   }
 
+  /**
+   * Open the Kit Selection GUI for a Player
+   *
+   * @param p Player
+   */
   public void openGUI(@NotNull Player p) {
     Inventory selection = Bukkit.createInventory(null, 9, "Kit Selection");
     selection.clear();
