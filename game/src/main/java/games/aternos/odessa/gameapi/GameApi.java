@@ -41,11 +41,6 @@ public class GameApi extends JavaPlugin {
     Debug.$("Loading Game: " + this.getGame().getGameConfiguration().getGameName());
   }
 
-  protected void unRegisterGame() { // terribly unsafe, should be removed in the future, but for tests currently.
-    this.getGame().uninitialize();
-    this.game = null;
-  }
-
   public Game getGame() {
     return game;
   }

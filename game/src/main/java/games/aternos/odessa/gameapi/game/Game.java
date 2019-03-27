@@ -1,15 +1,29 @@
 package games.aternos.odessa.gameapi.game;
 
-public interface Game {
+abstract public class Game {
 
-  void initialize();
+  private final GameLifecycleManager gameLifecycleManager;
+  private final GameData gameData;
+  private final GameConfiguration gameConfiguration;
 
-  void uninitialize();
+  public Game(GameLifecycleManager gameLifecycleManager, GameData gameData, GameConfiguration gameConfiguration) {
+    this.gameLifecycleManager = gameLifecycleManager;
+    this.gameData = gameData;
+    this.gameConfiguration = gameConfiguration;
+  }
 
-  GameLifecycleManager getGameLifecycleManager();
 
-  GameData getGameData();
+  public GameLifecycleManager getGameLifecycleManager() {
+    return gameLifecycleManager;
+  }
 
-  GameConfiguration getGameConfiguration();
+  public GameData getGameData() {
+    return gameData;
+  }
 
+  public GameConfiguration getGameConfiguration() {
+    return gameConfiguration;
+  }
+
+  public abstract void initialize();
 }
