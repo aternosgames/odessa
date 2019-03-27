@@ -22,7 +22,7 @@ public class HungerGames extends JavaPlugin {
     }
 
     public void initialize() {
-      this.getGameLifecycleManager().setActivePhase(new LobbyPhase(this.getGameLifecycleManager()));
+      this.getGameLifecycleManager().setActivePhase(new LobbyPhase(this.getGameLifecycleManager(), this));
     }
 
   }

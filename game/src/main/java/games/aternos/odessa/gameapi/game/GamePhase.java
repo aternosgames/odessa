@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
 abstract public class GamePhase {
 
   private final GameLifecycleManager owner;
-
+  private final Game game;
   private GamePhase nextPhase;
 
   private BukkitRunnable gamePhaseRunnable;
@@ -18,8 +18,9 @@ abstract public class GamePhase {
 
   private boolean isActive;
 
-  protected GamePhase(@NonNull GameLifecycleManager owner) {
+  protected GamePhase(@NonNull GameLifecycleManager owner, Game game) {
     this.owner = owner;
+    this.game = game;
     this.initialize();
   }
 
@@ -66,5 +67,9 @@ abstract public class GamePhase {
 
   public void setGamePhaseRunnableTask(@Nonnull BukkitTask gamePhaseRunnableTask) {
     this.gamePhaseRunnableTask = gamePhaseRunnableTask;
+  }
+
+  public Game getGame() {
+    return game;
   }
 }

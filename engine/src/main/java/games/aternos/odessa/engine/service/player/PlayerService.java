@@ -29,6 +29,9 @@ public class PlayerService extends Service {
     p.setFoodLevel(20);
   }
 
+  /**
+   * Disperse players to a set of spawns. Ignores Teamid, for games that each player is on their own team
+   */
   public void dispersePlayers(List<Player> players, Arena arena) {
 
     List<Location> spawns = new ArrayList<>(arena.getSpawnPoints().keySet());

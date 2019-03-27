@@ -33,5 +33,4 @@ abstract public class GameLifecycleManager {
     this.setActivePhase(this.activePhase.getNextPhase());
   }
 
-
 }
