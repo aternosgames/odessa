@@ -2,6 +2,7 @@ package games.aternos.odessa.example.hungergames.phase;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.engine.service.player.PlayerService;
+import games.aternos.odessa.gameapi.Debug;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
@@ -25,7 +26,7 @@ public class InGamePhase extends GamePhase {
    */
   @Override
   public void startPhase() {
-
+    Debug.$("test");
     this.setActive(true);
     playerService.dispersePlayers(this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
   }

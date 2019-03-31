@@ -17,7 +17,11 @@ public class LobbyPlayerInteractHandler extends LobbyControllerOwned implements 
   @EventHandler
   public void onInteract(PlayerInteractEvent e) {
 
+
     ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
+    if(i == null || !i.hasItemMeta()){
+      return;
+    }
     ItemMeta im = i.getItemMeta();
     if (im.getDisplayName() != null && i.getType() != Material.AIR) {
       if (im.getDisplayName().contains("Kit Selection") && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.CHEST) {
