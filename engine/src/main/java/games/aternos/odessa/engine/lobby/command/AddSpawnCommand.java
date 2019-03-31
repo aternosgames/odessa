@@ -16,7 +16,9 @@ public class AddSpawnCommand implements CommandExecutor {
 
   @Override
   public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-
+    if(!this.gameLobbySystem.isActive()){
+      return true;
+    }
     if (!commandSender.isOp()) {
       return true;
     }

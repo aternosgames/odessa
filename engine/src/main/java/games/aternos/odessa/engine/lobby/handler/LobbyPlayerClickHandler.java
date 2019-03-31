@@ -28,6 +28,9 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Lis
 
   @EventHandler
   public void onPlayerClick(InventoryClickEvent e) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     e.setCancelled(true);
     Player p = (Player) e.getWhoClicked();
     if (e.getInventory().getName().equals("Kit Selection") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {

@@ -13,6 +13,8 @@ public class LobbyPlayerDropHandler extends LobbyControllerOwned implements List
 
   @EventHandler
   public void onDropItemLobby(PlayerDropItemEvent e) {
-    e.setCancelled(true);
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }e.setCancelled(true);
   }
 }

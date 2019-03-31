@@ -13,6 +13,9 @@ public class LobbyPlayerHungerHandler extends LobbyControllerOwned implements Li
 
   @EventHandler
   public void onHungerDepleteLobby(FoodLevelChangeEvent e) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     e.setCancelled(true);
   }
 

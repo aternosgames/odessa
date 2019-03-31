@@ -1,4 +1,4 @@
-package games.aternos.odessa.example.hungergames.phase.runnable;
+package games.aternos.odessa.example.hungergames.phase.lobby.runnable;
 
 import games.aternos.odessa.gameapi.game.GamePhase;
 import org.bukkit.scheduler.BukkitRunnable;

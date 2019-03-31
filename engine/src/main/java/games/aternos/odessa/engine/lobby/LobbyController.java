@@ -93,14 +93,6 @@ public class LobbyController {
     this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(addSpawnCommand);
   }
 
-  /**
-   * Removes the command post lobby
-   */
-  public void unRegisterCommands() {
-    this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(null);
-    this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(null);
-    this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(null);
-  }
 
   /**
    * Registers the Listeners owned by the lobby.
@@ -121,17 +113,7 @@ public class LobbyController {
     }
   }
 
-  /**
-   * Removes the lobby listeners post lobby.
-   *
-   * todo: Debug this creating exceptions when the deregistered events are called...most likely glowstone
-   */
-  public void unRegisterLobbyListeners() {
-    for (Listener l : this.getLobbyListeners()) {
-      HandlerList.unregisterAll(l);
-      lobbyListeners.remove(l);
-    }
-  }
+
 
   /**
    * Processes a Player Join when Lobby is Active.

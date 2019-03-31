@@ -16,7 +16,9 @@ public class LobbyPlayerInteractHandler extends LobbyControllerOwned implements 
 
   @EventHandler
   public void onInteract(PlayerInteractEvent e) {
-
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
 
     ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
     if(i == null || !i.hasItemMeta()){

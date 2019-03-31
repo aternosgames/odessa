@@ -39,7 +39,7 @@ public class GameLobbySystem {
 
   private LobbyController lobbyController;
   private LobbyState lobbyState;
-
+  private boolean active;
 
   public GameLobbySystem(@Nonnull GameLifecycleManager gameLifecycleManager, @Nonnull GameApi gameApi, @Nonnull GameConfiguration gameConfiguration) {
     this.lobbyController = new LobbyController(this);
@@ -62,6 +62,7 @@ public class GameLobbySystem {
    * Starts the Lobby instance
    */
   public void startLobby() {
+    this.active = true;
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
     this.getLobbyController().registerLobbyListeners();
     this.getLobbyController().registerLobbyCommands();
@@ -72,8 +73,7 @@ public class GameLobbySystem {
    * Stops the lobby
    */
   public void stopLobby() {
-    this.getLobbyController().unRegisterLobbyListeners();
-    this.getLobbyController().unRegisterCommands();
+    this.active = false;
   }
 
   /**
@@ -156,5 +156,9 @@ public class GameLobbySystem {
 
   public void setLobbyState(LobbyState lobbyState) {
     this.lobbyState = lobbyState;
+  }
+
+  public boolean isActive() {
+    return active;
   }
 }

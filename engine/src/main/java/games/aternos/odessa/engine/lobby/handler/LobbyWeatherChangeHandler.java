@@ -13,6 +13,9 @@ public class LobbyWeatherChangeHandler extends LobbyControllerOwned implements L
 
   @EventHandler
   public void onWeatherChangeLobby(WeatherChangeEvent event) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     event.setCancelled(true);
   }
 }

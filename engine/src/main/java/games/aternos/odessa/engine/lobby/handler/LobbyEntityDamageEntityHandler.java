@@ -13,6 +13,9 @@ public class LobbyEntityDamageEntityHandler extends LobbyControllerOwned impleme
 
   @EventHandler
   public void playerHitPlayerLobby(EntityDamageByEntityEvent e) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     e.setCancelled(true);
   }
 

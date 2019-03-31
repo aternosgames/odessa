@@ -1,5 +1,7 @@
 package games.aternos.odessa.gameapi.game;
 
+import games.aternos.odessa.gameapi.Debug;
+
 import javax.annotation.Nonnull;
 
 /**
@@ -20,7 +22,12 @@ abstract public class GameLifecycleManager {
    * This also starts the game phase!!
    */
   public void setActivePhase(@Nonnull GamePhase gamePhase) {
+    Debug.$("asd");
     this.activePhase = gamePhase;
+    this.startActivePhase();
+  }
+
+  private void startActivePhase(){
     this.activePhase.startPhase();
   }
 

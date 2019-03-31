@@ -14,6 +14,9 @@ public class LobbyPlayerJoinHandler extends LobbyControllerOwned implements List
 
   @EventHandler
   public void playerJoinLobby(PlayerJoinEvent event) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
     this.getOwner().playerJoin(event.getPlayer());
   }

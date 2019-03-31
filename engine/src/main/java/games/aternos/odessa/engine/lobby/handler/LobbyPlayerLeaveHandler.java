@@ -14,6 +14,9 @@ public class LobbyPlayerLeaveHandler extends LobbyControllerOwned implements Lis
 
   @EventHandler
   public void playerLeaveLobby(PlayerQuitEvent event) {
+    if(!this.getOwner().getGameLobbySystem().isActive()){
+      return;
+    }
     event.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + event.getPlayer().getName());
     this.getOwner().playerQuit(event.getPlayer());
   }

@@ -1,6 +1,6 @@
 package games.aternos.odessa.example.hungergames;
 
-import games.aternos.odessa.example.hungergames.phase.LobbyPhase;
+import games.aternos.odessa.example.hungergames.phase.lobby.LobbyPhase;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
 import org.bukkit.plugin.java.JavaPlugin;
