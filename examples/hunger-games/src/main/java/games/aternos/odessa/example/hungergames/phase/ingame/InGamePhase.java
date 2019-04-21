@@ -2,7 +2,6 @@ package games.aternos.odessa.example.hungergames.phase.ingame;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.engine.service.player.PlayerService;
-import games.aternos.odessa.gameapi.Debug;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
@@ -21,14 +20,10 @@ public class InGamePhase extends GamePhase {
     playerService = new PlayerService(GameApi.getGameApi());
   }
 
-  /**
-   * todo: tmr debug why this isn't running, probably no deinitalize
-   */
   @Override
   public void startPhase() {
     this.setActive(true);
     playerService.dispersePlayers(this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
-
   }
 
   @Override

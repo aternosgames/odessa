@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Listener {
 
-  private HashMap<Player, Arena> voted;
+  private final HashMap<Player, Arena> voted;
 
   public LobbyPlayerClickHandler(LobbyController owner) {
     super(owner);

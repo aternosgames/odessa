@@ -1,0 +1,29 @@
+package games.aternos.odessa.gameapi.eventhook;
+
+import games.aternos.odessa.gameapi.Debug;
+import games.aternos.odessa.gameapi.GameApi;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.reflections.Reflections;
+
+import java.util.Set;
+
+public class EventHookLoader {
+    // zero chance this works
+    public EventHookLoader() {
+        try {
+            Reflections reflections = new Reflections("games.aternos.odessa.gameapi.eventhook.handler" );
+
+            Set<Class<? extends Listener>> allClasses =
+                    reflections.getSubTypesOf(Listener.class);
+            for (Class<? extends Listener> listener : allClasses) {
+                Debug.$("ATTEMPTING: " + listener.getPackage() + listener.getName());
+                Bukkit.getPluginManager().registerEvents(listener.newInstance(), GameApi.getGameApi());
+                Debug.$("REGISTERED: " + listener.getPackage() + listener.getName());
+            }
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
+}

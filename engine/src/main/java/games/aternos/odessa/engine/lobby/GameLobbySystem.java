@@ -17,7 +17,6 @@ import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Uniformed Lobby System that can be called into action by a game.

@@ -8,7 +8,7 @@ abstract public class LobbyControllerOwned {
   /**
    * The LobbyController that owns the class
    */
-  private LobbyController owner;
+  private final LobbyController owner;
 
   /**
    * Superconstructor for lobby owned classes

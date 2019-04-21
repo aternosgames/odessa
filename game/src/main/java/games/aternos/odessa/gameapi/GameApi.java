@@ -1,6 +1,7 @@
 package games.aternos.odessa.gameapi;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import games.aternos.odessa.gameapi.eventhook.EventHookLoader;
 import games.aternos.odessa.gameapi.game.Game;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +23,7 @@ public class GameApi extends JavaPlugin {
   @Override
   public void onEnable() {
     gameApi = this;
+      EventHookLoader a = new EventHookLoader();
   }
 
   /**
