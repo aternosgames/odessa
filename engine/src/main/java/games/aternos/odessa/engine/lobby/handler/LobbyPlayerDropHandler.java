@@ -2,19 +2,20 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.PlayerDropItemEventHook;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-public class LobbyPlayerDropHandler extends LobbyControllerOwned implements Listener {
+public class LobbyPlayerDropHandler extends LobbyControllerOwned {
   public LobbyPlayerDropHandler(LobbyController owner) {
     super(owner);
+    PlayerDropItemEventHook.hooks.add(new PlayerDropItemHandler());
   }
 
-  @EventHandler
-  public void onDropItemLobby(PlayerDropItemEvent e) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
-    }e.setCancelled(true);
+  private class PlayerDropItemHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      ((PlayerDropItemEvent) o).setCancelled(true);
+    }
   }
 }

@@ -2,22 +2,24 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.PlayerJoinEventHook;
 import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class LobbyPlayerJoinHandler extends LobbyControllerOwned implements Listener {
-  public LobbyPlayerJoinHandler(LobbyController owner) {
-    super(owner);
-  }
-
-  @EventHandler
-  public void playerJoinLobby(PlayerJoinEvent event) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
+public class LobbyPlayerJoinHandler extends LobbyControllerOwned {
+    public LobbyPlayerJoinHandler(LobbyController owner) {
+        super(owner);
+        PlayerJoinEventHook.hooks.add(new PlayerJoinHandler());
     }
-    event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
-    this.getOwner().playerJoin(event.getPlayer());
-  }
+
+    public class PlayerJoinHandler extends Hook {
+        @Override
+        public void run(Object o) {
+            PlayerJoinEvent event = (PlayerJoinEvent) o;
+            event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
+            getOwner().playerJoin(event.getPlayer());
+        }
+    }
+
 }

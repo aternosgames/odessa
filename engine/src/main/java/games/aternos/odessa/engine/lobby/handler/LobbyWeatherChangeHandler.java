@@ -2,20 +2,21 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.WeatherChangeEventHook;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-public class LobbyWeatherChangeHandler extends LobbyControllerOwned implements Listener {
+public class LobbyWeatherChangeHandler extends LobbyControllerOwned {
   public LobbyWeatherChangeHandler(LobbyController owner) {
     super(owner);
+      WeatherChangeEventHook.hooks.add(new WeatherChangeHandler());
   }
 
-  @EventHandler
-  public void onWeatherChangeLobby(WeatherChangeEvent event) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
+    public class WeatherChangeHandler extends Hook {
+
+        @Override
+        public void run(Object o) {
+            ((WeatherChangeEvent) o).setCancelled(true);
     }
-    event.setCancelled(true);
   }
 }

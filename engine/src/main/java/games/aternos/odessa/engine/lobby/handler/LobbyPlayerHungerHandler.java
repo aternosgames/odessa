@@ -2,21 +2,20 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.FoodLevelChangeEventHook;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 
-public class LobbyPlayerHungerHandler extends LobbyControllerOwned implements Listener {
+public class LobbyPlayerHungerHandler extends LobbyControllerOwned {
   public LobbyPlayerHungerHandler(LobbyController owner) {
     super(owner);
+      FoodLevelChangeEventHook.hooks.add(new PlayerHungerHandler());
   }
 
-  @EventHandler
-  public void onHungerDepleteLobby(FoodLevelChangeEvent e) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
+    public class PlayerHungerHandler extends Hook {
+        @Override
+        public void run(Object o) {
+            ((FoodLevelChangeEvent) o).setCancelled(true);
     }
-    e.setCancelled(true);
   }
-
 }

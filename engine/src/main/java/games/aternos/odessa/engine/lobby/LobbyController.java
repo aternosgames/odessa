@@ -4,19 +4,16 @@ import games.aternos.odessa.engine.lobby.command.AddSpawnCommand;
 import games.aternos.odessa.engine.lobby.command.CreateArenaCommand;
 import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
 import games.aternos.odessa.engine.lobby.handler.*;
-import games.aternos.odessa.gameapi.Debug;
+import games.aternos.odessa.gameapi.eventhook.handler.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Controls the LobbySystem
@@ -24,12 +21,11 @@ import java.util.List;
 public class LobbyController {
 
   private final GameLobbySystem gameLobbySystem;
-  private List<Listener> lobbyListeners;
+
   private int tick;
 
   public LobbyController(@Nonnull GameLobbySystem gameLobbySystem) {
     this.gameLobbySystem = gameLobbySystem;
-    this.lobbyListeners = new ArrayList<>();
     tick = 30;
   }
 
@@ -97,21 +93,31 @@ public class LobbyController {
    * Registers the Listeners owned by the lobby.
    */
   public void registerLobbyListeners() {
-    this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
-    this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerClickHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerDropHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerHungerHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerInteractHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerJoinHandler(this));
-    this.lobbyListeners.add(new LobbyPlayerLeaveHandler(this));
-    this.lobbyListeners.add(new LobbyWeatherChangeHandler(this));
-    for (Listener listener : this.lobbyListeners) {
-      Bukkit.getServer().getPluginManager().registerEvents(listener, this.getGameLobbySystem().getGameApi());
-      Debug.$("registered: " + listener.getClass().getName());
-    }
+    //this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
+    //this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
+
+    new LobbyEntityDamageEntityHandler(this);
+    new LobbyEntityDamageHandler(this);
+    new LobbyPlayerClickHandler(this);
+    new LobbyPlayerDropHandler(this);
+    new LobbyPlayerHungerHandler(this);
+    new LobbyPlayerInteractHandler(this);
+    new LobbyPlayerJoinHandler(this);
+    new LobbyPlayerLeaveHandler(this);
+    new LobbyWeatherChangeHandler(this);
   }
 
+  public void removeLobbyListeners() {
+    EntityDamageEventHook.hooks.remove(0);
+    EntityDamageByEntityEventHook.hooks.remove(0);
+    InventoryClickEventHook.hooks.remove(0);
+    PlayerDropItemEventHook.hooks.remove(0);
+    FoodLevelChangeEventHook.hooks.remove(0);
+    PlayerInteractEventHook.hooks.remove(0);
+    PlayerJoinEventHook.hooks.remove(0);
+    PlayerQuitEventHook.hooks.remove(0);
+    WeatherChangeEventHook.hooks.remove(0);
+  }
 
 
   /**
@@ -160,14 +166,6 @@ public class LobbyController {
 
   public GameLobbySystem getGameLobbySystem() {
     return gameLobbySystem;
-  }
-
-  private List<Listener> getLobbyListeners() {
-    return lobbyListeners;
-  }
-
-  public void setLobbyListeners(@Nonnull List<Listener> lobbyListeners) {
-    this.lobbyListeners = lobbyListeners;
   }
 
   public int getTick() {

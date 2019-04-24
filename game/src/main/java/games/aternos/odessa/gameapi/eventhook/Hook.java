@@ -1,16 +1,17 @@
 package games.aternos.odessa.gameapi.eventhook;
 
 
-import org.bukkit.event.Event;
+import games.aternos.odessa.gameapi.Debug;
+import org.bukkit.ChatColor;
 
-abstract public class Hook<T extends Event> {
+abstract public class Hook {
 
-    private Class<T> event;
+    public Hook() {
+        Debug.$(ChatColor.GREEN + "Hook Created: " + this.getClass().getPackage() + "." + this.getClass().getName());
 
-    public Hook(Class<T> event) {
-        this.event = event;
     }
 
-    public abstract <event> void run(event event);
+    public abstract void run(Object o);
+
 
 }

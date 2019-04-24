@@ -2,22 +2,23 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.PlayerQuitEventHook;
 import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class LobbyPlayerLeaveHandler extends LobbyControllerOwned implements Listener {
+public class LobbyPlayerLeaveHandler extends LobbyControllerOwned {
   public LobbyPlayerLeaveHandler(LobbyController owner) {
     super(owner);
+      PlayerQuitEventHook.hooks.add(new PlayerQuitHandler());
   }
 
-  @EventHandler
-  public void playerLeaveLobby(PlayerQuitEvent event) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
+    public class PlayerQuitHandler extends Hook {
+        @Override
+        public void run(Object o) {
+            PlayerQuitEvent e = (PlayerQuitEvent) o;
+            e.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + e.getPlayer().getName());
+            getOwner().playerQuit(e.getPlayer());
     }
-    event.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + event.getPlayer().getName());
-    this.getOwner().playerQuit(event.getPlayer());
   }
 }

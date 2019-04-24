@@ -72,6 +72,7 @@ public class GameLobbySystem {
    * Stops the lobby
    */
   public void stopLobby() {
+      this.getLobbyController().removeLobbyListeners();
     this.active = false;
   }
 

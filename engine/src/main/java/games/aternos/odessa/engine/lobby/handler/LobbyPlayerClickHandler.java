@@ -2,13 +2,13 @@ package games.aternos.odessa.engine.lobby.handler;
 
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
+import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.InventoryClickEventHook;
 import games.aternos.odessa.gameapi.game.element.Arena;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,26 +17,27 @@ import java.util.HashMap;
 /**
  * todo: simplify and clean
  */
-public class LobbyPlayerClickHandler extends LobbyControllerOwned implements Listener {
+public class LobbyPlayerClickHandler extends LobbyControllerOwned {
 
   private final HashMap<Player, Arena> voted;
 
   public LobbyPlayerClickHandler(LobbyController owner) {
     super(owner);
+    InventoryClickEventHook.hooks.add(new PlayerClickHandler());
     voted = new HashMap<>();
   }
 
-  @EventHandler
-  public void onPlayerClick(InventoryClickEvent e) {
-    if(!this.getOwner().getGameLobbySystem().isActive()){
-      return;
-    }
-    e.setCancelled(true);
-    Player p = (Player) e.getWhoClicked();
-    if (e.getInventory().getName().equals("Kit Selection") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
-        this.processKitSelection((Player) e.getWhoClicked(), e.getCurrentItem());
-    } else if (e.getInventory().getName().equals("Arena Vote") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
-        this.processArenaSelection((Player) e.getWhoClicked(), e.getCurrentItem());
+  private class PlayerClickHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      InventoryClickEvent e = (InventoryClickEvent) o;
+      e.setCancelled(true);
+      Player p = (Player) e.getWhoClicked();
+      if (e.getInventory().getName().equals("Kit Selection") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+        processKitSelection((Player) e.getWhoClicked(), e.getCurrentItem());
+      } else if (e.getInventory().getName().equals("Arena Vote") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+        processArenaSelection((Player) e.getWhoClicked(), e.getCurrentItem());
+      }
     }
   }
 
