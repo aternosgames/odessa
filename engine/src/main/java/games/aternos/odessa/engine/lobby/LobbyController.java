@@ -3,6 +3,7 @@ package games.aternos.odessa.engine.lobby;
 import games.aternos.odessa.engine.lobby.command.AddSpawnCommand;
 import games.aternos.odessa.engine.lobby.command.CreateArenaCommand;
 import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
+import games.aternos.odessa.engine.lobby.command.odessa.OdessaCommand;
 import games.aternos.odessa.engine.lobby.handler.*;
 import games.aternos.odessa.gameapi.eventhook.handler.*;
 import org.bukkit.Bukkit;
@@ -80,6 +81,12 @@ public class LobbyController {
    * Registers the commands that can be used when the lobby is active.
    */
   public void registerLobbyCommands() {
+    /*
+    /Odessa Super Command
+     */
+    OdessaCommand odessaCommand = new OdessaCommand();
+    this.gameLobbySystem.getGameApi().getCommand("odessa").setExecutor(odessaCommand);
+
     SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
     CreateArenaCommand createArenaCommand = new CreateArenaCommand(gameLobbySystem);

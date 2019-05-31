@@ -5,6 +5,9 @@ description: It runs stuff
 authors: [_Bot_, Aternos]
 website: aternos.games
 commands:
+  odessa:
+    description: Odessa Super Command
+    usage: /command <args>
   setlobbyspawn:
     description: Set Lobby Spawn
     usage: /command
