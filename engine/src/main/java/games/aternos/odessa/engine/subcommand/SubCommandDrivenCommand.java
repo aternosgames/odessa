@@ -59,7 +59,7 @@ public class SubCommandDrivenCommand implements CommandExecutor {
 
         for (SharedSubCommand sharedSubCommand : sharedSubCommands) { // finally, check shared commands if not, there's no command!
             if (sharedSubCommand.getSubCmd().equalsIgnoreCase(subCommand)) {
-                sharedSubCommand.run(newArgs);
+                sharedSubCommand.run(newArgs, commandSender);
                 return true;
             }
         }
