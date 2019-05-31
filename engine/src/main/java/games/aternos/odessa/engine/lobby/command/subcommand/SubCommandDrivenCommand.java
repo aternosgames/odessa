@@ -37,7 +37,10 @@ public class SubCommandDrivenCommand implements CommandExecutor {
         }
 
         String subCommand = strings[0];
-        String[] newArgs = Arrays.copyOfRange(strings, 1, strings.length - 1);
+        String[] newArgs = {};
+        if (!(strings.length == 1)) {
+            newArgs = Arrays.copyOfRange(strings, 1, strings.length - 1);
+        }
         if (commandSender instanceof Player) { // first if it's a player we check player commands
             for (PlayerSubCommand playerSubCommand : playerSubCommands) {
                 if (playerSubCommand.getSubCmd().equalsIgnoreCase(subCommand)) {
@@ -61,7 +64,7 @@ public class SubCommandDrivenCommand implements CommandExecutor {
             }
         }
 
-        commandSender.sendMessage("Not Found!!!!");
+        commandSender.sendMessage("Not Found or not in your bounds!!!!");
         generateHelp(commandSender);
 
 

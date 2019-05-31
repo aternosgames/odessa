@@ -2,6 +2,7 @@ package games.aternos.odessa.engine.lobby.command.odessa;
 
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
 import games.aternos.odessa.engine.lobby.command.odessa.subcommand.AddSpawnSubCommand;
+import games.aternos.odessa.engine.lobby.command.odessa.subcommand.CreateArenaSubCommand;
 import games.aternos.odessa.engine.lobby.command.subcommand.SubCommandDrivenCommand;
 
 public class OdessaCommand extends SubCommandDrivenCommand {
@@ -16,5 +17,6 @@ public class OdessaCommand extends SubCommandDrivenCommand {
 
     private void registerSub() {
         this.addCommand(new AddSpawnSubCommand(this.gameLobbySystem));
+        this.addCommand(new CreateArenaSubCommand(this.gameLobbySystem));
     }
 }
