@@ -32,7 +32,6 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
     public void run(Object o) {
       InventoryClickEvent e = (InventoryClickEvent) o;
       e.setCancelled(true);
-      Player p = (Player) e.getWhoClicked();
       if (e.getInventory().getName().equals("Kit Selection") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
         processKitSelection((Player) e.getWhoClicked(), e.getCurrentItem());
       } else if (e.getInventory().getName().equals("Arena Vote") && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {

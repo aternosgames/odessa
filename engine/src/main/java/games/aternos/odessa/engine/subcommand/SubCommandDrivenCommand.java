@@ -31,14 +31,14 @@ public class SubCommandDrivenCommand implements CommandExecutor {
         if (!commandSender.isOp()) { // permissions check, op by default, until we get the proper permissions database and such
             return true;
         }
-        if (!(strings.length > 0)) { // is there anything to check to see if it's a subcmd?
+        if (strings.length <= 0) { // is there anything to check to see if it's a subcmd?
             generateHelp(commandSender);
             return true;
         }
 
         String subCommand = strings[0];
         String[] newArgs = {};
-        if (!(strings.length == 1)) {
+        if (strings.length != 1) {
             newArgs = Arrays.copyOfRange(strings, 1, strings.length);
         }
         if (commandSender instanceof Player) { // first if it's a player we check player commands

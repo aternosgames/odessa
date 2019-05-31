@@ -22,7 +22,7 @@ public class CreateArenaSubCommand extends PlayerSubCommand {
             return;
         }
         Debug.$(Arrays.toString(args));
-        if (!(args.length == 2)) {
+        if (args.length != 2) {
             player.sendMessage("Odessa: /createarena <arenaname> <author>");
             return;
         }

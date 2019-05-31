@@ -72,7 +72,7 @@ public class LobbyBoard extends LobbyControllerOwned {
       return finalCallItems(p);
     }
     if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.COUNTDOWN)) {
-      return countdownItems(p);
+      return countdownItems();
     }
     return null;
   }
@@ -94,7 +94,7 @@ public class LobbyBoard extends LobbyControllerOwned {
     return items;
   }
 
-  private List<String> countdownItems(Player p) {
+  private List<String> countdownItems() {
     List<String> items = new ArrayList<>();
 
     items.add("           ");

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GameArenaIoConfiguration extends IoConfigurationFile {
   public GameArenaIoConfiguration(IoConfigurationService owner, String gameName) {
-    super(new File(owner.getGameApi().getDataFolder() + "/" + gameName, "arenas.yml"), owner);
+    super(new File(owner.getGameApi().getDataFolder() + "/" + gameName, "arenas.yml"));
   }
 
   public void createArena(String name, String author) {

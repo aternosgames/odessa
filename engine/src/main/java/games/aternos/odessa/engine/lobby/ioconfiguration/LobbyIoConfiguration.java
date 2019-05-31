@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LobbyIoConfiguration extends IoConfigurationFile {
 
   public LobbyIoConfiguration(IoConfigurationService owner) {
-    super(new File(owner.getGameApi().getDataFolder() + "/lobby", "lobby.yml"), owner);
+    super(new File(owner.getGameApi().getDataFolder() + "/lobby", "lobby.yml"));
   }
 
   @NotNull

@@ -9,12 +9,10 @@ import java.io.IOException;
 abstract public class IoConfigurationFile {
 
   private final File configFile;
-  private final IoConfigurationService owner;
   private final FileConfiguration configuration;
 
-  protected IoConfigurationFile(File configFile, IoConfigurationService owner) {
+  protected IoConfigurationFile(File configFile) {
     this.configFile = configFile;
-    this.owner = owner;
     this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
     try {
       this.configuration.save(this.configFile);
