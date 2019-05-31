@@ -20,7 +20,6 @@ import java.util.List;
 public class LobbyBoard extends LobbyControllerOwned {
 
   private final SidebarService sidebarService;
-  private Sidebar lobbySidebar;
 
   public LobbyBoard(SidebarService sidebarService, LobbyController lobbyController) {
     super(lobbyController);
