@@ -1,8 +1,5 @@
 package games.aternos.odessa.engine.lobby;
 
-import games.aternos.odessa.engine.lobby.command.AddSpawnCommand;
-import games.aternos.odessa.engine.lobby.command.CreateArenaCommand;
-import games.aternos.odessa.engine.lobby.command.SetLobbyLocationCommand;
 import games.aternos.odessa.engine.lobby.command.odessa.OdessaCommand;
 import games.aternos.odessa.engine.lobby.handler.*;
 import games.aternos.odessa.gameapi.eventhook.handler.*;
@@ -84,15 +81,9 @@ public class LobbyController {
     /*
     /Odessa Super Command
      */
-    OdessaCommand odessaCommand = new OdessaCommand();
+    OdessaCommand odessaCommand = new OdessaCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("odessa").setExecutor(odessaCommand);
 
-    SetLobbyLocationCommand setLobbyLocation = new SetLobbyLocationCommand(gameLobbySystem);
-    this.gameLobbySystem.getGameApi().getCommand("setlobbyspawn").setExecutor(setLobbyLocation);
-    CreateArenaCommand createArenaCommand = new CreateArenaCommand(gameLobbySystem);
-    this.gameLobbySystem.getGameApi().getCommand("createarena").setExecutor(createArenaCommand);
-    AddSpawnCommand addSpawnCommand = new AddSpawnCommand(gameLobbySystem);
-    this.gameLobbySystem.getGameApi().getCommand("addarenaspawn").setExecutor(addSpawnCommand);
   }
 
 
