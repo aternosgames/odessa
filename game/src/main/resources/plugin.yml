@@ -8,12 +8,3 @@ commands:
   odessa:
     description: Odessa Super Command
     usage: /command <args>
-  setlobbyspawn:
-    description: Set Lobby Spawn
-    usage: /command
-  createarena:
-    description: CreateArena
-    usage: /command <name> <author>
-  addarenaspawn:
-    description: AddSpawn
-    usage: /command <mapname> <int> <int>
