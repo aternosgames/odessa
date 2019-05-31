@@ -1,7 +1,7 @@
 package games.aternos.odessa.engine.lobby.command.odessa.subcommand;
 
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
-import games.aternos.odessa.engine.lobby.command.subcommand.PlayerSubCommand;
+import games.aternos.odessa.engine.subcommand.PlayerSubCommand;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

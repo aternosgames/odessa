@@ -1,4 +1,4 @@
-package games.aternos.odessa.engine.lobby.command.subcommand;
+package games.aternos.odessa.engine.subcommand;
 
 /**
  * Used for commands that can be ran by either console or players

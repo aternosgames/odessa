@@ -1,4 +1,4 @@
-package games.aternos.odessa.engine.lobby.command.subcommand;
+package games.aternos.odessa.engine.subcommand;
 
 import org.bukkit.entity.Player;
 
