@@ -39,7 +39,7 @@ public class SubCommandDrivenCommand implements CommandExecutor {
         String subCommand = strings[0];
         String[] newArgs = {};
         if (!(strings.length == 1)) {
-            newArgs = Arrays.copyOfRange(strings, 1, strings.length - 1);
+            newArgs = Arrays.copyOfRange(strings, 1, strings.length);
         }
         if (commandSender instanceof Player) { // first if it's a player we check player commands
             for (PlayerSubCommand playerSubCommand : playerSubCommands) {

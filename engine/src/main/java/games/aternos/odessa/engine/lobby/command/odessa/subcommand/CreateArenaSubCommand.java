@@ -2,7 +2,10 @@ package games.aternos.odessa.engine.lobby.command.odessa.subcommand;
 
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
 import games.aternos.odessa.engine.lobby.command.subcommand.PlayerSubCommand;
+import games.aternos.odessa.gameapi.Debug;
 import org.bukkit.entity.Player;
+
+import java.util.Arrays;
 
 public class CreateArenaSubCommand extends PlayerSubCommand {
 
@@ -18,7 +21,7 @@ public class CreateArenaSubCommand extends PlayerSubCommand {
         if (!this.gameLobbySystem.isActive()) {
             return;
         }
-
+        Debug.$(Arrays.toString(args));
         if (!(args.length == 2)) {
             player.sendMessage("Odessa: /createarena <arenaname> <author>");
             return;
