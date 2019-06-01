@@ -13,77 +13,76 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// sidebarservice
 public class InGameSidebar {
 
-    private final SidebarService sidebarService;
+  private final SidebarService sidebarService;
 
-    private final GameConfiguration gameConfiguration;
+  private final GameConfiguration gameConfiguration;
 
-    private final GameData gameData;
+  private final GameData gameData;
 
-    public InGameSidebar(SidebarService sidebarService, GamePhase gamePhase) {
-        this.sidebarService = sidebarService;
-        this.gameData = gamePhase.getGame().getGameData();
-        this.gameConfiguration = gamePhase.getGame().getGameConfiguration();
+  public InGameSidebar(SidebarService sidebarService, GamePhase gamePhase) {
+    this.sidebarService = sidebarService;
+    this.gameData = gamePhase.getGame().getGameData();
+    this.gameConfiguration = gamePhase.getGame().getGameConfiguration();
+  }
+
+  public void pushBoard() {
+    for (Player p : this.gameData.getPlayers()) {
+      this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
     }
-
-    public void pushBoard() {
-        for (Player p : this.gameData.getPlayers()) {
-            this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
-        }
-        for (Player p : this.gameData.getSpectators()) {
-            this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
-        }
+    for (Player p : this.gameData.getSpectators()) {
+      this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
     }
+  }
 
-    public void pushBoard(Player p) {
-        this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
-    }
+  public void pushBoard(Player p) {
+    this.sidebarService.createSidebarScoreboard(p, generateSidebar(p));
+  }
 
-    private Sidebar generateSidebar(Player p) {
-        String boardName = ChatColor.BOLD + this.gameConfiguration.getGameName();
-        return new Sidebar(boardName, scoreboardItems(p));
-    }
+  private Sidebar generateSidebar(Player p) {
+    String boardName = ChatColor.BOLD + this.gameConfiguration.getGameName();
+    return new Sidebar(boardName, scoreboardItems(p));
+  }
 
-    private List<String> scoreboardItems(Player p) {
-        switch (this.gameData.getGamePlayerType(p)) {
-            case PLAYER:
-                return this.playerScoreboard(p);
-            case SPECTATOR:
-                return this.spectatorSidebar(p);
-            default:
-                Debug.$("Internal Error. Player Not Type");
-                return Arrays.asList("Error", "ContactDev");
-        }
+  private List<String> scoreboardItems(Player p) {
+    switch (this.gameData.getGamePlayerType(p)) {
+      case PLAYER:
+        return this.playerScoreboard(p);
+      case SPECTATOR:
+        return this.spectatorSidebar(p);
+      default:
+        Debug.$("Internal Error. Player Not Type");
+        return Arrays.asList("Error", "ContactDev");
     }
+  }
 
-    private List<String> playerScoreboard(Player p) {
-        List<String> items = sharedScoreboard();
-        items.add(ChatColor.YELLOW + "Kit:");
-        items.add(ChatColor.GRAY + "" + this.gameData.getSelectedPlayerKits().get(p).getKitName());
-        return items;
-    }
+  private List<String> playerScoreboard(Player p) {
+    List<String> items = sharedScoreboard();
+    items.add(ChatColor.YELLOW + "Kit:");
+    items.add(ChatColor.GRAY + "" + this.gameData.getSelectedPlayerKits().get(p).getKitName());
+    return items;
+  }
 
-    private List<String> spectatorSidebar(Player p) {
-        List<String> items = sharedScoreboard();
-        return items;
-    }
+  private List<String> spectatorSidebar(Player p) {
+    List<String> items = sharedScoreboard();
+    return items;
+  }
 
-    private List<String> sharedScoreboard() {
-        List<String> items = new ArrayList<>();
-        items.add("           ");
-        items.add(ChatColor.YELLOW + "In Game");
-        items.add("            ");
-        items.add(ChatColor.YELLOW + "Remaining Players:");
-        items.add(ChatColor.GRAY + Integer.toString(this.gameData.getPlayers().size()));
-        items.add("               ");
-        items.add(ChatColor.YELLOW + "Remeaining Time:");
-        items.add(ChatColor.GRAY + "Placeholder");
-        items.add("                ");
-        items.add(ChatColor.YELLOW + "Deathmatch:");
-        items.add(ChatColor.GRAY + "PlaceHolderDeadPL or TIME");
-        items.add("                ");
-        return items;
-    }
+  private List<String> sharedScoreboard() {
+    List<String> items = new ArrayList<>();
+    items.add("           ");
+    items.add(ChatColor.YELLOW + "In Game");
+    items.add("            ");
+    items.add(ChatColor.YELLOW + "Remaining Players:");
+    items.add(ChatColor.GRAY + Integer.toString(this.gameData.getPlayers().size()));
+    items.add("               ");
+    items.add(ChatColor.YELLOW + "Remeaining Time:");
+    items.add(ChatColor.GRAY + "Placeholder");
+    items.add("                ");
+    items.add(ChatColor.YELLOW + "Deathmatch:");
+    items.add(ChatColor.GRAY + "PlaceHolderDeadPL or TIME");
+    items.add("                ");
+    return items;
+  }
 }

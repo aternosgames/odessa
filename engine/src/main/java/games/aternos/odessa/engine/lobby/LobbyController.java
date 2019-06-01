@@ -116,7 +116,8 @@ public class LobbyController {
     WeatherChangeEventHook.hooks.remove(0);
   }
 
-  /**
+
+    /**
    * Processes a Player Join when Lobby is Active.
    *
    * @param p The Player
