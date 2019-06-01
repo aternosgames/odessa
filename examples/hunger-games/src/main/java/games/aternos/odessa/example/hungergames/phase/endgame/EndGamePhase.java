@@ -6,7 +6,7 @@ import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 import games.aternos.odessa.gameapi.game.GamePhase;
 
 public class EndGamePhase extends GamePhase {
-    protected EndGamePhase(@NonNull GameLifecycleManager owner, Game game) {
+    public EndGamePhase(@NonNull GameLifecycleManager owner, Game game) {
         super(owner, game);
     }
 

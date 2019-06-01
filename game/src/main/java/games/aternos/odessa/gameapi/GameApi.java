@@ -20,7 +20,6 @@ public class GameApi extends JavaPlugin {
     return gameApi;
   }
 
-  @Override
   public void onEnable() {
     gameApi = this;
     new EventHookLoader();
