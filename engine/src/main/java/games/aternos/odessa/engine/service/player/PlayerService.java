@@ -2,19 +2,35 @@ package games.aternos.odessa.engine.service.player;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.engine.service.Service;
+import games.aternos.odessa.gameapi.Debug;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.element.Arena;
+import games.aternos.odessa.gameapi.game.element.Kit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class PlayerService extends Service {
   public PlayerService(@NonNull GameApi gameApi) {
     super(gameApi);
   }
+
+    /**
+     * Cleans Player Gamemodes Player
+     *
+     * @param p Player
+     */
+    public void spectatorPlayer(Player p) {
+        this.clearPlayer(p);
+        this.healPlayer(p);
+        p.setGameMode(GameMode.ADVENTURE);
+    }
 
   public void clearPlayer(@NonNull Player p) {
     p.getInventory().setHelmet(null);
@@ -76,4 +92,20 @@ public class PlayerService extends Service {
       currentIndex = currentIndex + 1;
     }
   }
+
+    public void teleportPlayerToRandomFromList(Player p, List<Player> players) {
+
+        Random random = new Random();
+
+        Player teleportTo = players.get(random.nextInt(players.size()));
+
+        p.teleport(teleportTo.getLocation());
+    }
+
+    public void giveKit(Player p, Kit k) {
+        for (ItemStack i : k.getKitItems()) {
+            p.getInventory().addItem(i);
+            Debug.$("Gave kit " + k.getKitName() + " to " + p.getName());
+        }
+    }
 }

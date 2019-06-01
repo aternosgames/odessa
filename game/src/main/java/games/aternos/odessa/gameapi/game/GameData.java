@@ -43,6 +43,10 @@ public abstract class GameData {
     return null;
   }
 
+  public void addSpectator(Player p) {
+    this.spectators.add(p);
+  }
+
   public HashMap<Player, Kit> getSelectedPlayerKits() {
     return selectedPlayerKits;
   }
