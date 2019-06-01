@@ -63,7 +63,7 @@ public class InGamePhase extends GamePhase {
     return new Kit("Spectator", Collections.singletonList(compass), null);
   }
 
-  public void registerHooks() {
+  private void registerHooks() {
     new InGamePlayerJoinHandler(this);
   }
 }
