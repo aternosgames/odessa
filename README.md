@@ -16,8 +16,8 @@
 
 ..and whatever other games you build can be compiled like hungergames.jar as long as odessa.jar is on the server.
 
-##Configuration
+## Configuration
 Arenas/Maps/LobbySpawns need to be set up when the plugin first installs with the /odessa <> command. It will configure/add arenas for whatever game is active/set to (if multiple registered).
 
-##Note
+## Note
 Currently in development. Not at all suitable for production use, or additional game development besides those in example due to the ever-evolving nature of the framework. Contributions are always welcome.
