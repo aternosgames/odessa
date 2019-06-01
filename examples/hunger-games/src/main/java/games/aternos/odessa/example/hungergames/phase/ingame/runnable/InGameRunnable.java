@@ -5,6 +5,5 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class InGameRunnable extends BukkitRunnable {
     @Override
     public void run() {
-
     }
 }

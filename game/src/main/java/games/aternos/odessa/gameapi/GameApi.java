@@ -27,8 +27,7 @@ public class GameApi extends JavaPlugin {
   }
 
   /**
-   * Registers and starts up a game on Odessa.
-   * todo: more elegant multi game supporting thingy
+   * Registers and starts up a game on Odessa. todo: more elegant multi game supporting thingy
    *
    * @param game The game.
    */
@@ -50,5 +49,4 @@ public class GameApi extends JavaPlugin {
   private void setGame(@Nonnull Game game) {
     this.game = game;
   }
-
 }

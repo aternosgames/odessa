@@ -2,7 +2,7 @@ package games.aternos.odessa.gameapi.game.element;
 
 import org.bukkit.ChatColor;
 
-abstract public class Team {
+public abstract class Team {
 
   private ChatColor teamColor;
   private String teamName;

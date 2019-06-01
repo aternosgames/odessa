@@ -13,7 +13,6 @@ public class LobbyEntityDamageHandler extends LobbyControllerOwned {
       EntityDamageEventHook.hooks.add(new EntityDamageHandler());
   }
 
-
     private class EntityDamageHandler extends Hook {
         @Override
         public void run(Object o) {
@@ -24,5 +23,4 @@ public class LobbyEntityDamageHandler extends LobbyControllerOwned {
             ((EntityDamageEvent) o).setCancelled(true);
         }
   }
-
 }

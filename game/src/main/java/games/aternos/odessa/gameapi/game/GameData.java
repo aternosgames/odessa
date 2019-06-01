@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-abstract public class GameData {
+public abstract class GameData {
 
   private final List<Player> players;
 
@@ -46,12 +46,11 @@ abstract public class GameData {
     this.players.add(player);
   }
 
-  public void setGameArena(Arena a){
-    this.gameArena = a;
-  }
-
-  public Arena getGameArena(){
+    public Arena getGameArena() {
     return this.gameArena;
   }
 
+    public void setGameArena(Arena a) {
+        this.gameArena = a;
+    }
 }

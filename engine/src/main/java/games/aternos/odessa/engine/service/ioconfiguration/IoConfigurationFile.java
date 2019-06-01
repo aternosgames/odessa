@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-abstract public class IoConfigurationFile {
+public abstract class IoConfigurationFile {
 
   private final File configFile;
   private final FileConfiguration configuration;

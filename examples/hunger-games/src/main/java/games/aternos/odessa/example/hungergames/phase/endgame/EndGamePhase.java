@@ -12,21 +12,17 @@ public class EndGamePhase extends GamePhase {
 
     @Override
     protected void initialize() {
-
     }
 
     @Override
     public void startPhase() {
-
     }
 
     @Override
     public void endPhase() {
-
     }
 
     @Override
     public void hook() {
-
     }
 }

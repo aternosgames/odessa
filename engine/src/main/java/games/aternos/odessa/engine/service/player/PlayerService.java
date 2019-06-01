@@ -30,7 +30,8 @@ public class PlayerService extends Service {
   }
 
   /**
-   * Disperse players to a set of spawns. Ignores Teamid, for games that each player is on their own team
+   * Disperse players to a set of spawns. Ignores Teamid, for games that each player is on their own
+   * team
    */
   public void dispersePlayers(List<Player> players, Arena arena) {
 
@@ -40,10 +41,9 @@ public class PlayerService extends Service {
   }
 
   /**
-   * Used to desperse players in maps with their team.
-   * For every list of players the teamid will increase from 0.. NOT 1
-   * If there are multi spawns with the same teamid they will be used for that one List of players.
-   * ex: List:Player: gets dispersed to all spawns with the ID of 0, etc.
+   * Used to desperse players in maps with their team. For every list of players the teamid will
+   * increase from 0.. NOT 1 If there are multi spawns with the same teamid they will be used for
+   * that one List of players. ex: List:Player: gets dispersed to all spawns with the ID of 0, etc.
    */
   public void dispersePlayers(Arena arena, List<Player>... teams) {
     int baseTeamId = 0;
@@ -76,7 +76,4 @@ public class PlayerService extends Service {
       currentIndex = currentIndex + 1;
     }
   }
-
-
-
 }

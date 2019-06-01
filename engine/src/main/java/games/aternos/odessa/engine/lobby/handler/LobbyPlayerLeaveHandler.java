@@ -17,7 +17,8 @@ public class LobbyPlayerLeaveHandler extends LobbyControllerOwned {
         @Override
         public void run(Object o) {
             PlayerQuitEvent e = (PlayerQuitEvent) o;
-            e.setQuitMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + e.getPlayer().getName());
+            e.setQuitMessage(
+                    ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + e.getPlayer().getName());
             getOwner().playerQuit(e.getPlayer());
     }
   }

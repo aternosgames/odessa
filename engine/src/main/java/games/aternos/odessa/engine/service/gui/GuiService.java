@@ -14,16 +14,16 @@ public class GuiService extends Service {
         super(gameApi);
     }
 
-    public Inventory createGuiInventory(List<ItemStack> items, String guiname, int guisize){
+    public Inventory createGuiInventory(List<ItemStack> items, String guiname, int guisize) {
         Inventory i = Bukkit.createInventory(null, guisize, guiname);
-        for(ItemStack item : items){
+        for (ItemStack item : items) {
             i.addItem(item);
         }
 
         return i;
     }
 
-    public void openGui(Player p, Inventory i){
+    public void openGui(Player p, Inventory i) {
         p.openInventory(i);
     }
 }

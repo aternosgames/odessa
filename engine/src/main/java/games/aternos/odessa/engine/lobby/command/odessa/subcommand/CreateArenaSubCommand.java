@@ -26,7 +26,10 @@ public class CreateArenaSubCommand extends PlayerSubCommand {
             player.sendMessage("Odessa: /createarena <arenaname> <author>");
             return;
         }
-        this.gameLobbySystem.getGameArenaService().getGameArenaIoConfiguration().createArena(args[0], args[1]);
+        this.gameLobbySystem
+                .getGameArenaService()
+                .getGameArenaIoConfiguration()
+                .createArena(args[0], args[1]);
         player.sendMessage("Odessa: Created Arena: " + args[0] + " author:" + args[1]);
     }
 }

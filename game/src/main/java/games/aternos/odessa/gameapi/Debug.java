@@ -7,5 +7,4 @@ public class Debug {
   public static void $(String message) {
     Bukkit.getLogger().info(message);
   }
-
 }

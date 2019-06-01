@@ -23,7 +23,8 @@ public class InGamePhase extends GamePhase {
   @Override
   public void startPhase() {
     this.setActive(true);
-    playerService.dispersePlayers(this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
+      playerService.dispersePlayers(
+              this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
   }
 
   @Override
@@ -33,7 +34,6 @@ public class InGamePhase extends GamePhase {
 
   @Override
   public void hook() {
-
   }
 
   public PlayerService getPlayerService() {

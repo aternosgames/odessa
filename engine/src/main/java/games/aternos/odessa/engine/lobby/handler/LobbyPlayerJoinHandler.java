@@ -17,9 +17,9 @@ public class LobbyPlayerJoinHandler extends LobbyControllerOwned {
         @Override
         public void run(Object o) {
             PlayerJoinEvent event = (PlayerJoinEvent) o;
-            event.setJoinMessage(ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
+            event.setJoinMessage(
+                    ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
             getOwner().playerJoin(event.getPlayer());
         }
     }
-
 }

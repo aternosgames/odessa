@@ -14,9 +14,9 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     this.setMinPlayers(2);
     this.setGameKits(getKits());
   }
-  private List<Kit> getKits() {
+
+    private List<Kit> getKits() {
     HungerGamesKit hungerGamesKit = new HungerGamesKit();
     return hungerGamesKit.getKits();
   }
-
 }

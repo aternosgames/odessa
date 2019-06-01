@@ -18,6 +18,4 @@ public class IndividualTeam extends Team {
   public Player getTeamPlayer() {
     return teamPlayer;
   }
-
-
 }

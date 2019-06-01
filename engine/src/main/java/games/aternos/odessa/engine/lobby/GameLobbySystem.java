@@ -35,12 +35,14 @@ public class GameLobbySystem {
   private final HashMap<Arena, Integer> arenaVote;
   private final ArenaVoteGUI arenaVoteGUI;
 
-
   private LobbyController lobbyController;
   private LobbyState lobbyState;
   private boolean active;
 
-  public GameLobbySystem(@Nonnull GameLifecycleManager gameLifecycleManager, @Nonnull GameApi gameApi, @Nonnull GameConfiguration gameConfiguration) {
+  public GameLobbySystem(
+          @Nonnull GameLifecycleManager gameLifecycleManager,
+          @Nonnull GameApi gameApi,
+          @Nonnull GameConfiguration gameConfiguration) {
     this.lobbyController = new LobbyController(this);
     this.gameLifecycleManager = gameLifecycleManager;
     this.gameApi = gameApi;
@@ -52,7 +54,11 @@ public class GameLobbySystem {
     this.lobbyIoConfiguration = new LobbyIoConfiguration(ioConfigurationService);
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this.getLobbyController());
-    this.gameArenaService = new GameArenaService(this.gameApi, ioConfigurationService, this.getGame().getGameConfiguration().getGameName());
+    this.gameArenaService =
+            new GameArenaService(
+                    this.gameApi,
+                    ioConfigurationService,
+                    this.getGame().getGameConfiguration().getGameName());
     this.arenaVote = new HashMap<>();
     this.arenaVoteGUI = new ArenaVoteGUI(this);
   }
@@ -68,30 +74,28 @@ public class GameLobbySystem {
     this.lobbyState = LobbyState.WAITINGFORPLAYERS;
   }
 
-  /**
-   * Stops the lobby
-   */
+  /** Stops the lobby */
   public void stopLobby() {
-      this.getLobbyController().removeLobbyListeners();
+    this.getLobbyController().removeLobbyListeners();
     this.active = false;
   }
 
   /**
    * @return The Most voted lobby
    */
-  public Arena computeArenaVoted(){
-    if(this.arenaVote.isEmpty()){
+  public Arena computeArenaVoted() {
+    if (this.arenaVote.isEmpty()) {
       return this.getGame().getGameConfiguration().getGameArenas().get(0);
     }
 
     Arena mostVoted = null;
     int mostVotes = 0;
-    for(Arena a : this.arenaVote.keySet()){
-      if(mostVoted == null){
+    for (Arena a : this.arenaVote.keySet()) {
+      if (mostVoted == null) {
         mostVoted = a;
         mostVotes = this.arenaVote.get(a);
-      }else{
-        if(this.arenaVote.get(a) > mostVotes){
+      } else {
+        if (this.arenaVote.get(a) > mostVotes) {
           mostVoted = a;
           mostVotes = this.arenaVote.get(a);
         }
@@ -144,7 +148,9 @@ public class GameLobbySystem {
     return gameArenaService;
   }
 
-  public ArenaVoteGUI getArenaVoteGUI(){return this.arenaVoteGUI;}
+  public ArenaVoteGUI getArenaVoteGUI() {
+    return this.arenaVoteGUI;
+  }
 
   public HashMap<Arena, Integer> getArenaVote() {
     return arenaVote;

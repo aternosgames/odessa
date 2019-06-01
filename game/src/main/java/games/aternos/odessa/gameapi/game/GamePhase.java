@@ -6,7 +6,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nonnull;
 
-abstract public class GamePhase {
+public abstract class GamePhase {
 
   private final GameLifecycleManager owner;
   private final Game game;
@@ -50,12 +50,11 @@ abstract public class GamePhase {
     isActive = active;
   }
 
-  abstract public void startPhase();
+    public abstract void startPhase();
 
-  abstract public void endPhase();
+    public abstract void endPhase();
 
-  abstract public void hook();
-
+    public abstract void hook();
 
   public GameLifecycleManager getOwner() {
     return owner;

@@ -4,11 +4,11 @@ import games.aternos.odessa.gameapi.GameApi;
 
 import javax.annotation.Nonnull;
 
-abstract public class Service {
+public abstract class Service {
 
-  /**
-   * All Services are owned by the GameAPI
-   */
+    /**
+     * All Services are owned by the GameAPI
+     */
   private final GameApi gameApi;
 
   /**
@@ -20,9 +20,9 @@ abstract public class Service {
     this.gameApi = gameApi;
   }
 
-  /**
-   * Returns the owning GameAPI
-   */
+    /**
+     * Returns the owning GameAPI
+     */
   public GameApi getGameApi() {
     return gameApi;
   }

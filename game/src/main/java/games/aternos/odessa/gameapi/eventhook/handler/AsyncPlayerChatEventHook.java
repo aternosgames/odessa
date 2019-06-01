@@ -11,7 +11,6 @@ import java.util.List;
 public class AsyncPlayerChatEventHook implements Listener {
     public static final List<Hook> hooks = new ArrayList<>();
 
-
     @EventHandler
     public void onEvent(AsyncPlayerChatEvent event) {
         for (Hook hook : hooks) {

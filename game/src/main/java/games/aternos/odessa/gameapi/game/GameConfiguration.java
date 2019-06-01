@@ -5,7 +5,7 @@ import games.aternos.odessa.gameapi.game.element.Kit;
 
 import java.util.List;
 
-abstract public class GameConfiguration {
+public abstract class GameConfiguration {
 
   private String gameName;
   private List<Kit> gameKits;
@@ -52,5 +52,4 @@ abstract public class GameConfiguration {
   public void setMinPlayers(int minPlayers) {
     this.minPlayers = minPlayers;
   }
-
 }

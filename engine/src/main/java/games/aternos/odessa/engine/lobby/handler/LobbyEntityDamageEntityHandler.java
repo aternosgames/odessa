@@ -18,5 +18,4 @@ public class LobbyEntityDamageEntityHandler extends LobbyControllerOwned {
       ((EntityDamageByEntityEvent) o).setCancelled(true);
     }
   }
-
 }

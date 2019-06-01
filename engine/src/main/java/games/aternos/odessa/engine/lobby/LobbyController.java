@@ -33,9 +33,11 @@ public class LobbyController {
   public void lobbyTick() {
     if (this.gameLobbySystem.getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
 
-      if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() >= this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
+      if (this.gameLobbySystem.getGame().getGameData().getPlayers().size()
+              >= this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
         this.gameLobbySystem.setLobbyState(LobbyState.FINALCALL);
-        Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + "Minimum Players Reached. 30 Second final call");
+        Bukkit.broadcastMessage(
+                ChatColor.BLUE + "Lobby> " + "Minimum Players Reached. 30 Second final call");
       }
     } else if (this.gameLobbySystem.getLobbyState().equals(LobbyState.FINALCALL)) {
       conditionalAbort();
@@ -54,45 +56,42 @@ public class LobbyController {
       if (tick != 1) {
         this.tick = this.tick - 1;
       } else {
-       /*
-       Start Game
-        */
-       this.gameLobbySystem.getGame().getGameData().setGameArena(this.gameLobbySystem.computeArenaVoted());
-       this.gameLobbySystem.getGameLifecycleManager().nextPhase();
+        /*
+        Start Game
+         */
+        this.gameLobbySystem
+                .getGame()
+                .getGameData()
+                .setGameArena(this.gameLobbySystem.computeArenaVoted());
+        this.gameLobbySystem.getGameLifecycleManager().nextPhase();
       }
     }
   }
 
-  /**
-   * Figures out if the lobby should abort, if so it does.
-   */
+  /** Figures out if the lobby should abort, if so it does. */
   private void conditionalAbort() {
-    if (this.gameLobbySystem.getGame().getGameData().getPlayers().size() < this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
+    if (this.gameLobbySystem.getGame().getGameData().getPlayers().size()
+            < this.gameLobbySystem.getGame().getGameConfiguration().getMinPlayers()) {
       this.gameLobbySystem.setLobbyState(LobbyState.WAITINGFORPLAYERS);
-      Bukkit.broadcastMessage(ChatColor.BLUE + "Lobby> " + "Minimum players no longer reached, countdown aborted.");
+      Bukkit.broadcastMessage(
+              ChatColor.BLUE + "Lobby> " + "Minimum players no longer reached, countdown aborted.");
       this.tick = 30;
     }
   }
 
-  /**
-   * Registers the commands that can be used when the lobby is active.
-   */
+  /** Registers the commands that can be used when the lobby is active. */
   public void registerLobbyCommands() {
     /*
     /Odessa Super Command
      */
     OdessaCommand odessaCommand = new OdessaCommand(gameLobbySystem);
     this.gameLobbySystem.getGameApi().getCommand("odessa").setExecutor(odessaCommand);
-
   }
 
-
-  /**
-   * Registers the Listeners owned by the lobby.
-   */
+  /** Registers the Listeners owned by the lobby. */
   public void registerLobbyListeners() {
-    //this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
-    //this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
+    // this.lobbyListeners.add(new LobbyEntityDamageEntityHandler(this));
+    // this.lobbyListeners.add(new LobbyEntityDamageHandler(this));
 
     new LobbyEntityDamageEntityHandler(this);
     new LobbyEntityDamageHandler(this);
@@ -117,7 +116,6 @@ public class LobbyController {
     WeatherChangeEventHook.hooks.remove(0);
   }
 
-
   /**
    * Processes a Player Join when Lobby is Active.
    *
@@ -127,7 +125,10 @@ public class LobbyController {
     this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
     cleanPlayer(p);
-    p.sendActionBar(ChatColor.BOLD + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName() + " Lobby");
+    p.sendActionBar(
+            ChatColor.BOLD
+                    + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName()
+                    + " Lobby");
   }
 
   /**

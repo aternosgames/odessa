@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class ArenaVoteGUI implements GUI {
     private final GameLobbySystem gameLobbySystem;
 
-    public ArenaVoteGUI(GameLobbySystem gameLobbySystem){
+    public ArenaVoteGUI(GameLobbySystem gameLobbySystem) {
         this.gameLobbySystem = gameLobbySystem;
     }
 
@@ -32,7 +32,7 @@ public class ArenaVoteGUI implements GUI {
 
         Inventory vote = Bukkit.createInventory(null, 9, "Arena Vote");
 
-        for(Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()){
+        for (Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()) {
             ItemStack arena = new ItemStack(Material.SIGN);
             ItemMeta arenaMeta = arena.getItemMeta();
             arenaMeta.setDisplayName(a.getArenaName());
@@ -45,5 +45,4 @@ public class ArenaVoteGUI implements GUI {
 
         p.openInventory(vote);
     }
-
 }

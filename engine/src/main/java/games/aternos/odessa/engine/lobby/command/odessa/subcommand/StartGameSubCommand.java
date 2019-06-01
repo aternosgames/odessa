@@ -16,12 +16,14 @@ public class StartGameSubCommand extends SharedSubCommand {
     @Override
     public void run(String[] args, CommandSender commandSender) {
         if (this.gameLobbySystem.isActive()) {
-            this.gameLobbySystem.getGame().getGameData().setGameArena(this.gameLobbySystem.computeArenaVoted());
+            this.gameLobbySystem
+                    .getGame()
+                    .getGameData()
+                    .setGameArena(this.gameLobbySystem.computeArenaVoted());
             this.gameLobbySystem.getGameLifecycleManager().nextPhase();
             Bukkit.broadcastMessage(commandSender.getName() + " Forcestarted the game");
         } else {
             commandSender.sendMessage("Game not in lobby");
-
         }
     }
 }

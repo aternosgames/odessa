@@ -1,6 +1,5 @@
 package games.aternos.odessa.gameapi.game.element;
 
-
 import org.bukkit.Location;
 
 import java.util.HashMap;
@@ -15,7 +14,6 @@ public class Arena {
     this.arenaName = arenaName;
     this.arenaAuthor = arenaAuthor;
   }
-
 
   public HashMap<Location, Integer> getSpawnPoints() {
     return spawnPoints;

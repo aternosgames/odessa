@@ -55,7 +55,6 @@ public class LobbyBoard extends LobbyControllerOwned {
 
     String boardName = ChatColor.BOLD + getGameName() + " Lobby";
     return new Sidebar(boardName, scoreboardItems(p));
-
   }
 
   /**
@@ -64,7 +63,6 @@ public class LobbyBoard extends LobbyControllerOwned {
    * @param p Player
    * @return Scoreboard Items
    */
-  @NotNull
   private List<String> scoreboardItems(@Nonnull Player p) {
     if (this.getOwner().getGameLobbySystem().getLobbyState().equals(LobbyState.WAITINGFORPLAYERS)) {
       return waitingForPlayersItems(p);
@@ -124,6 +122,7 @@ public class LobbyBoard extends LobbyControllerOwned {
     items.add(ChatColor.GRAY + "" + this.getOwner().getTick());
     return items;
   }
+
   private String getGameName() {
     return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameName();
   }
@@ -133,20 +132,26 @@ public class LobbyBoard extends LobbyControllerOwned {
   }
 
   private Integer getNeededPlayers() {
-    return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers() - getCurrentPlayerSize();
+    return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers()
+            - getCurrentPlayerSize();
   }
 
   private String getSelectedKitName(Player p) {
-    Kit kit = this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
+    Kit kit =
+            this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
     if (kit == null) {
-      kit = this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameKits().get(0);
+      kit =
+              this.getOwner()
+                      .getGameLobbySystem()
+                      .getGame()
+                      .getGameConfiguration()
+                      .getGameKits()
+                      .get(0);
     }
     return kit.getKitName();
   }
 
-
   private SidebarService getSidebarService() {
     return sidebarService;
   }
-
 }

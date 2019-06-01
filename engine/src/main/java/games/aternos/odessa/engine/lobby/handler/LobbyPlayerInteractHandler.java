@@ -25,9 +25,11 @@ public class LobbyPlayerInteractHandler extends LobbyControllerOwned {
             }
             ItemMeta im = i.getItemMeta();
             if (im.getDisplayName() != null && i.getType() != Material.AIR) {
-                if (im.getDisplayName().contains("Kit Selection") && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.CHEST) {
+                if (im.getDisplayName().contains("Kit Selection")
+                        && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.CHEST) {
                     getOwner().getGameLobbySystem().getKitSelectionGUI().openGUI(e.getPlayer());
-                } else if (im.getDisplayName().contains("Arena Vote") && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.GRASS) {
+                } else if (im.getDisplayName().contains("Arena Vote")
+                        && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.GRASS) {
                     getOwner().getGameLobbySystem().getArenaVoteGUI().openGUI(e.getPlayer());
                 }
             }
@@ -35,5 +37,4 @@ public class LobbyPlayerInteractHandler extends LobbyControllerOwned {
             e.setCancelled(true);
         }
     }
-
 }

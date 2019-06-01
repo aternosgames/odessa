@@ -30,5 +30,4 @@ public class HungerGamesKit {
     Kit otherKit = new Kit("Other Kit", kitItems, kitItems.get(0));
     kits.add(otherKit);
   }
-
 }

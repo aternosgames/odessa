@@ -32,7 +32,10 @@ public class AddSpawnSubCommand extends PlayerSubCommand {
             return;
         }
 
-        this.gameLobbySystem.getGameArenaService().getGameArenaIoConfiguration().addSpawn(spawnLocation, Integer.valueOf(teamId), Integer.valueOf(spawnId), mapName);
+        this.gameLobbySystem
+                .getGameArenaService()
+                .getGameArenaIoConfiguration()
+                .addSpawn(spawnLocation, Integer.valueOf(teamId), Integer.valueOf(spawnId), mapName);
 
         player.sendMessage("Odessa: Set Spawn.");
     }
