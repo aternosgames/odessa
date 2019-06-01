@@ -30,7 +30,7 @@ public class GameArenaIoConfiguration extends IoConfigurationFile {
   public void addSpawn(Location spawn, Integer teamID, Integer spawnID, String mapName) {
 
     this.getConfiguration()
-            .set(mapName + ".spawns." + spawnID + ".world", spawn.getWorld().getName());
+        .set(mapName + ".spawns." + spawnID + ".world", spawn.getWorld().getName());
     this.getConfiguration().set(mapName + ".spawns." + spawnID + ".x", spawn.getBlockX());
     this.getConfiguration().set(mapName + ".spawns." + spawnID + ".y", spawn.getBlockY());
     this.getConfiguration().set(mapName + ".spawns." + spawnID + ".z", spawn.getBlockZ());
@@ -51,10 +51,10 @@ public class GameArenaIoConfiguration extends IoConfigurationFile {
       HashMap<Location, Integer> spawnPoints = new HashMap<>();
 
       for (String spawnId :
-              this.getConfiguration().getConfigurationSection(mapName + ".spawns").getKeys(false)) {
+          this.getConfiguration().getConfigurationSection(mapName + ".spawns").getKeys(false)) {
         World world =
-                Bukkit.getWorld(
-                        this.getConfiguration().getString(mapName + ".spawns." + spawnId + ".world"));
+            Bukkit.getWorld(
+                this.getConfiguration().getString(mapName + ".spawns." + spawnId + ".world"));
         int x = this.getConfiguration().getInt(mapName + ".spawns." + spawnId + ".x");
         int y = this.getConfiguration().getInt(mapName + ".spawns." + spawnId + ".y");
         int z = this.getConfiguration().getInt(mapName + ".spawns." + spawnId + ".z");

@@ -27,9 +27,9 @@ public class SubCommandDrivenCommand implements CommandExecutor {
 
   @Override
   public boolean onCommand(
-          CommandSender commandSender, Command command, String s, String[] strings) {
+      CommandSender commandSender, Command command, String s, String[] strings) {
     if (!commandSender
-            .isOp()) { // permissions check, op by default, until we get the proper permissions database
+        .isOp()) { // permissions check, op by default, until we get the proper permissions database
       // and such
       return true;
     }
@@ -51,7 +51,7 @@ public class SubCommandDrivenCommand implements CommandExecutor {
         }
       }
     } else if (commandSender
-            instanceof ConsoleCommandSender) { // not there, okay, check console ones if console
+        instanceof ConsoleCommandSender) { // not there, okay, check console ones if console
       for (ConsoleSubCommand consoleSubCommand : consoleSubCommands) {
         if (consoleSubCommand.getSubCmd().equalsIgnoreCase(subCommand)) {
           consoleSubCommand.run(newArgs, (ConsoleCommandSender) commandSender);
@@ -61,7 +61,7 @@ public class SubCommandDrivenCommand implements CommandExecutor {
     }
 
     for (SharedSubCommand sharedSubCommand :
-            sharedSubCommands) { // finally, check shared commands if not, there's no command!
+        sharedSubCommands) { // finally, check shared commands if not, there's no command!
       if (sharedSubCommand.getSubCmd().equalsIgnoreCase(subCommand)) {
         sharedSubCommand.run(newArgs, commandSender);
         return true;

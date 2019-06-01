@@ -50,11 +50,11 @@ public abstract class GamePhase {
     isActive = active;
   }
 
-    public abstract void startPhase();
+  public abstract void startPhase();
 
-    public abstract void endPhase();
+  public abstract void endPhase();
 
-    public abstract void hook();
+  public abstract void hook();
 
   public GameLifecycleManager getOwner() {
     return owner;

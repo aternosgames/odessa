@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeavesDecayEventHook implements Listener {
-    public static final List<Hook> hooks = new ArrayList<>();
+  public static final List<Hook> hooks = new ArrayList<>();
 
-    @EventHandler
-    public void onEvent(LeavesDecayEvent event) {
-        for (Hook hook : hooks) {
-            hook.run(event);
-        }
+  @EventHandler
+  public void onEvent(LeavesDecayEvent event) {
+    for (Hook hook : hooks) {
+      hook.run(event);
     }
+  }
 }

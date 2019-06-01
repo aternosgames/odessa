@@ -14,9 +14,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The Scoreboard when the Lobby is active
- */
+/** The Scoreboard when the Lobby is active */
 public class LobbyBoard extends LobbyControllerOwned {
 
   private final SidebarService sidebarService;
@@ -26,9 +24,7 @@ public class LobbyBoard extends LobbyControllerOwned {
     this.sidebarService = sidebarService;
   }
 
-  /**
-   * Sends the scoreboard out to all Players
-   */
+  /** Sends the scoreboard out to all Players */
   public void pushBoard() {
     for (Player p : this.getOwner().getGameLobbySystem().getGame().getGameData().getPlayers()) {
       this.getSidebarService().createSidebarScoreboard(p, generateSidebar(p));
@@ -133,20 +129,20 @@ public class LobbyBoard extends LobbyControllerOwned {
 
   private Integer getNeededPlayers() {
     return this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getMinPlayers()
-            - getCurrentPlayerSize();
+        - getCurrentPlayerSize();
   }
 
   private String getSelectedKitName(Player p) {
     Kit kit =
-            this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
+        this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
     if (kit == null) {
       kit =
-              this.getOwner()
-                      .getGameLobbySystem()
-                      .getGame()
-                      .getGameConfiguration()
-                      .getGameKits()
-                      .get(0);
+          this.getOwner()
+              .getGameLobbySystem()
+              .getGame()
+              .getGameConfiguration()
+              .getGameKits()
+              .get(0);
     }
     return kit.getKitName();
   }

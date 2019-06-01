@@ -10,16 +10,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class LobbyPlayerLeaveHandler extends LobbyControllerOwned {
   public LobbyPlayerLeaveHandler(LobbyController owner) {
     super(owner);
-      PlayerQuitEventHook.hooks.add(new PlayerQuitHandler());
+    PlayerQuitEventHook.hooks.add(new PlayerQuitHandler());
   }
 
-    public class PlayerQuitHandler extends Hook {
-        @Override
-        public void run(Object o) {
-            PlayerQuitEvent e = (PlayerQuitEvent) o;
-            e.setQuitMessage(
-                    ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + e.getPlayer().getName());
-            getOwner().playerQuit(e.getPlayer());
+  public class PlayerQuitHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      PlayerQuitEvent e = (PlayerQuitEvent) o;
+      e.setQuitMessage(
+          ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " -" + e.getPlayer().getName());
+      getOwner().playerQuit(e.getPlayer());
     }
   }
 }

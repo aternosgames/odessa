@@ -10,20 +10,20 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class GuiService extends Service {
-    protected GuiService(GameApi gameApi) {
-        super(gameApi);
+  protected GuiService(GameApi gameApi) {
+    super(gameApi);
+  }
+
+  public Inventory createGuiInventory(List<ItemStack> items, String guiname, int guisize) {
+    Inventory i = Bukkit.createInventory(null, guisize, guiname);
+    for (ItemStack item : items) {
+      i.addItem(item);
     }
 
-    public Inventory createGuiInventory(List<ItemStack> items, String guiname, int guisize) {
-        Inventory i = Bukkit.createInventory(null, guisize, guiname);
-        for (ItemStack item : items) {
-            i.addItem(item);
-        }
+    return i;
+  }
 
-        return i;
-    }
-
-    public void openGui(Player p, Inventory i) {
-        p.openInventory(i);
-    }
+  public void openGui(Player p, Inventory i) {
+    p.openInventory(i);
+  }
 }

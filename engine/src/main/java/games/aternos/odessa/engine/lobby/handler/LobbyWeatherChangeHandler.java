@@ -9,14 +9,14 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 public class LobbyWeatherChangeHandler extends LobbyControllerOwned {
   public LobbyWeatherChangeHandler(LobbyController owner) {
     super(owner);
-      WeatherChangeEventHook.hooks.add(new WeatherChangeHandler());
+    WeatherChangeEventHook.hooks.add(new WeatherChangeHandler());
   }
 
-    public class WeatherChangeHandler extends Hook {
+  public class WeatherChangeHandler extends Hook {
 
-        @Override
-        public void run(Object o) {
-            ((WeatherChangeEvent) o).setCancelled(true);
+    @Override
+    public void run(Object o) {
+      ((WeatherChangeEvent) o).setCancelled(true);
     }
   }
 }

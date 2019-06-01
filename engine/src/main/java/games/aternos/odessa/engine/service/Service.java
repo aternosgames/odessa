@@ -6,9 +6,7 @@ import javax.annotation.Nonnull;
 
 public abstract class Service {
 
-    /**
-     * All Services are owned by the GameAPI
-     */
+  /** All Services are owned by the GameAPI */
   private final GameApi gameApi;
 
   /**
@@ -20,9 +18,7 @@ public abstract class Service {
     this.gameApi = gameApi;
   }
 
-    /**
-     * Returns the owning GameAPI
-     */
+  /** Returns the owning GameAPI */
   public GameApi getGameApi() {
     return gameApi;
   }

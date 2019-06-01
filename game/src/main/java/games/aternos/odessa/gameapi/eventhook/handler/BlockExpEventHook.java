@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockExpEventHook implements Listener {
-    public static final List<Hook> hooks = new ArrayList<>();
+  public static final List<Hook> hooks = new ArrayList<>();
 
-    @EventHandler
-    public void onEvent(BlockExpEvent event) {
-        for (Hook hook : hooks) {
-            hook.run(event);
-        }
+  @EventHandler
+  public void onEvent(BlockExpEvent event) {
+    for (Hook hook : hooks) {
+      hook.run(event);
     }
+  }
 }

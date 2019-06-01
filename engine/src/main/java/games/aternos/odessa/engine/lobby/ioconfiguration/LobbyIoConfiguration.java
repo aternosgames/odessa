@@ -11,9 +11,7 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Handles the Lobby Io Condifuration for Arenas.
- */
+/** Handles the Lobby Io Condifuration for Arenas. */
 public class LobbyIoConfiguration extends IoConfigurationFile {
 
   public LobbyIoConfiguration(IoConfigurationService owner) {

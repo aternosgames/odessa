@@ -18,9 +18,7 @@ import org.bukkit.Bukkit;
 import javax.annotation.Nonnull;
 import java.util.HashMap;
 
-/**
- * Uniformed Lobby System that can be called into action by a game.
- */
+/** Uniformed Lobby System that can be called into action by a game. */
 public class GameLobbySystem {
 
   private final GameLifecycleManager gameLifecycleManager;
@@ -40,9 +38,9 @@ public class GameLobbySystem {
   private boolean active;
 
   public GameLobbySystem(
-          @Nonnull GameLifecycleManager gameLifecycleManager,
-          @Nonnull GameApi gameApi,
-          @Nonnull GameConfiguration gameConfiguration) {
+      @Nonnull GameLifecycleManager gameLifecycleManager,
+      @Nonnull GameApi gameApi,
+      @Nonnull GameConfiguration gameConfiguration) {
     this.lobbyController = new LobbyController(this);
     this.gameLifecycleManager = gameLifecycleManager;
     this.gameApi = gameApi;
@@ -55,17 +53,15 @@ public class GameLobbySystem {
     this.playerService = new PlayerService(this.gameApi);
     this.kitSelectionGUI = new KitSelectionGUI(this.getLobbyController());
     this.gameArenaService =
-            new GameArenaService(
-                    this.gameApi,
-                    ioConfigurationService,
-                    this.getGame().getGameConfiguration().getGameName());
+        new GameArenaService(
+            this.gameApi,
+            ioConfigurationService,
+            this.getGame().getGameConfiguration().getGameName());
     this.arenaVote = new HashMap<>();
     this.arenaVoteGUI = new ArenaVoteGUI(this);
   }
 
-  /**
-   * Starts the Lobby instance
-   */
+  /** Starts the Lobby instance */
   public void startLobby() {
     this.active = true;
     this.getGame().getGameConfiguration().setGameArenas(this.gameArenaService.getArenas());
@@ -80,9 +76,7 @@ public class GameLobbySystem {
     this.active = false;
   }
 
-  /**
-   * @return The Most voted lobby
-   */
+  /** @return The Most voted lobby */
   public Arena computeArenaVoted() {
     if (this.arenaVote.isEmpty()) {
       return this.getGame().getGameConfiguration().getGameArenas().get(0);

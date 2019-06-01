@@ -17,9 +17,7 @@ public class SidebarService extends Service {
    * therefore prevent errors.
    */
   private static final HashMap<Player, Scoreboard> playerBoards = new HashMap<>();
-    /**
-     * Scoreboard Manager Instance. Generally from Bukkit#getScoreboardManager
-     */
+  /** Scoreboard Manager Instance. Generally from Bukkit#getScoreboardManager */
   private final ScoreboardManager scoreboardManager;
 
   public SidebarService(GameApi gameApi, ScoreboardManager scoreboardManager) {
@@ -31,9 +29,7 @@ public class SidebarService extends Service {
     return playerBoards;
   }
 
-    /**
-     * Creates a Global Sidebar Scoreboard
-     */
+  /** Creates a Global Sidebar Scoreboard */
   public void createSidebarScoreboard(Sidebar sidebar, List<Player> players) {
     for (Player p : players) {
       createSidebarScoreboard(p, sidebar);

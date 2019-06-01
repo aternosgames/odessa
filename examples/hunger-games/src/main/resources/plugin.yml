@@ -1,7 +1,7 @@
 main: games.aternos.odessa.example.hungergames.HungerGames
 name: OdessaExampleHG
 version: 1
-description: It runs on stuff
-authors: [_Bot_, ShadowAria]
+description: Hunger Games Example Game
+authors: [_Bot_, AternosGamesContributors] # If you make a pull request (and contribute something) add your name :)
 depend: [OdessaGameApi]
 website: aternos.games

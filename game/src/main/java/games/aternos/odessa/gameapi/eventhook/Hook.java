@@ -5,14 +5,14 @@ import org.bukkit.ChatColor;
 
 public abstract class Hook {
 
-    public Hook() {
-        Debug.$(
-                ChatColor.GREEN
-                        + "Hook Created: "
-                        + this.getClass().getPackage()
-                        + "."
-                        + this.getClass().getName());
-    }
+  public Hook() {
+    Debug.$(
+        ChatColor.GREEN
+            + "Hook Created: "
+            + this.getClass().getPackage()
+            + "."
+            + this.getClass().getName());
+  }
 
-    public abstract void run(Object o);
+  public abstract void run(Object o);
 }

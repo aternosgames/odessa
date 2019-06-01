@@ -9,13 +9,13 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 public class LobbyPlayerHungerHandler extends LobbyControllerOwned {
   public LobbyPlayerHungerHandler(LobbyController owner) {
     super(owner);
-      FoodLevelChangeEventHook.hooks.add(new PlayerHungerHandler());
+    FoodLevelChangeEventHook.hooks.add(new PlayerHungerHandler());
   }
 
-    public class PlayerHungerHandler extends Hook {
-        @Override
-        public void run(Object o) {
-            ((FoodLevelChangeEvent) o).setCancelled(true);
+  public class PlayerHungerHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      ((FoodLevelChangeEvent) o).setCancelled(true);
     }
   }
 }

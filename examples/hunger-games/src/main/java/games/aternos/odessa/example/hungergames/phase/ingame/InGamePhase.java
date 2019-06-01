@@ -28,9 +28,9 @@ public class InGamePhase extends GamePhase {
   public void startPhase() {
     this.setActive(true);
     playerService.dispersePlayers(
-            this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
+        this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
     this.setGamePhaseRunnableTask(
-            this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
+        this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
   }
 
   @Override
@@ -40,8 +40,7 @@ public class InGamePhase extends GamePhase {
   }
 
   @Override
-  public void hook() {
-  }
+  public void hook() {}
 
   public PlayerService getPlayerService() {
     return playerService;

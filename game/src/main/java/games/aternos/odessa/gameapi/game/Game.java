@@ -7,9 +7,9 @@ public abstract class Game {
   private final GameConfiguration gameConfiguration;
 
   public Game(
-          GameLifecycleManager gameLifecycleManager,
-          GameData gameData,
-          GameConfiguration gameConfiguration) {
+      GameLifecycleManager gameLifecycleManager,
+      GameData gameData,
+      GameConfiguration gameConfiguration) {
     this.gameLifecycleManager = gameLifecycleManager;
     this.gameData = gameData;
     this.gameConfiguration = gameConfiguration;

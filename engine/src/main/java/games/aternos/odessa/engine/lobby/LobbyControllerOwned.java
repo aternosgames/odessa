@@ -1,13 +1,9 @@
 package games.aternos.odessa.engine.lobby;
 
-/**
- * Super for classes owned by the LobbyController
- */
+/** Super for classes owned by the LobbyController */
 public abstract class LobbyControllerOwned {
 
-    /**
-     * The LobbyController that owns the class
-     */
+  /** The LobbyController that owns the class */
   private final LobbyController owner;
 
   /**
@@ -19,7 +15,7 @@ public abstract class LobbyControllerOwned {
     this.owner = owner;
   }
 
-    /** @return The owning lobby controller */
+  /** @return The owning lobby controller */
   public LobbyController getOwner() {
     return owner;
   }

@@ -15,7 +15,7 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     this.setGameKits(getKits());
   }
 
-    private List<Kit> getKits() {
+  private List<Kit> getKits() {
     HungerGamesKit hungerGamesKit = new HungerGamesKit();
     return hungerGamesKit.getKits();
   }

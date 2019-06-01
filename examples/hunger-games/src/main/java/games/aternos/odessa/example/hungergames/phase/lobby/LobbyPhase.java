@@ -21,18 +21,18 @@ public class LobbyPhase extends GamePhase {
   @Override
   public void initialize() {
     this.setGamePhaseRunnable(new LobbyPhaseRunnable(this));
-      gameLobbySystem =
-              new GameLobbySystem(
-                      this.getOwner(),
-                      GameApi.getGameApi(),
-                      GameApi.getGameApi().getGame().getGameConfiguration());
+    gameLobbySystem =
+        new GameLobbySystem(
+            this.getOwner(),
+            GameApi.getGameApi(),
+            GameApi.getGameApi().getGame().getGameConfiguration());
   }
 
   @Override
   public void startPhase() {
     this.setActive(true);
-      this.setGamePhaseRunnableTask(
-              this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
+    this.setGamePhaseRunnableTask(
+        this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.gameLobbySystem.startLobby();
   }
 

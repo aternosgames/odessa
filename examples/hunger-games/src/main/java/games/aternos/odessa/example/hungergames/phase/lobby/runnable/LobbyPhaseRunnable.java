@@ -13,6 +13,6 @@ public class LobbyPhaseRunnable extends BukkitRunnable {
 
   @Override
   public void run() {
-      this.owner.hook();
+    this.owner.hook();
   }
 }

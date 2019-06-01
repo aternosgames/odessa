@@ -1,8 +1,8 @@
 main: games.aternos.odessa.gameapi.GameApi
 name: OdessaGameApi
 version: 1
-description: It runs stuff
-authors: [_Bot_, Aternos]
+description: Provides the core of Minigames
+authors: [_Bot_, AternosGamesContributors] # If you make a pull request (and contribute something) add your name :)
 website: aternos.games
 commands:
   odessa:

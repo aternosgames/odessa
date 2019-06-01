@@ -1,8 +1,6 @@
 package games.aternos.odessa.engine.subcommand;
 
-/**
- * The base of all subcommand types
- */
+/** The base of all subcommand types */
 public abstract class SubCommand {
 
   private final String subCmd;

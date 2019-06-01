@@ -14,9 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
-/**
- * todo: simplify and clean
- */
+/** todo: simplify and clean */
 public class LobbyPlayerClickHandler extends LobbyControllerOwned {
 
   private final HashMap<Player, Arena> voted;
@@ -37,37 +35,37 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
 
     if (selected != null) {
       if (!this.getOwner()
-              .getGameLobbySystem()
-              .getGame()
-              .getGameData()
-              .getSelectedPlayerKits()
-              .containsKey(p)) {
+          .getGameLobbySystem()
+          .getGame()
+          .getGameData()
+          .getSelectedPlayerKits()
+          .containsKey(p)) {
         this.getOwner()
-                .getGameLobbySystem()
-                .getGame()
-                .getGameData()
-                .getSelectedPlayerKits()
-                .put(p, selected);
+            .getGameLobbySystem()
+            .getGame()
+            .getGameData()
+            .getSelectedPlayerKits()
+            .put(p, selected);
         this.getOwner().getGameLobbySystem().getLobbyBoard().pushBoard(p);
       } else {
         this.getOwner()
-                .getGameLobbySystem()
-                .getGame()
-                .getGameData()
-                .getSelectedPlayerKits()
-                .remove(p);
+            .getGameLobbySystem()
+            .getGame()
+            .getGameData()
+            .getSelectedPlayerKits()
+            .remove(p);
         this.getOwner()
-                .getGameLobbySystem()
-                .getGame()
-                .getGameData()
-                .getSelectedPlayerKits()
-                .put(p, selected);
+            .getGameLobbySystem()
+            .getGame()
+            .getGameData()
+            .getSelectedPlayerKits()
+            .put(p, selected);
         this.getOwner().getGameLobbySystem().getLobbyBoard().pushBoard(p);
       }
 
       p.closeInventory();
       p.sendMessage(
-              ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + "Selected Kit: " + selected.getKitName());
+          ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + "Selected Kit: " + selected.getKitName());
     }
   }
 
@@ -75,7 +73,7 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
 
     Arena votedFor = null;
     for (Arena a :
-            this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameArenas()) {
+        this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameArenas()) {
       if (currentItem.getItemMeta().getDisplayName().equals(a.getArenaName())) {
         votedFor = a;
       }
@@ -84,28 +82,28 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
     if (votedFor != null) {
       if (this.voted.containsKey(p)) {
         this.getOwner()
-                .getGameLobbySystem()
-                .getArenaVote()
-                .put(votedFor, this.getOwner().getGameLobbySystem().getArenaVote().get(votedFor) - 1);
+            .getGameLobbySystem()
+            .getArenaVote()
+            .put(votedFor, this.getOwner().getGameLobbySystem().getArenaVote().get(votedFor) - 1);
         this.voted.remove(p);
       }
       if (!this.getOwner().getGameLobbySystem().getArenaVote().containsKey(votedFor)) {
         this.getOwner().getGameLobbySystem().getArenaVote().put(votedFor, 0);
       }
       this.getOwner()
-              .getGameLobbySystem()
-              .getArenaVote()
-              .put(votedFor, this.getOwner().getGameLobbySystem().getArenaVote().get(votedFor) + 1);
+          .getGameLobbySystem()
+          .getArenaVote()
+          .put(votedFor, this.getOwner().getGameLobbySystem().getArenaVote().get(votedFor) + 1);
       this.voted.put(p, votedFor);
       p.closeInventory();
       p.sendMessage(
-              ChatColor.BLUE
-                      + "Lobby> "
-                      + ChatColor.GRAY
-                      + "Voted for: "
-                      + votedFor.getArenaName()
-                      + " by: "
-                      + votedFor.getArenaAuthor());
+          ChatColor.BLUE
+              + "Lobby> "
+              + ChatColor.GRAY
+              + "Voted for: "
+              + votedFor.getArenaName()
+              + " by: "
+              + votedFor.getArenaAuthor());
     }
   }
 
@@ -115,12 +113,12 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
       InventoryClickEvent e = (InventoryClickEvent) o;
       e.setCancelled(true);
       if (e.getInventory().getName().equals("Kit Selection")
-              && e.getCurrentItem() != null
-              && e.getCurrentItem().getType() != Material.AIR) {
+          && e.getCurrentItem() != null
+          && e.getCurrentItem().getType() != Material.AIR) {
         processKitSelection((Player) e.getWhoClicked(), e.getCurrentItem());
       } else if (e.getInventory().getName().equals("Arena Vote")
-              && e.getCurrentItem() != null
-              && e.getCurrentItem().getType() != Material.AIR) {
+          && e.getCurrentItem() != null
+          && e.getCurrentItem().getType() != Material.AIR) {
         processArenaSelection((Player) e.getWhoClicked(), e.getCurrentItem());
       }
     }

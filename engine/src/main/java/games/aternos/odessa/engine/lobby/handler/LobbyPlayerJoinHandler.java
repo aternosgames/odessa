@@ -8,18 +8,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class LobbyPlayerJoinHandler extends LobbyControllerOwned {
-    public LobbyPlayerJoinHandler(LobbyController owner) {
-        super(owner);
-        PlayerJoinEventHook.hooks.add(new PlayerJoinHandler());
-    }
+  public LobbyPlayerJoinHandler(LobbyController owner) {
+    super(owner);
+    PlayerJoinEventHook.hooks.add(new PlayerJoinHandler());
+  }
 
-    public class PlayerJoinHandler extends Hook {
-        @Override
-        public void run(Object o) {
-            PlayerJoinEvent event = (PlayerJoinEvent) o;
-            event.setJoinMessage(
-                    ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
-            getOwner().playerJoin(event.getPlayer());
-        }
+  public class PlayerJoinHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      PlayerJoinEvent event = (PlayerJoinEvent) o;
+      event.setJoinMessage(
+          ChatColor.BLUE + "Lobby> " + ChatColor.GRAY + " +" + event.getPlayer().getName());
+      getOwner().playerJoin(event.getPlayer());
     }
+  }
 }

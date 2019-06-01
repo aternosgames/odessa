@@ -14,7 +14,7 @@ public abstract class GameData {
 
   private final List<Player> players;
 
-    private final List<Player> spectators;
+  private final List<Player> spectators;
 
   private final HashMap<Player, Kit> selectedPlayerKits;
 
@@ -26,22 +26,22 @@ public abstract class GameData {
     this.players = new ArrayList<>();
     this.selectedPlayerKits = new HashMap<>();
     this.gameTeams = new ArrayList<>();
-      this.spectators = new ArrayList<>();
+    this.spectators = new ArrayList<>();
   }
 
-    public GamePlayerType getGamePlayerType(Player player) {
-        for (Player p : this.players) {
-            if (player.equals(p)) {
-                return GamePlayerType.PLAYER;
-            }
-        }
-        for (Player p : this.spectators) {
-            if (player.equals(p)) {
-                return GamePlayerType.SPECTATOR;
-            }
-        }
-        return null;
+  public GamePlayerType getGamePlayerType(Player player) {
+    for (Player p : this.players) {
+      if (player.equals(p)) {
+        return GamePlayerType.PLAYER;
+      }
     }
+    for (Player p : this.spectators) {
+      if (player.equals(p)) {
+        return GamePlayerType.SPECTATOR;
+      }
+    }
+    return null;
+  }
 
   public HashMap<Player, Kit> getSelectedPlayerKits() {
     return selectedPlayerKits;
@@ -63,15 +63,15 @@ public abstract class GameData {
     this.players.add(player);
   }
 
-    public List<Player> getSpectators() {
-        return spectators;
-    }
+  public List<Player> getSpectators() {
+    return spectators;
+  }
 
-    public Arena getGameArena() {
+  public Arena getGameArena() {
     return this.gameArena;
   }
 
-    public void setGameArena(Arena a) {
-        this.gameArena = a;
-    }
+  public void setGameArena(Arena a) {
+    this.gameArena = a;
+  }
 }

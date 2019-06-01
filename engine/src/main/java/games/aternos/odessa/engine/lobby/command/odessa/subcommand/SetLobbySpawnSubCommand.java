@@ -6,20 +6,20 @@ import org.bukkit.entity.Player;
 
 public class SetLobbySpawnSubCommand extends PlayerSubCommand {
 
-    private final GameLobbySystem gameLobbySystem;
+  private final GameLobbySystem gameLobbySystem;
 
-    public SetLobbySpawnSubCommand(GameLobbySystem gameLobbySystem) {
-        super("setlobby");
-        this.gameLobbySystem = gameLobbySystem;
+  public SetLobbySpawnSubCommand(GameLobbySystem gameLobbySystem) {
+    super("setlobby");
+    this.gameLobbySystem = gameLobbySystem;
+  }
+
+  @Override
+  public void run(String[] args, Player player) {
+    if (!this.gameLobbySystem.isActive()) {
+      return;
     }
 
-    @Override
-    public void run(String[] args, Player player) {
-        if (!this.gameLobbySystem.isActive()) {
-            return;
-        }
-
-        this.gameLobbySystem.getLobbyIoConfiguration().setLobbySpawn(player.getLocation());
-        player.sendMessage("Odessa: Set Lobby Spawn");
-    }
+    this.gameLobbySystem.getLobbyIoConfiguration().setLobbySpawn(player.getLocation());
+    player.sendMessage("Odessa: Set Lobby Spawn");
+  }
 }

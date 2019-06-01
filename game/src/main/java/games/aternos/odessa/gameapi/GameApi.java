@@ -7,9 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
 
-/**
- * Handles the loading and execution of Odessa Games.
- */
+/** Handles the loading and execution of Odessa Games. */
 public class GameApi extends JavaPlugin {
 
   private static GameApi gameApi;

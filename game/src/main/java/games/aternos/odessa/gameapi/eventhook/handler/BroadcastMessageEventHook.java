@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BroadcastMessageEventHook implements Listener {
-    public static final List<Hook> hooks = new ArrayList<>();
+  public static final List<Hook> hooks = new ArrayList<>();
 
-    @EventHandler
-    public void onEvent(BroadcastMessageEvent event) {
-        for (Hook hook : hooks) {
-            hook.run(event);
-        }
+  @EventHandler
+  public void onEvent(BroadcastMessageEvent event) {
+    for (Hook hook : hooks) {
+      hook.run(event);
     }
+  }
 }

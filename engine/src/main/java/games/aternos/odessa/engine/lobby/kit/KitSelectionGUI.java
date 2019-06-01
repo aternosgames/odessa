@@ -14,9 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-/**
- * Handles the Kit Selection GUI
- */
+/** Handles the Kit Selection GUI */
 public class KitSelectionGUI extends LobbyControllerOwned implements GUI {
   public KitSelectionGUI(LobbyController lobbyController) {
     super(lobbyController);
@@ -30,10 +28,10 @@ public class KitSelectionGUI extends LobbyControllerOwned implements GUI {
   public void openGUI(@NotNull Player p) {
     Inventory selection = Bukkit.createInventory(null, 9, "Kit Selection");
     selection.clear();
-      List<Kit> kits =
-              this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameKits();
-      Kit currentKit =
-              this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
+    List<Kit> kits =
+        this.getOwner().getGameLobbySystem().getGame().getGameConfiguration().getGameKits();
+    Kit currentKit =
+        this.getOwner().getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().get(p);
 
     if (currentKit == null) {
       currentKit = kits.get(0);

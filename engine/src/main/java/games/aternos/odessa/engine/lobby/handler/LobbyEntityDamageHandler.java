@@ -10,17 +10,17 @@ import org.bukkit.event.entity.EntityDamageEvent;
 public class LobbyEntityDamageHandler extends LobbyControllerOwned {
   public LobbyEntityDamageHandler(LobbyController owner) {
     super(owner);
-      EntityDamageEventHook.hooks.add(new EntityDamageHandler());
+    EntityDamageEventHook.hooks.add(new EntityDamageHandler());
   }
 
-    private class EntityDamageHandler extends Hook {
-        @Override
-        public void run(Object o) {
-            Debug.$("rannnnn");
-            if (!getOwner().getGameLobbySystem().isActive()) {
-                return;
-            }
-            ((EntityDamageEvent) o).setCancelled(true);
-        }
+  private class EntityDamageHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      Debug.$("rannnnn");
+      if (!getOwner().getGameLobbySystem().isActive()) {
+        return;
+      }
+      ((EntityDamageEvent) o).setCancelled(true);
+    }
   }
 }

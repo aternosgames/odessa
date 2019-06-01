@@ -13,36 +13,34 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-/**
- * Handles the Arena Vote GUI
- */
+/** Handles the Arena Vote GUI */
 public class ArenaVoteGUI implements GUI {
-    private final GameLobbySystem gameLobbySystem;
+  private final GameLobbySystem gameLobbySystem;
 
-    public ArenaVoteGUI(GameLobbySystem gameLobbySystem) {
-        this.gameLobbySystem = gameLobbySystem;
+  public ArenaVoteGUI(GameLobbySystem gameLobbySystem) {
+    this.gameLobbySystem = gameLobbySystem;
+  }
+
+  /**
+   * Opens the Arena Vote GUI
+   *
+   * @param p The Player
+   */
+  public void openGUI(@NotNull Player p) {
+
+    Inventory vote = Bukkit.createInventory(null, 9, "Arena Vote");
+
+    for (Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()) {
+      ItemStack arena = new ItemStack(Material.SIGN);
+      ItemMeta arenaMeta = arena.getItemMeta();
+      arenaMeta.setDisplayName(a.getArenaName());
+      int votes;
+      votes = gameLobbySystem.getArenaVote().getOrDefault(a, 0);
+      arenaMeta.setLore(Arrays.asList("Author: " + a.getArenaAuthor(), "Votes: " + votes));
+      arena.setItemMeta(arenaMeta);
+      vote.addItem(arena);
     }
 
-    /**
-     * Opens the Arena Vote GUI
-     *
-     * @param p The Player
-     */
-    public void openGUI(@NotNull Player p) {
-
-        Inventory vote = Bukkit.createInventory(null, 9, "Arena Vote");
-
-        for (Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()) {
-            ItemStack arena = new ItemStack(Material.SIGN);
-            ItemMeta arenaMeta = arena.getItemMeta();
-            arenaMeta.setDisplayName(a.getArenaName());
-            int votes;
-            votes = gameLobbySystem.getArenaVote().getOrDefault(a, 0);
-            arenaMeta.setLore(Arrays.asList("Author: " + a.getArenaAuthor(), "Votes: " + votes));
-            arena.setItemMeta(arenaMeta);
-            vote.addItem(arena);
-        }
-
-        p.openInventory(vote);
-    }
+    p.openInventory(vote);
+  }
 }
