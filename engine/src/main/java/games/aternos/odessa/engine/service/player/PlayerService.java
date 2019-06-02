@@ -21,16 +21,16 @@ public class PlayerService extends Service {
     super(gameApi);
   }
 
-    /**
-     * Cleans Player Gamemodes Player
-     *
-     * @param p Player
-     */
-    public void spectatorPlayer(Player p) {
-        this.clearPlayer(p);
-        this.healPlayer(p);
-        p.setGameMode(GameMode.ADVENTURE);
-    }
+  /**
+   * Cleans Player Gamemodes Player
+   *
+   * @param p Player
+   */
+  public void spectatorPlayer(Player p) {
+    this.clearPlayer(p);
+    this.healPlayer(p);
+    p.setGameMode(GameMode.ADVENTURE);
+  }
 
   public void clearPlayer(@NonNull Player p) {
     p.getInventory().setHelmet(null);
@@ -93,19 +93,34 @@ public class PlayerService extends Service {
     }
   }
 
-    public void teleportPlayerToRandomFromList(Player p, List<Player> players) {
+  public void teleportPlayerToRandomFromList(Player p, List<Player> players) {
 
-        Random random = new Random();
+    Random random = new Random();
 
-        Player teleportTo = players.get(random.nextInt(players.size()));
+    Player teleportTo = players.get(random.nextInt(players.size()));
 
-        p.teleport(teleportTo.getLocation());
+    p.teleport(teleportTo.getLocation());
+  }
+
+  public void giveKit(Player p, Kit k) {
+    for (ItemStack i : k.getKitItems()) {
+      p.getInventory().addItem(i);
+      Debug.$("Gave kit " + k.getKitName() + " to " + p.getName());
     }
+  }
 
-    public void giveKit(Player p, Kit k) {
-        for (ItemStack i : k.getKitItems()) {
-            p.getInventory().addItem(i);
-            Debug.$("Gave kit " + k.getKitName() + " to " + p.getName());
-        }
+  public void giveKitsToPlayers(
+          HashMap<Player, Kit> kits, boolean healPlayers, boolean cleanPlayers) {
+
+    for (Player p : kits.keySet()) {
+
+      if (healPlayers) {
+        this.healPlayer(p);
+      }
+      if (cleanPlayers) {
+        this.clearPlayer(p);
+      }
+      this.giveKit(p, kits.get(p));
     }
+  }
 }

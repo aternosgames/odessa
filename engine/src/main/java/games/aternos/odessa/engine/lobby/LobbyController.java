@@ -125,6 +125,8 @@ public class LobbyController {
         ChatColor.BOLD
             + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName()
             + " Lobby");
+      // select default kit
+      this.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().put(p, this.gameLobbySystem.getGame().getGameConfiguration().getGameKits().get(0));
   }
 
   /**

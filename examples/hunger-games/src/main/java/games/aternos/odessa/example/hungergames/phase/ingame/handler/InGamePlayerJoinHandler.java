@@ -33,6 +33,8 @@ public class InGamePlayerJoinHandler {
                             event.getPlayer(), gamePhase.getGame().getGameData().getPlayers());
 
             gamePhase.getPlayerService().giveKit(event.getPlayer(), gamePhase.hungerGamesSpectatorKit());
+
+            gamePhase.getInGameSidebar().pushBoard(event.getPlayer());
         }
     }
 }
