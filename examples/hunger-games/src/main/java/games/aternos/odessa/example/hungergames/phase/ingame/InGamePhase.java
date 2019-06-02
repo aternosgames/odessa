@@ -4,6 +4,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.engine.service.player.PlayerService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.example.hungergames.phase.endgame.EndGamePhase;
+import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerDeathHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerJoinHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.runnable.InGameRunnable;
 import games.aternos.odessa.gameapi.GameApi;
@@ -75,6 +76,7 @@ public class InGamePhase extends GamePhase {
 
   private void registerHooks() {
     new InGamePlayerJoinHandler(this);
+    new InGamePlayerDeathHandler(this);
   }
 
   public InGameSidebar getInGameSidebar() {

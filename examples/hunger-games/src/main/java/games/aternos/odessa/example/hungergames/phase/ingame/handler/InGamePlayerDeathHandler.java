@@ -2,6 +2,7 @@ package games.aternos.odessa.example.hungergames.phase.ingame.handler;
 
 import games.aternos.odessa.example.hungergames.phase.ingame.InGamePhase;
 import games.aternos.odessa.gameapi.eventhook.Hook;
+import games.aternos.odessa.gameapi.eventhook.handler.EntityDamageByEntityEventHook;
 import games.aternos.odessa.gameapi.eventhook.handler.EntityDamageEventHook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -19,6 +20,7 @@ public class InGamePlayerDeathHandler {
     public InGamePlayerDeathHandler(InGamePhase gamePhase) {
         this.gamePhase = gamePhase;
         EntityDamageEventHook.hooks.add(new EntityDamageHandler());
+        EntityDamageByEntityEventHook.hooks.add(new EntityDamageByEntityHandler());
         lastAttacker = new HashMap<>();
     }
 
