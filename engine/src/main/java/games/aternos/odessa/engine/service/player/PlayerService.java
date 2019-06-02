@@ -123,4 +123,20 @@ public class PlayerService extends Service {
       this.giveKit(p, kits.get(p));
     }
   }
+
+    public void dropItems(Player player, Location location, boolean clearPlayer) {
+        if (player.getInventory() != null) {
+            for (ItemStack i : player.getInventory().getContents()) {
+                if (i != null) {
+                    location.getWorld().dropItemNaturally(location, i);
+                }
+            }
+            for (ItemStack i : player.getInventory().getArmorContents()) {
+                location.getWorld().dropItemNaturally(location, i);
+            }
+        }
+        if (clearPlayer) {
+            this.clearPlayer(player);
+        }
+    }
 }
