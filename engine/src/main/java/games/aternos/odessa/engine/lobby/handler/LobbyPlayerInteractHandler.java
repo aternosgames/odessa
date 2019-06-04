@@ -9,13 +9,19 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
+
 public class LobbyPlayerInteractHandler extends LobbyControllerOwned {
   public LobbyPlayerInteractHandler(LobbyController owner) {
     super(owner);
-    PlayerInteractEventHook.hooks.add(new PlayerInteractHandler());
+    PlayerInteractEventHook.hooks.add(new PlayerInteractHandler("PlayerInteractHandler"));
   }
 
   public class PlayerInteractHandler extends Hook {
+    private PlayerInteractHandler(@Nonnull String hookID) {
+      super(hookID);
+    }
+
     @Override
     public void run(Object o) {
       PlayerInteractEvent e = (PlayerInteractEvent) o;

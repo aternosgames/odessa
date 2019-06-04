@@ -3,9 +3,13 @@ package games.aternos.odessa.gameapi.eventhook;
 import games.aternos.odessa.gameapi.Debug;
 import org.bukkit.ChatColor;
 
+import javax.annotation.Nonnull;
+
 public abstract class Hook {
 
-  public Hook() {
+    private String hookID;
+
+    public Hook(@Nonnull String hookID) {
     Debug.$(
         ChatColor.GREEN
             + "Hook Created: "
@@ -15,4 +19,9 @@ public abstract class Hook {
   }
 
   public abstract void run(Object o);
+
+    @Nonnull
+    public String getHookID() {
+        return hookID;
+    }
 }

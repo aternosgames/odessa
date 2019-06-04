@@ -12,16 +12,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 
-/** todo: simplify and clean */
+
 public class LobbyPlayerClickHandler extends LobbyControllerOwned {
 
   private final HashMap<Player, Arena> voted;
 
   public LobbyPlayerClickHandler(LobbyController owner) {
     super(owner);
-    InventoryClickEventHook.hooks.add(new PlayerClickHandler());
+    InventoryClickEventHook.hooks.add(new PlayerClickHandler("PlayerClickHandler"));
     voted = new HashMap<>();
   }
 
@@ -108,6 +109,10 @@ public class LobbyPlayerClickHandler extends LobbyControllerOwned {
   }
 
   private class PlayerClickHandler extends Hook {
+    private PlayerClickHandler(@Nonnull String hookID) {
+      super(hookID);
+    }
+
     @Override
     public void run(Object o) {
       InventoryClickEvent e = (InventoryClickEvent) o;

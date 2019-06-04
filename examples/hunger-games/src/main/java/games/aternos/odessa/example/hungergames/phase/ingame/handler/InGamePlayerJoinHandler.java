@@ -5,16 +5,22 @@ import games.aternos.odessa.gameapi.eventhook.Hook;
 import games.aternos.odessa.gameapi.eventhook.handler.PlayerJoinEventHook;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import javax.annotation.Nonnull;
+
 public class InGamePlayerJoinHandler {
 
     private final InGamePhase gamePhase;
 
     public InGamePlayerJoinHandler(InGamePhase gamePhase) {
         this.gamePhase = gamePhase;
-        PlayerJoinEventHook.hooks.add(new PlayerJoinHandler());
+        PlayerJoinEventHook.hooks.add(new PlayerJoinHandler("PlayerJoinHandler"));
     }
 
     public class PlayerJoinHandler extends Hook {
+
+        private PlayerJoinHandler(@Nonnull String hookID) {
+            super(hookID);
+        }
 
         @Override
         public void run(Object o) {

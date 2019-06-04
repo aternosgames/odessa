@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 public class InGamePlayerDeathHandler {
@@ -19,12 +20,16 @@ public class InGamePlayerDeathHandler {
 
     public InGamePlayerDeathHandler(InGamePhase gamePhase) {
         this.gamePhase = gamePhase;
-        EntityDamageEventHook.hooks.add(new EntityDamageHandler());
-        EntityDamageByEntityEventHook.hooks.add(new EntityDamageByEntityHandler());
+        EntityDamageEventHook.hooks.add(new EntityDamageHandler("EntityDamageHandler"));
+        EntityDamageByEntityEventHook.hooks.add(new EntityDamageByEntityHandler("EntityDamageByEntityHandler"));
         lastAttacker = new HashMap<>();
     }
 
     public class EntityDamageHandler extends Hook {
+        private EntityDamageHandler(@Nonnull String hookID) {
+            super(hookID);
+        }
+
         @Override
         public void run(Object o) {
             EntityDamageEvent event = (EntityDamageEvent) o;
@@ -62,6 +67,10 @@ public class InGamePlayerDeathHandler {
      * Allows kill crediting when applicable.
      */
     public class EntityDamageByEntityHandler extends Hook {
+
+        private EntityDamageByEntityHandler(@Nonnull String hookID) {
+            super(hookID);
+        }
 
         @Override
         public void run(Object o) {

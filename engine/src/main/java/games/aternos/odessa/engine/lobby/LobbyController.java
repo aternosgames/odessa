@@ -100,7 +100,7 @@ public class LobbyController {
     new LobbyWeatherChangeHandler(this);
   }
 
-  public void removeLobbyListeners() {
+  public void removeLobbyListeners() { // TODO: Remove by hookid not just first entry in list
     EntityDamageEventHook.hooks.remove(0);
     EntityDamageByEntityEventHook.hooks.remove(0);
     InventoryClickEventHook.hooks.remove(0);
@@ -125,8 +125,12 @@ public class LobbyController {
         ChatColor.BOLD
             + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName()
             + " Lobby");
-      // select default kit
-      this.getGameLobbySystem().getGame().getGameData().getSelectedPlayerKits().put(p, this.gameLobbySystem.getGame().getGameConfiguration().getGameKits().get(0));
+    // select default kit
+    this.getGameLobbySystem()
+            .getGame()
+            .getGameData()
+            .getSelectedPlayerKits()
+            .put(p, this.gameLobbySystem.getGame().getGameConfiguration().getGameKits().get(0));
   }
 
   /**
