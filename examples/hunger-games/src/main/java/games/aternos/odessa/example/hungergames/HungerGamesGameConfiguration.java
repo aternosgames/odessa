@@ -27,13 +27,8 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     this.setGameName("HungerGames");
     this.setMaxPlayers(16);
     this.setMinPlayers(2);
-    this.setGameKits(getKits());
+      this.setGameKits(getKits());
   }
-
-    private List<Kit> getKits() {
-        HungerGamesKit hungerGamesKit = new HungerGamesKit();
-        return hungerGamesKit.getKits();
-    }
 
     public static int getTimeGameMax() {
         return TIME_GAME_MAX;
@@ -46,4 +41,9 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     public static int getPlayerForceDeathmatch() {
         return PLAYER_FORCE_DEATHMATCH;
     }
+
+    private List<Kit> getKits() {
+        HungerGamesKit hungerGamesKit = new HungerGamesKit();
+        return hungerGamesKit.getKits();
+  }
 }

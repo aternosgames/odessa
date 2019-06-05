@@ -29,12 +29,12 @@ public class InGamePhase extends GamePhase {
 
   private InGameSidebar inGameSidebar;
 
-    private InGameState inGameState;
+  private InGameState inGameState;
 
-    /**
-     * The current GameTick
-     */
-    private int gameTick;
+  /**
+   * The current GameTick
+   */
+  private int gameTick;
 
   public InGamePhase(@NonNull GameLifecycleManager owner, Game game) {
     super(owner, game);
@@ -61,59 +61,61 @@ public class InGamePhase extends GamePhase {
         this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.registerHooks();
     this.inGameSidebar.pushBoard();
-      this.inGameState = InGameState.COUNTDOWN;
+    this.inGameState = InGameState.COUNTDOWN;
   }
 
-    @Override
-    public void hook() {
+  @Override
+  public void hook() {
 
-        if (this.getGame().getGameData().getPlayers().size() == 1) {
-            // player wins
-        }
-
-        if (this.getGame().getGameData().getPlayers().size() == 0) {
-            // oh no.
-        }
-
-        switch (this.inGameState) {
-            case COUNTDOWN:
-                if (this.gameTick >= 10) {
-                    // next phase
-                    Bukkit.broadcastMessage("Let the Games Begin!");
-                    this.inGameState = InGameState.NORMAL_PLAY;
-                } else {
-                    Bukkit.broadcastMessage(10 - this.gameTick + "");
-                    for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
-                        p.sendActionBar(ChatColor.GREEN + "Starting: " + (10 - this.gameTick));
-                    }
-                }
-                break;
-            case NORMAL_PLAY:
-                if (this.gameTick >= HungerGamesGameConfiguration.getTimeForceDeathmatch() || this.getGame().getGameData().getPlayers().size() <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
-                    // start deathmatch countdown
-                }
-                break;
-            case DEATHMATCH:
-                break;
-            default:
-                break;
-        }
-
-        if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
-            // end game
-        }
-
-        gameTick++;
+    if (this.getGame().getGameData().getPlayers().size() == 1) {
+      // player wins
     }
 
-    @Override
-    public void endPhase() {
-        this.setActive(false);
-        this.getGamePhaseRunnableTask().cancel();
+    if (this.getGame().getGameData().getPlayers().size() == 0) {
+      // oh no.
     }
 
-    public int getGameTick() {
-        return gameTick;
+    switch (this.inGameState) {
+      case COUNTDOWN:
+        if (this.gameTick >= 10) {
+          // next phase
+          Bukkit.broadcastMessage("Let the Games Begin!");
+          this.inGameState = InGameState.NORMAL_PLAY;
+        } else {
+          Bukkit.broadcastMessage(10 - this.gameTick + "");
+          for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
+            p.sendActionBar(ChatColor.GREEN + "Starting: " + (10 - this.gameTick));
+          }
+        }
+        break;
+      case NORMAL_PLAY:
+        if (this.gameTick >= HungerGamesGameConfiguration.getTimeForceDeathmatch()
+                || this.getGame().getGameData().getPlayers().size()
+                <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
+          // start deathmatch countdown
+        }
+        break;
+      case DEATHMATCH:
+        break;
+      default:
+        break;
+    }
+
+    if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
+      // end game
+    }
+
+    gameTick++;
+  }
+
+  @Override
+  public void endPhase() {
+    this.setActive(false);
+    this.getGamePhaseRunnableTask().cancel();
+  }
+
+  public int getGameTick() {
+    return gameTick;
   }
 
   public PlayerService getPlayerService() {
@@ -131,20 +133,20 @@ public class InGamePhase extends GamePhase {
   private void registerHooks() {
     new InGamePlayerJoinHandler(this);
     new InGamePlayerDeathHandler(this);
-      new InGamePlayerMoveHandler(this);
+    new InGamePlayerMoveHandler(this);
   }
 
-    public InGameSidebar getInGameSidebar() {
-        return inGameSidebar;
-    }
+  public InGameSidebar getInGameSidebar() {
+    return inGameSidebar;
+  }
 
-    public InGameState getInGameState() {
-        return inGameState;
-    }
+  public InGameState getInGameState() {
+    return inGameState;
+  }
 
-    public enum InGameState {
-        COUNTDOWN,
-        NORMAL_PLAY,
-        DEATHMATCH
-    }
+  public enum InGameState {
+    COUNTDOWN,
+    NORMAL_PLAY,
+    DEATHMATCH
+  }
 }

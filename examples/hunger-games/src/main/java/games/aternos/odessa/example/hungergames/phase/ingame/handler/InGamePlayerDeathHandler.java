@@ -21,7 +21,8 @@ public class InGamePlayerDeathHandler {
     public InGamePlayerDeathHandler(InGamePhase gamePhase) {
         this.gamePhase = gamePhase;
         EntityDamageEventHook.hooks.add(new EntityDamageHandler("EntityDamageHandler"));
-        EntityDamageByEntityEventHook.hooks.add(new EntityDamageByEntityHandler("EntityDamageByEntityHandler"));
+        EntityDamageByEntityEventHook.hooks.add(
+                new EntityDamageByEntityHandler("EntityDamageByEntityHandler"));
         lastAttacker = new HashMap<>();
     }
 
@@ -45,19 +46,17 @@ public class InGamePlayerDeathHandler {
                             .getPlayerService()
                             .teleportPlayerToRandomFromList(
                                     player, gamePhase.getGame().getGameData().getPlayers());
-                    gamePhase
-                            .getPlayerService()
-                            .giveKit(player, gamePhase.hungerGamesSpectatorKit());
+                    gamePhase.getPlayerService().giveKit(player, gamePhase.hungerGamesSpectatorKit());
 
                     gamePhase.getInGameSidebar().pushBoard(player);
 
                     if (lastAttacker.get(player) != null) {
                         // credit where credit is due
-                        Bukkit.broadcastMessage(player.getName() + " Was Killed By: " + lastAttacker.get(player).getName());
+                        Bukkit.broadcastMessage(
+                                player.getName() + " Was Killed By: " + lastAttacker.get(player).getName());
                     } else {
                         Bukkit.broadcastMessage(player.getName() + " Was Killed.");
                     }
-
                 }
             }
         }
@@ -78,7 +77,10 @@ public class InGamePlayerDeathHandler {
             if (gamePhase.getInGameState() == InGamePhase.InGameState.COUNTDOWN) {
                 event.setCancelled(true);
             }
-            if (event.getDamager() != null && event.getEntity() != null && event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+            if (event.getDamager() != null
+                    && event.getEntity() != null
+                    && event.getDamager() instanceof Player
+                    && event.getEntity() instanceof Player) {
                 Player attacked = (Player) event.getEntity();
                 Player attacker = (Player) event.getEntity();
                 lastAttacker.put(attacked, attacker);

@@ -11,7 +11,8 @@ import javax.annotation.Nonnull;
 public class LobbyEntityDamageEntityHandler extends LobbyControllerOwned {
   public LobbyEntityDamageEntityHandler(LobbyController owner) {
     super(owner);
-      EntityDamageByEntityEventHook.hooks.add(new EntityDamageEntityHandler("EntityDamageEntityHandler"));
+      EntityDamageByEntityEventHook.hooks.add(
+              new EntityDamageEntityHandler("EntityDamageEntityHandler"));
   }
 
   private class EntityDamageEntityHandler extends Hook {

@@ -9,27 +9,27 @@ import javax.annotation.Nonnull;
 
 public class InGamePlayerMoveHandler {
 
-    private final InGamePhase inGamePhase;
+  private final InGamePhase inGamePhase;
 
-    public InGamePlayerMoveHandler(InGamePhase inGamePhase) {
-        this.inGamePhase = inGamePhase;
-        PlayerMoveEventHook.hooks.add(new PlayerMoveHandler("InGamePlayerMoveHandler"));
+  public InGamePlayerMoveHandler(InGamePhase inGamePhase) {
+    this.inGamePhase = inGamePhase;
+    PlayerMoveEventHook.hooks.add(new PlayerMoveHandler("InGamePlayerMoveHandler"));
+  }
+
+  public class PlayerMoveHandler extends Hook {
+
+    public PlayerMoveHandler(@Nonnull String hookID) {
+      super(hookID);
     }
 
-    public class PlayerMoveHandler extends Hook {
+    @Override
+    public void run(Object o) {
+      PlayerMoveEvent playerMoveEvent = (PlayerMoveEvent) o;
 
-        public PlayerMoveHandler(@Nonnull String hookID) {
-            super(hookID);
-        }
+      if (inGamePhase.getInGameState() == InGamePhase.InGameState.COUNTDOWN) {
 
-        @Override
-        public void run(Object o) {
-            PlayerMoveEvent playerMoveEvent = (PlayerMoveEvent) o;
-
-            if (inGamePhase.getInGameState() == InGamePhase.InGameState.COUNTDOWN) {
-
-                playerMoveEvent.getPlayer().teleport(playerMoveEvent.getFrom());
-            }
-        }
+        playerMoveEvent.getPlayer().teleport(playerMoveEvent.getFrom());
+      }
     }
+  }
 }
