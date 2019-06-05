@@ -31,7 +31,8 @@ public class InGamePhase extends GamePhase {
 
   private InGameState inGameState;
 
-  /**
+
+    /**
    * The current GameTick
    */
   private int gameTick;
@@ -64,16 +65,16 @@ public class InGamePhase extends GamePhase {
     this.inGameState = InGameState.COUNTDOWN;
   }
 
+    private int deathmatchCountDownStartTick;
+
   @Override
   public void hook() {
 
-    if (this.getGame().getGameData().getPlayers().size() == 1) {
-      // player wins
-    }
+      //  if (this.getGame().getGameData().getPlayers().size() <= 1) {
+      //   this.getOwner().nextPhase(); TODO: reenable this blocked out part -- for testing :)
+      //   // player wins or oh shit whys there no players?
+      // }
 
-    if (this.getGame().getGameData().getPlayers().size() == 0) {
-      // oh no.
-    }
 
     switch (this.inGameState) {
       case COUNTDOWN:
@@ -93,8 +94,24 @@ public class InGamePhase extends GamePhase {
                 || this.getGame().getGameData().getPlayers().size()
                 <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
           // start deathmatch countdown
+            this.deathmatchCountDownStartTick = this.gameTick;
+            Bukkit.broadcastMessage("The deathmatch will begin in 30 seconds!");
+            this.inGameState = InGameState.PRE_DEATHMATCH;
         }
         break;
+        case PRE_DEATHMATCH:
+            if (this.gameTick - this.deathmatchCountDownStartTick >= 20) {
+                String message = "Deathmatch: " + (30 - (this.gameTick - this.deathmatchCountDownStartTick));
+                Bukkit.broadcastMessage(message);
+                for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
+                    p.sendActionBar(message);
+                }
+            }
+            if (30 - (this.gameTick - this.deathmatchCountDownStartTick) <= 1) {
+                // START DM
+                this.inGameState = InGameState.DEATHMATCH;
+            }
+            break;
       case DEATHMATCH:
         break;
       default:
@@ -147,6 +164,7 @@ public class InGamePhase extends GamePhase {
   public enum InGameState {
     COUNTDOWN,
     NORMAL_PLAY,
+      PRE_DEATHMATCH, // deathmatch countdown started
     DEATHMATCH
   }
 }
