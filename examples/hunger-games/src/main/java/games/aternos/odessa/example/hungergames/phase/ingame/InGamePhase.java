@@ -11,6 +11,7 @@ import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlaye
 import games.aternos.odessa.example.hungergames.phase.ingame.runnable.InGameRunnable;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
+import games.aternos.odessa.gameapi.game.GameEndReason;
 import games.aternos.odessa.gameapi.game.GameLifecycleManager;
 import games.aternos.odessa.gameapi.game.GamePhase;
 import games.aternos.odessa.gameapi.game.element.Kit;
@@ -69,10 +70,15 @@ public class InGamePhase extends GamePhase {
   @Override
   public void hook() {
       this.inGameSidebar.pushBoard();
-      //  if (this.getGame().getGameData().getPlayers().size() <= 1) {
-      //   this.getOwner().nextPhase(); TODO: reenable this blocked out part -- for testing :)
-      //   // player wins or oh shit whys there no players?
-    // }
+      if (this.getGame().getGameData().getPlayers().size() <= 1) {
+          if (this.getGame().getGameData().getPlayers().size() == 1) {
+              this.getGame().getGameData().setGameEndReason(GameEndReason.PLAYER_WON);
+          } else {
+              this.getGame().getGameData().setGameEndReason(GameEndReason.ERROR);
+          }
+          this.getOwner().nextPhase();
+          // player wins or oh shit whys there no players?
+      }
 
     switch (this.inGameState) {
       case COUNTDOWN:
@@ -123,6 +129,8 @@ public class InGamePhase extends GamePhase {
 
     if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
       // end game
+        this.getGame().getGameData().setGameEndReason(GameEndReason.TIME_LIMIT);
+        this.getOwner().nextPhase();
     }
 
     gameTick++;

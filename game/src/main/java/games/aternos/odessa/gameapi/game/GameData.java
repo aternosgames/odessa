@@ -22,6 +22,8 @@ public abstract class GameData {
 
   private Arena gameArena;
 
+    private GameEndReason gameEndReason;
+
   protected GameData() {
     this.players = new ArrayList<>();
     this.selectedPlayerKits = new HashMap<>();
@@ -86,4 +88,12 @@ public abstract class GameData {
     all.addAll(this.spectators);
     return all;
   }
+
+    public GameEndReason getGameEndReason() {
+        return gameEndReason;
+    }
+
+    public void setGameEndReason(GameEndReason gameEndReason) {
+        this.gameEndReason = gameEndReason;
+    }
 }
