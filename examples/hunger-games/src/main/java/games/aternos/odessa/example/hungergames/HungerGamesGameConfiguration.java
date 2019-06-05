@@ -11,17 +11,17 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
     /**
      * Maximum amount a game can run 30 minutes
      */
-    private static final Integer TIME_GAME_MAX = 1800;
+    private static final int TIME_GAME_MAX = 1800;
 
     /**
      * Time until deathmatch = 15 minutes
      */
-    private static final Integer TIME_FORCE_DEATHMATCH = 900;
+    private static final int TIME_FORCE_DEATHMATCH = 900;
 
     /**
      * The amount of players remaining until a deathmatch is started
      */
-    private static final Integer PLAYER_FORCE_DEATHMATCH = 4;
+    private static final int PLAYER_FORCE_DEATHMATCH = 4;
 
   public HungerGamesGameConfiguration() {
     this.setGameName("HungerGames");
@@ -35,15 +35,15 @@ public class HungerGamesGameConfiguration extends GameConfiguration {
         return hungerGamesKit.getKits();
     }
 
-    public static Integer getTimeGameMax() {
+    public static int getTimeGameMax() {
         return TIME_GAME_MAX;
     }
 
-    public static Integer getTimeForceDeathmatch() {
+    public static int getTimeForceDeathmatch() {
         return TIME_FORCE_DEATHMATCH;
     }
 
-    public static Integer getPlayerForceDeathmatch() {
+    public static int getPlayerForceDeathmatch() {
         return PLAYER_FORCE_DEATHMATCH;
     }
 }

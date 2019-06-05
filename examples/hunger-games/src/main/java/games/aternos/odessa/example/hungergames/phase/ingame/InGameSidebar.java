@@ -76,9 +76,6 @@ public class InGameSidebar {
     items.add("            ");
     items.add(ChatColor.YELLOW + "Remaining Players:");
     items.add(ChatColor.GRAY + Integer.toString(this.gameData.getPlayers().size()));
-    items.add("               ");
-    items.add(ChatColor.YELLOW + "Remeaining Time:");
-    items.add(ChatColor.GRAY + "Placeholder");
     items.add("                ");
     items.add(ChatColor.YELLOW + "Deathmatch:");
     items.add(ChatColor.GRAY + "PlaceHolderDeadPL or TIME");

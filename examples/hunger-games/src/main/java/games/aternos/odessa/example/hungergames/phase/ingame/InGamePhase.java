@@ -3,6 +3,7 @@ package games.aternos.odessa.example.hungergames.phase.ingame;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import games.aternos.odessa.engine.service.player.PlayerService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
+import games.aternos.odessa.example.hungergames.HungerGamesGameConfiguration;
 import games.aternos.odessa.example.hungergames.phase.endgame.EndGamePhase;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerDeathHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerJoinHandler;
@@ -25,6 +26,13 @@ public class InGamePhase extends GamePhase {
   private PlayerService playerService;
 
   private InGameSidebar inGameSidebar;
+
+    private InGameState inGameState;
+
+    /**
+     * The current GameTick
+     */
+    private int gameTick;
 
   public InGamePhase(@NonNull GameLifecycleManager owner, Game game) {
     super(owner, game);
@@ -51,16 +59,44 @@ public class InGamePhase extends GamePhase {
         this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.registerHooks();
     this.inGameSidebar.pushBoard();
+      this.inGameState = InGameState.NORMAL_PLAY;
   }
 
-  @Override
-  public void endPhase() {
-    this.setActive(false);
-    this.getGamePhaseRunnableTask().cancel();
-  }
+    @Override
+    public void hook() {
 
-  @Override
-  public void hook() {}
+        if (this.getGame().getGameData().getPlayers().size() == 1) {
+            // player wins
+        }
+
+        if (this.getGame().getGameData().getPlayers().size() == 0) {
+            // oh no.
+        }
+
+        if (this.inGameState == InGameState.NORMAL_PLAY) {
+
+            if (this.gameTick >= HungerGamesGameConfiguration.getTimeForceDeathmatch() || this.getGame().getGameData().getPlayers().size() <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
+                // start deathmatch countdown
+            }
+
+        }
+
+        if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
+            // end game
+        }
+
+        gameTick++;
+    }
+
+    @Override
+    public void endPhase() {
+        this.setActive(false);
+        this.getGamePhaseRunnableTask().cancel();
+    }
+
+    public int getGameTick() {
+        return gameTick;
+  }
 
   public PlayerService getPlayerService() {
     return playerService;
@@ -79,7 +115,16 @@ public class InGamePhase extends GamePhase {
     new InGamePlayerDeathHandler(this);
   }
 
-  public InGameSidebar getInGameSidebar() {
-    return inGameSidebar;
-  }
+    public InGameSidebar getInGameSidebar() {
+        return inGameSidebar;
+    }
+
+    public InGameState getInGameState() {
+        return inGameState;
+    }
+
+    private enum InGameState {
+        NORMAL_PLAY,
+        DEATHMATCH
+    }
 }
