@@ -5,7 +5,6 @@ import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.Debug;
 import games.aternos.odessa.gameapi.game.GameConfiguration;
 import games.aternos.odessa.gameapi.game.GameData;
-import games.aternos.odessa.gameapi.game.GamePhase;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -21,8 +20,11 @@ public class InGameSidebar {
 
   private final GameData gameData;
 
-  public InGameSidebar(SidebarService sidebarService, GamePhase gamePhase) {
+  private final InGamePhase inGamePhase;
+
+  public InGameSidebar(SidebarService sidebarService, InGamePhase gamePhase) {
     this.sidebarService = sidebarService;
+    this.inGamePhase = gamePhase;
     this.gameData = gamePhase.getGame().getGameData();
     this.gameConfiguration = gamePhase.getGame().getGameConfiguration();
   }
@@ -78,7 +80,7 @@ public class InGameSidebar {
     items.add(ChatColor.GRAY + Integer.toString(this.gameData.getPlayers().size()));
     items.add("                ");
     items.add(ChatColor.YELLOW + "Deathmatch:");
-    items.add(ChatColor.GRAY + "PlaceHolderDeadPL or TIME");
+    items.add(ChatColor.GRAY + this.inGamePhase.timeUntilDeathmatch());
     items.add("                ");
     return items;
   }

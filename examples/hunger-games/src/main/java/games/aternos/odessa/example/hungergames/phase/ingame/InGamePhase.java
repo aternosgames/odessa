@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 public class InGamePhase extends GamePhase {
 
@@ -31,15 +32,15 @@ public class InGamePhase extends GamePhase {
 
   private InGameState inGameState;
 
-
     /**
-   * The current GameTick
-   */
+     * The current GameTick
+     */
   private int gameTick;
+    private int deathmatchCountDownStartTick;
 
-  public InGamePhase(@NonNull GameLifecycleManager owner, Game game) {
-    super(owner, game);
-    this.setNextPhase(new EndGamePhase(this.getOwner(), this.getGame()));
+    public InGamePhase(@NonNull GameLifecycleManager owner, Game game) {
+        super(owner, game);
+        this.setNextPhase(new EndGamePhase(this.getOwner(), this.getGame()));
   }
 
   @Override
@@ -61,20 +62,17 @@ public class InGamePhase extends GamePhase {
     this.setGamePhaseRunnableTask(
         this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.registerHooks();
-    this.inGameSidebar.pushBoard();
     this.inGameState = InGameState.COUNTDOWN;
+      this.inGameSidebar.pushBoard(); // make sure at the end after setting ingamestate or else npe
   }
-
-    private int deathmatchCountDownStartTick;
 
   @Override
   public void hook() {
-
+      this.inGameSidebar.pushBoard();
       //  if (this.getGame().getGameData().getPlayers().size() <= 1) {
       //   this.getOwner().nextPhase(); TODO: reenable this blocked out part -- for testing :)
       //   // player wins or oh shit whys there no players?
-      // }
-
+    // }
 
     switch (this.inGameState) {
       case COUNTDOWN:
@@ -98,11 +96,13 @@ public class InGamePhase extends GamePhase {
             Bukkit.broadcastMessage("The deathmatch will begin in 30 seconds!");
             this.inGameState = InGameState.PRE_DEATHMATCH;
         }
-        break;
+          break;
         case PRE_DEATHMATCH:
             if (this.gameTick - this.deathmatchCountDownStartTick >= 20) {
-                String message = "Deathmatch: " + (30 - (this.gameTick - this.deathmatchCountDownStartTick));
+                String message =
+                        "Deathmatch: " + (30 - (this.gameTick - this.deathmatchCountDownStartTick));
                 Bukkit.broadcastMessage(message);
+
                 for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
                     p.sendActionBar(message);
                 }
@@ -157,8 +157,29 @@ public class InGamePhase extends GamePhase {
     return inGameSidebar;
   }
 
-  public InGameState getInGameState() {
-    return inGameState;
+    public InGameState getInGameState() {
+        return inGameState;
+    }
+
+    public String timeUntilDeathmatch() {
+
+        switch (this.inGameState) {
+            case NORMAL_PLAY:
+                return Math.round(
+                        TimeUnit.SECONDS.toMinutes(
+                                HungerGamesGameConfiguration.getTimeForceDeathmatch() - this.gameTick))
+                        + "min";
+            case PRE_DEATHMATCH:
+                return 30 - (this.gameTick - deathmatchCountDownStartTick) + "sec";
+            case DEATHMATCH:
+                return "Now";
+            case COUNTDOWN:
+                return Math.round(
+                        TimeUnit.SECONDS.toMinutes(HungerGamesGameConfiguration.getTimeForceDeathmatch()))
+                        + "min";
+            default:
+                return "Error"; // graceful
+    }
   }
 
   public enum InGameState {
