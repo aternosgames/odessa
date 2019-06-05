@@ -40,6 +40,12 @@ public class PlayerService extends Service {
     p.getInventory().clear();
   }
 
+    public void healPlayers(List<Player> players) {
+        for (Player p : players) {
+            healPlayer(p);
+        }
+    }
+
   public void healPlayer(@NonNull Player p) {
     p.setHealth(20);
     p.setFoodLevel(20);

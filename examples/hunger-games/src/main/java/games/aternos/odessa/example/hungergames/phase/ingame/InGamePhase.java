@@ -109,6 +109,9 @@ public class InGamePhase extends GamePhase {
             }
             if (30 - (this.gameTick - this.deathmatchCountDownStartTick) <= 1) {
                 // START DM
+                this.playerService.dispersePlayers(this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
+                this.playerService.healPlayers(this.getGame().getGameData().getPlayers());
+                Bukkit.broadcastMessage("Good luck!");
                 this.inGameState = InGameState.DEATHMATCH;
             }
             break;
