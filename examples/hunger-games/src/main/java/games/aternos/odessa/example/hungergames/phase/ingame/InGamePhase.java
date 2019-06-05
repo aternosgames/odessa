@@ -7,6 +7,7 @@ import games.aternos.odessa.example.hungergames.HungerGamesGameConfiguration;
 import games.aternos.odessa.example.hungergames.phase.endgame.EndGamePhase;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerDeathHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerJoinHandler;
+import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerLeaveHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerMoveHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.runnable.InGameRunnable;
 import games.aternos.odessa.gameapi.GameApi;
@@ -121,9 +122,8 @@ public class InGamePhase extends GamePhase {
                 this.inGameState = InGameState.DEATHMATCH;
             }
             break;
-      case DEATHMATCH:
-        break;
-      default:
+        case DEATHMATCH: // merged w/ default branch 4 now
+        default:
         break;
     }
 
@@ -162,6 +162,7 @@ public class InGamePhase extends GamePhase {
     new InGamePlayerJoinHandler(this);
     new InGamePlayerDeathHandler(this);
     new InGamePlayerMoveHandler(this);
+      new InGamePlayerLeaveHandler(this);
   }
 
   public InGameSidebar getInGameSidebar() {
