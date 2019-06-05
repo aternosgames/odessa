@@ -98,6 +98,7 @@ public class LobbyController {
     new LobbyPlayerJoinHandler(this);
     new LobbyPlayerLeaveHandler(this);
     new LobbyWeatherChangeHandler(this);
+    new LobbyBlockBreakEventHandler(this);
   }
 
   public void removeLobbyListeners() { // TODO: Remove by hookid not just first entry in list
@@ -110,6 +111,7 @@ public class LobbyController {
     PlayerJoinEventHook.hooks.remove(0);
     PlayerQuitEventHook.hooks.remove(0);
     WeatherChangeEventHook.hooks.remove(0);
+    BlockBreakEventHook.hooks.remove(0);
   }
 
   /**
