@@ -75,6 +75,9 @@ public class InGamePlayerDeathHandler {
         @Override
         public void run(Object o) {
             EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) o;
+            if (gamePhase.getInGameState() == InGamePhase.InGameState.COUNTDOWN) {
+                event.setCancelled(true);
+            }
             if (event.getDamager() != null && event.getEntity() != null && event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
                 Player attacked = (Player) event.getEntity();
                 Player attacker = (Player) event.getEntity();

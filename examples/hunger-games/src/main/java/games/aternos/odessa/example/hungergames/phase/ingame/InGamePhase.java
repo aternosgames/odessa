@@ -7,6 +7,7 @@ import games.aternos.odessa.example.hungergames.HungerGamesGameConfiguration;
 import games.aternos.odessa.example.hungergames.phase.endgame.EndGamePhase;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerDeathHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerJoinHandler;
+import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerMoveHandler;
 import games.aternos.odessa.example.hungergames.phase.ingame.runnable.InGameRunnable;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
@@ -16,6 +17,7 @@ import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -59,7 +61,7 @@ public class InGamePhase extends GamePhase {
         this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.registerHooks();
     this.inGameSidebar.pushBoard();
-      this.inGameState = InGameState.NORMAL_PLAY;
+      this.inGameState = InGameState.COUNTDOWN;
   }
 
     @Override
@@ -73,12 +75,28 @@ public class InGamePhase extends GamePhase {
             // oh no.
         }
 
-        if (this.inGameState == InGameState.NORMAL_PLAY) {
-
-            if (this.gameTick >= HungerGamesGameConfiguration.getTimeForceDeathmatch() || this.getGame().getGameData().getPlayers().size() <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
-                // start deathmatch countdown
-            }
-
+        switch (this.inGameState) {
+            case COUNTDOWN:
+                if (this.gameTick >= 10) {
+                    // next phase
+                    Bukkit.broadcastMessage("Let the Games Begin!");
+                    this.inGameState = InGameState.NORMAL_PLAY;
+                } else {
+                    Bukkit.broadcastMessage(10 - this.gameTick + "");
+                    for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
+                        p.sendActionBar(ChatColor.GREEN + "Starting: " + (10 - this.gameTick));
+                    }
+                }
+                break;
+            case NORMAL_PLAY:
+                if (this.gameTick >= HungerGamesGameConfiguration.getTimeForceDeathmatch() || this.getGame().getGameData().getPlayers().size() <= HungerGamesGameConfiguration.getPlayerForceDeathmatch()) {
+                    // start deathmatch countdown
+                }
+                break;
+            case DEATHMATCH:
+                break;
+            default:
+                break;
         }
 
         if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
@@ -113,6 +131,7 @@ public class InGamePhase extends GamePhase {
   private void registerHooks() {
     new InGamePlayerJoinHandler(this);
     new InGamePlayerDeathHandler(this);
+      new InGamePlayerMoveHandler(this);
   }
 
     public InGameSidebar getInGameSidebar() {
@@ -123,7 +142,8 @@ public class InGamePhase extends GamePhase {
         return inGameState;
     }
 
-    private enum InGameState {
+    public enum InGameState {
+        COUNTDOWN,
         NORMAL_PLAY,
         DEATHMATCH
     }

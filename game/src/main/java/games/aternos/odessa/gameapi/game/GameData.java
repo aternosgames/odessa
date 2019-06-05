@@ -78,4 +78,13 @@ public abstract class GameData {
   public void setGameArena(Arena a) {
     this.gameArena = a;
   }
+
+    public List<Player> getPlayersAndSpectatorsList() {
+
+        List<Player> all = new ArrayList<>();
+        all.addAll(this.players);
+        all.addAll(this.spectators);
+        return all;
+
+    }
 }
