@@ -32,6 +32,12 @@ public class PlayerService extends Service {
     p.setGameMode(GameMode.ADVENTURE);
   }
 
+    public void gamemodePlayers(GameMode gameMode, List<Player> players) {
+        for (Player p : players) {
+            p.setGameMode(gameMode);
+        }
+    }
+
   public void clearPlayer(@NonNull Player p) {
     p.getInventory().setHelmet(null);
     p.getInventory().setChestplate(null);

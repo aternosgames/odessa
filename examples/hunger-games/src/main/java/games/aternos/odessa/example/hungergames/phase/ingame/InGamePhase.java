@@ -5,10 +5,7 @@ import games.aternos.odessa.engine.service.player.PlayerService;
 import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.example.hungergames.HungerGamesGameConfiguration;
 import games.aternos.odessa.example.hungergames.phase.endgame.EndGamePhase;
-import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerDeathHandler;
-import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerJoinHandler;
-import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerLeaveHandler;
-import games.aternos.odessa.example.hungergames.phase.ingame.handler.InGamePlayerMoveHandler;
+import games.aternos.odessa.example.hungergames.phase.ingame.handler.*;
 import games.aternos.odessa.example.hungergames.phase.ingame.runnable.InGameRunnable;
 import games.aternos.odessa.gameapi.GameApi;
 import games.aternos.odessa.gameapi.game.Game;
@@ -18,6 +15,7 @@ import games.aternos.odessa.gameapi.game.GamePhase;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -38,6 +36,7 @@ public class InGamePhase extends GamePhase {
      * The current GameTick
      */
   private int gameTick;
+
     private int deathmatchCountDownStartTick;
 
     public InGamePhase(@NonNull GameLifecycleManager owner, Game game) {
@@ -57,10 +56,12 @@ public class InGamePhase extends GamePhase {
   @Override
   public void startPhase() {
     this.setActive(true);
-    playerService.dispersePlayers(
+      this.playerService.dispersePlayers(
         this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
-    playerService.giveKitsToPlayers(
-            this.getGame().getGameData().getSelectedPlayerKits(), true, true);
+      this.playerService.giveKitsToPlayers(
+              this.getGame().getGameData().getSelectedPlayerKits(), true, true);
+      this.playerService.gamemodePlayers(
+              GameMode.SURVIVAL, this.getGame().getGameData().getPlayers());
     this.setGamePhaseRunnableTask(
         this.getGamePhaseRunnable().runTaskTimer(GameApi.getGameApi(), 0, 20L));
     this.registerHooks();
@@ -79,7 +80,7 @@ public class InGamePhase extends GamePhase {
           }
           this.getOwner().nextPhase();
           // player wins or oh shit whys there no players?
-      }
+    }
 
     switch (this.inGameState) {
       case COUNTDOWN:
@@ -116,7 +117,9 @@ public class InGamePhase extends GamePhase {
             }
             if (30 - (this.gameTick - this.deathmatchCountDownStartTick) <= 1) {
                 // START DM
-                this.playerService.dispersePlayers(this.getGame().getGameData().getPlayers(), this.getGame().getGameData().getGameArena());
+                this.playerService.dispersePlayers(
+                        this.getGame().getGameData().getPlayers(),
+                        this.getGame().getGameData().getGameArena());
                 this.playerService.healPlayers(this.getGame().getGameData().getPlayers());
                 Bukkit.broadcastMessage("Good luck!");
                 this.inGameState = InGameState.DEATHMATCH;
@@ -128,7 +131,7 @@ public class InGamePhase extends GamePhase {
     }
 
     if (this.gameTick >= HungerGamesGameConfiguration.getTimeGameMax()) {
-      // end game
+        // end game
         this.getGame().getGameData().setGameEndReason(GameEndReason.TIME_LIMIT);
         this.getOwner().nextPhase();
     }
@@ -163,6 +166,7 @@ public class InGamePhase extends GamePhase {
     new InGamePlayerDeathHandler(this);
     new InGamePlayerMoveHandler(this);
       new InGamePlayerLeaveHandler(this);
+      new InGameBlockBreakHandler(this);
   }
 
   public InGameSidebar getInGameSidebar() {
