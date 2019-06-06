@@ -4,6 +4,7 @@ version: 1
 description: Provides the core of Minigames
 authors: [_Bot_, AternosGamesContributors] # If you make a pull request (and contribute something) add your name :)
 website: aternos.games
+api-version: 1.14
 commands:
   odessa:
     description: Odessa Super Command

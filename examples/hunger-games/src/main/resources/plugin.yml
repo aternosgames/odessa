@@ -5,3 +5,4 @@ description: Hunger Games Example Game
 authors: [_Bot_, AternosGamesContributors] # If you make a pull request (and contribute something) add your name :)
 depend: [OdessaGameApi]
 website: aternos.games
+api-version: 1.14

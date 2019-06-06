@@ -33,6 +33,7 @@ public class ArenaVoteGUI implements GUI {
     for (Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()) {
       ItemStack arena = new ItemStack(Material.OAK_SIGN);
       ItemMeta arenaMeta = arena.getItemMeta();
+        assert arenaMeta != null;
       arenaMeta.setDisplayName(a.getArenaName());
       int votes;
       votes = gameLobbySystem.getArenaVote().getOrDefault(a, 0);
