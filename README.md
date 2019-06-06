@@ -1,5 +1,5 @@
 # Odessa
-**Customizable** and **easy-to-use** game framework built on top of the Bukkit API and implemented through Sponge
+**Customizable** and **easy-to-use** game framework built on top of the Bukkit API and Spigot API and implemented through Spigot
 
 ## Currently, when building artifacts it is recommended to assemble these jars:
 

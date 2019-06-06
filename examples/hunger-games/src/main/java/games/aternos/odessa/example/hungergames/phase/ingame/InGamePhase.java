@@ -17,7 +17,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -78,7 +77,9 @@ public class InGamePhase extends GamePhase {
           } else {
               this.getGame().getGameData().setGameEndReason(GameEndReason.ERROR);
           }
+
           this.getOwner().nextPhase();
+
           // player wins or oh shit whys there no players?
     }
 
@@ -90,9 +91,9 @@ public class InGamePhase extends GamePhase {
           this.inGameState = InGameState.NORMAL_PLAY;
         } else {
           Bukkit.broadcastMessage(10 - this.gameTick + "");
-          for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
-            p.sendActionBar(ChatColor.GREEN + "Starting: " + (10 - this.gameTick));
-          }
+            //for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
+            //p.sendActionBar(ChatColor.GREEN + "Starting: " + (10 - this.gameTick)); //TODO: Build action bar api
+            //}
         }
         break;
       case NORMAL_PLAY:
@@ -111,9 +112,9 @@ public class InGamePhase extends GamePhase {
                         "Deathmatch: " + (30 - (this.gameTick - this.deathmatchCountDownStartTick));
                 Bukkit.broadcastMessage(message);
 
-                for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
-                    p.sendActionBar(message);
-                }
+                //for (Player p : this.getGame().getGameData().getPlayersAndSpectatorsList()) {
+                //p.sendActionBar(message); TODO: build action bar api
+                //}
             }
             if (30 - (this.gameTick - this.deathmatchCountDownStartTick) <= 1) {
                 // START DM

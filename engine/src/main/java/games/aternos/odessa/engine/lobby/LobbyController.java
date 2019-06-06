@@ -123,10 +123,10 @@ public class LobbyController {
     this.getGameLobbySystem().getGame().getGameData().addPlayer(p);
     this.getGameLobbySystem().getLobbyBoard().pushBoard();
     cleanPlayer(p);
-    p.sendActionBar(
-        ChatColor.BOLD
-            + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName()
-            + " Lobby");
+    // p.sendActionBar( TODO: Build actionbar
+    //  ChatColor.BOLD
+    //   + this.getGameLobbySystem().getGame().getGameConfiguration().getGameName()
+    //          + " Lobby");
     // select default kit
     this.getGameLobbySystem()
             .getGame()

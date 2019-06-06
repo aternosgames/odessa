@@ -21,7 +21,7 @@ public class AddSpawnSubCommand extends PlayerSubCommand {
       return;
     }
 
-    Location spawnLocation = player.getLocation().toBlockLocation();
+    Location spawnLocation = player.getLocation();
 
     String mapName = args[0];
     String teamId = args[1];

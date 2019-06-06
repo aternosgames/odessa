@@ -1,5 +1,6 @@
 package games.aternos.odessa.engine.lobby.arena;
 
+import com.sun.istack.internal.NotNull;
 import games.aternos.odessa.engine.lobby.GameLobbySystem;
 import games.aternos.odessa.gameapi.game.element.Arena;
 import games.aternos.odessa.gameapi.game.element.GUI;
@@ -9,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
@@ -31,7 +31,7 @@ public class ArenaVoteGUI implements GUI {
     Inventory vote = Bukkit.createInventory(null, 9, "Arena Vote");
 
     for (Arena a : this.gameLobbySystem.getGame().getGameConfiguration().getGameArenas()) {
-      ItemStack arena = new ItemStack(Material.SIGN);
+      ItemStack arena = new ItemStack(Material.OAK_SIGN);
       ItemMeta arenaMeta = arena.getItemMeta();
       arenaMeta.setDisplayName(a.getArenaName());
       int votes;

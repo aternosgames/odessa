@@ -1,5 +1,6 @@
 package games.aternos.odessa.engine.lobby.scoreboard;
 
+import com.sun.istack.internal.NotNull;
 import games.aternos.odessa.engine.lobby.LobbyController;
 import games.aternos.odessa.engine.lobby.LobbyControllerOwned;
 import games.aternos.odessa.engine.lobby.LobbyState;
@@ -8,7 +9,6 @@ import games.aternos.odessa.engine.service.sidebar.SidebarService;
 import games.aternos.odessa.gameapi.game.element.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

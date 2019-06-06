@@ -28,7 +28,7 @@ public class InGamePlayerJoinHandler {
             PlayerJoinEvent event = (PlayerJoinEvent) o;
 
             event.setJoinMessage(null);
-            event.getPlayer().sendActionBar("HungerGames Spectator");
+            //event.getPlayer().sendActionBar("HungerGames Spectator"); TODO: Build Action Bar API
             gamePhase.getPlayerService().spectatorPlayer(event.getPlayer());
 
             gamePhase.getGame().getGameData().addSpectator(event.getPlayer());

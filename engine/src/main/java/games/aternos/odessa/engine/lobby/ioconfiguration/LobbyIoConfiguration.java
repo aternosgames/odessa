@@ -1,11 +1,11 @@
 package games.aternos.odessa.engine.lobby.ioconfiguration;
 
+import com.sun.istack.internal.NotNull;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationFile;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.io.File;
