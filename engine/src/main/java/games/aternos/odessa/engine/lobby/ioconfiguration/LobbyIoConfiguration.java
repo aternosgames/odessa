@@ -1,6 +1,5 @@
 package games.aternos.odessa.engine.lobby.ioconfiguration;
 
-import com.sun.istack.internal.NotNull;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationFile;
 import games.aternos.odessa.engine.service.ioconfiguration.IoConfigurationService;
 import org.bukkit.Bukkit;
@@ -18,9 +17,17 @@ public class LobbyIoConfiguration extends IoConfigurationFile {
     super(new File(owner.getGameApi().getDataFolder() + "/lobby", "lobby.yml"));
   }
 
-  @NotNull
+
   public Location getLobbySpawn() {
-    World world = Bukkit.getWorld((String) this.getConfiguration().get("spawn.world"));
+    String worldName = (String) this.getConfiguration().get("spawn.world");
+
+    if (worldName == null) {
+      return null;
+    }
+
+    World world = Bukkit.getWorld(worldName);
+
+
     Integer x = (Integer) this.getConfiguration().get("spawn.x");
     Integer y = (Integer) this.getConfiguration().get("spawn.y");
     Integer z = (Integer) this.getConfiguration().get("spawn.z");
